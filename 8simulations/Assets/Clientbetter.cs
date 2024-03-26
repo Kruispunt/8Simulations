@@ -59,7 +59,6 @@ public class Clientbetter : MonoBehaviour
             byte[] bytes = new byte[1024];
             while (true)
             {
-                Debug.Log(bytes.Length);
                 Debug.Log(stream.DataAvailable);
                 // Check if there's any data available on the network stream
                 if (stream.DataAvailable)
@@ -97,7 +96,6 @@ public class Clientbetter : MonoBehaviour
 
         byte[] data = Encoding.UTF8.GetBytes(message);
         stream.Write(data, 0, data.Length);
-        //stream.Flush();
         Debug.Log("Sent message to server: " + message);
     }
 

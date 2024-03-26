@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SimulatorManager : MonoBehaviour
@@ -12,6 +11,7 @@ public class SimulatorManager : MonoBehaviour
     public static string ServerCommands;
 
     public int timeInSec;
+    public int SpawnMin,SpawnMax;
 
     public string msg;
 
@@ -20,13 +20,9 @@ public class SimulatorManager : MonoBehaviour
     public GameObject Traffic;
     public List<GameObject> TrafficList;
     public VerkeerslichtBoulder StopLichtManager;
-    public int Priorating;
-
-    //public StoplichtManager StoplichtManager;
-
-    private int TotalLichts;
 
 
+    //called by the client upon the first frame
     void setup(string msg)
     {
         SetString(msg);
@@ -67,10 +63,6 @@ public class SimulatorManager : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             TrafficList.Add(Instantiate(Traffic, stop.transform.position, Quaternion.identity));
-            
-            //TrafficList.Last().AddComponent<SimuAuto>();
-            //TrafficList.Last().AddComponent<SimuAuto>();
-            //stop.lane.AddCarToQue(TrafficList.Last().GetComponent<SimuAuto>());
             stop.lane.AddCarToQue(TrafficList.Last().GetComponent<SimuAuto>());
             TrafficList.Last().GetComponent<SimuAuto>().stopllicht = stop;
             TrafficList.Last().GetComponent<SimuAuto>().PlaceToPark = this.transform.position;
@@ -78,6 +70,7 @@ public class SimulatorManager : MonoBehaviour
 
     }
 
+    //old logic for reading controller pakkets
     public void SetString(string msg)
     {
         this.msg = msg;
@@ -108,10 +101,6 @@ public class SimulatorManager : MonoBehaviour
 
             setup(msg);
         }
-
-
-        //int pop = int.TryParse(chars[1], out pop);
-        //state = msg[2].ConvertTo(Int16);
 
     }
 
