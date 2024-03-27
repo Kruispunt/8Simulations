@@ -66,6 +66,7 @@ public class Clientbetter : MonoBehaviour
                 if (stream.DataAvailable)
                 {
                     int length;
+                    
                     // Read incoming stream into byte array.
                     while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
                     {
