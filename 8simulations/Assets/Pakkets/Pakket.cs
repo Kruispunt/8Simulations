@@ -10,3 +10,13 @@ public class Pakket
 }
 
 
+[System.Serializable]
+public class Sendpakket
+{
+    public string id;
+    [SerializeField]
+    public List<Tuple<bool, bool>> lights;
+
+
+}
+

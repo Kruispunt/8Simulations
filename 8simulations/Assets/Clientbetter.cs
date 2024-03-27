@@ -4,6 +4,8 @@ using System;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using Newtonsoft.Json;
+
 
 public class Clientbetter : MonoBehaviour
 {
@@ -93,10 +95,21 @@ public class Clientbetter : MonoBehaviour
             Debug.LogError("Client not connected to server.");
             return;
         }
+        Sendpakket sendpakket = new Sendpakket();
 
-        byte[] data = Encoding.UTF8.GetBytes(message);
+        sendpakket.id = "VegetaA";
+        sendpakket.lights = new System.Collections.Generic.List<Tuple<bool, bool>>();
+        sendpakket.lights.Add(new Tuple<bool, bool>(true, false));
+        sendpakket.lights.Add(new Tuple<bool, bool>(false, false));
+        sendpakket.lights.Add(new Tuple<bool, bool>(true, true));
+        string jopson =  JsonConvert.SerializeObject(sendpakket);
+        //JsonSerializer.ToJsonString(json);
+         
+        byte[] data = Encoding.UTF8.GetBytes(jopson);
+
+        //byte[] data = Encoding.UTF8.GetBytes(message);
         stream.Write(data, 0, data.Length);
-        Debug.Log("Sent message to server: " + message);
+        Debug.Log("Sent message to server: " + jopson);
     }
 
     void OnApplicationQuit()
