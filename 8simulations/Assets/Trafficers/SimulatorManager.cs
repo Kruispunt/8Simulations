@@ -14,6 +14,7 @@ public class SimulatorManager : MonoBehaviour
     public int SpawnMin,SpawnMax;
 
     public string msg;
+    public MessageDecoder messageDecoder = new MessageDecoder();
 
     public bool setupDone = false;
 
@@ -73,29 +74,39 @@ public class SimulatorManager : MonoBehaviour
     //old logic for reading controller pakkets
     public void SetString(string msg)
     {
+        Pakket pakket = messageDecoder.DecodeMessageToJson(msg);
+        Debug.Log(pakket.id);
+        //Debug.Log(pakket.lights);
+        Debug.Log(pakket.lights.Count + "lightCount");
+        foreach (int light in pakket.lights)
+        {
+            Debug.Log(light + "light");
+        }
+
+        //messageDecoder.DecodeMessageToJson(msg);
         this.msg = msg;
-        Debug.Log(msg + "victory");
+        //Debug.Log(msg + "victory");
         //string("1,1,2,3,3,2")
-        char[] chars = msg.ToCharArray();
-        Debug.Log(chars);
-        Debug.Log(chars[0]);
-        Debug.Log(chars[2]);
-        Debug.Log(chars[4]);
-        Debug.Log(chars[6]);
-        Debug.Log(chars[8]);
-        Debug.Log(chars[10]);
-        int pops = chars[0];
-        int statestop = chars[1];
+        //char[] chars = msg.ToCharArray();
+        //Debug.Log(chars);
+        //Debug.Log(chars[0]);
+        //Debug.Log(chars[2]);
+        //Debug.Log(chars[4]);
+        //Debug.Log(chars[6]);
+        //Debug.Log(chars[8]);
+        //Debug.Log(chars[10]);
+        //int pops = chars[0];
+        //int statestop = chars[1];
 
 
-        if (!StopLichtManager.SetupDone)
-        {
-            //StopLichtManager.Setup(pops, statestop);
-        }
-        else
-        {
-            StopLichtManager.UpdateFromControl(pops, statestop);
-        }
+        //if (!StopLichtManager.SetupDone)
+        //{
+        //    //StopLichtManager.Setup(pops, statestop);
+        //}
+        //else
+        //{
+        //    StopLichtManager.UpdateFromControl(pops, statestop);
+        //}
         if(!setupDone)
         {
 
