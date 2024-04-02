@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,8 +18,14 @@ public class Sendpakket
     public List<Tuple<bool, bool>> lights;
 }
 
-//char and don't go well String works a bit better in json formats
+[Serializable]
+public class Index
+{
+    public Block[] blocks;
+}
 
+
+//char and don't go well String works a bit better in json formats
 [Serializable]
 public class Block
 {
@@ -32,11 +39,11 @@ public class Block
 [Serializable]
 public class Sensors
 {
-    public string Name;
-    public bool State;
+    public string Name = "harry";
+    public bool State = false;
 }
 [Serializable]
 public class Busses
 {
-    int id;
+    int id = 10;
 }
