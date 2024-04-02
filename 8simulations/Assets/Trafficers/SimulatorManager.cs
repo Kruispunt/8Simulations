@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 
@@ -74,14 +75,22 @@ public class SimulatorManager : MonoBehaviour
     //old logic for reading controller pakkets
     public void SetString(string msg)
     {
-        Pakket pakket = messageDecoder.DecodeMessageToJson(msg);
-        Debug.Log(pakket.id);
+        string filePath = Path.Combine(Application.persistentDataPath, "SvenPakket.json");
+
+        File.WriteAllText(filePath, msg);
+
+        recieverpakket.SignalGroup signal = messageDecoder.readmsg(msg);
+        //Pakket pakket = messageDecoder.DecodeMessageToJson(msg);
+        //Debug.Log(pakket.id);
         //Debug.Log(pakket.lights);
-        Debug.Log(pakket.lights.Count + "lightCount");
-        foreach (int light in pakket.lights)
-        {
-            Debug.Log(light + "light");
-        }
+        //Debug.Log(pakket.lights.Count + "lightCount");
+        //foreach (int light in pakket.lights)
+        //{
+        //    Debug.Log(light + "light");
+        //}
+
+        Debug.Log(signal.blocksMsg.A.ToString());
+
 
         //messageDecoder.DecodeMessageToJson(msg);
         this.msg = msg;

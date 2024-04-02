@@ -28,7 +28,7 @@ public class Clientbetter : MonoBehaviour
     {
         decoder = new MessageDecoder();
         decoder.PrintPakket();
-        //ConnectToServer();
+        ConnectToServer();
     }
 
     void Update()
@@ -102,20 +102,23 @@ public class Clientbetter : MonoBehaviour
             return;
         }
         Sendpakket sendpakket = new Sendpakket();
+        //decoder = new MessageDecoder();
 
-        sendpakket.id = "VegetaA";
-        sendpakket.lights = new System.Collections.Generic.List<Tuple<bool, bool>>();
-        sendpakket.lights.Add(new Tuple<bool, bool>(true, false));
-        sendpakket.lights.Add(new Tuple<bool, bool>(false, false));
-        sendpakket.lights.Add(new Tuple<bool, bool>(true, true));
+        //Index indexe = decoder.mockDatagenerator.generateIndex();
+        string pakketmsg = decoder.GetGenPakket();
+        
+        //string json = JsonConvert.SerializeObject(indexe);
+
         string jopson =  JsonConvert.SerializeObject(sendpakket);
         //JsonSerializer.ToJsonString(json);
-         
-        byte[] data = Encoding.UTF8.GetBytes(jopson);
+
+        byte[] data = Encoding.UTF8.GetBytes(pakketmsg);
+
+        //byte[] data = Encoding.UTF8.GetBytes(jopson);
 
         //byte[] data = Encoding.UTF8.GetBytes(message);
         stream.Write(data, 0, data.Length);
-        Debug.Log("Sent message to server: " + jopson);
+        Debug.Log("Sent message to server: " + pakketmsg);
     }
 
     void OnApplicationQuit()
