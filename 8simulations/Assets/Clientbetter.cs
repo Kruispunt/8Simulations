@@ -17,9 +17,6 @@ public class Clientbetter : MonoBehaviour
     public SimulatorManager simulatorManager;
 
     public MessageDecoder decoder;
-
-
-   
     private TcpClient client;
     private NetworkStream stream;
     private Thread clientReceiveThread;

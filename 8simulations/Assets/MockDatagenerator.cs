@@ -74,9 +74,9 @@ public class MockDatagenerator
         signalGroup.blocksMsg.A.CarSensormsg[1].DetectFar = false;
         signalGroup.blocksMsg.A.CarSensormsg[1].PrioCar = false;
 
-        signalGroup.blocksMsg.A.CarSensormsg[2].DetectNear = true;
-        signalGroup.blocksMsg.A.CarSensormsg[2].DetectFar = false;
-        signalGroup.blocksMsg.A.CarSensormsg[2].PrioCar = true;
+        //signalGroup.blocksMsg.A.CarSensormsg[2].DetectNear = true;
+        //signalGroup.blocksMsg.A.CarSensormsg[2].DetectFar = false;
+        //signalGroup.blocksMsg.A.CarSensormsg[2].PrioCar = true;
 
         for (int i = 0; i < signalGroup.blocksMsg.B.CarSensormsg.Length; i++)
         {
@@ -87,9 +87,9 @@ public class MockDatagenerator
         signalGroup.blocksMsg.B.CarSensormsg[1].DetectFar = false;
         signalGroup.blocksMsg.B.CarSensormsg[1].PrioCar = true;
 
-        signalGroup.blocksMsg.B.CarSensormsg[2].DetectNear = true;
-        signalGroup.blocksMsg.B.CarSensormsg[2].DetectFar = false;
-        signalGroup.blocksMsg.B.CarSensormsg[2].PrioCar = true;
+        //signalGroup.blocksMsg.B.CarSensormsg[2].DetectNear = true;
+        //signalGroup.blocksMsg.B.CarSensormsg[2].DetectFar = false;
+        //signalGroup.blocksMsg.B.CarSensormsg[2].PrioCar = true;
 
         return signalGroup;
 

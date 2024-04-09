@@ -92,20 +92,20 @@ public class SignalGroup
 {
     [JsonProperty("1")]
     public blocksMsg blocksMsg { get; set; }
-    public int id = 1;
+    //public int id = 1;
 }
 
 
 [Serializable]
 public class blocksMsg
 {
-    [JsonProperty("A")] // I don't like this but it's needed for the current json structure
+    [JsonProperty("A")] 
     public blockmsg A { get; set; }
 
-    [JsonProperty("B")] // I don't like this but it's needed for the current json structure
+    [JsonProperty("B")] 
     public blockmsg B { get; set; }
 
-    [JsonProperty("C")] // I don't like this but it's needed for the current json structure
+    [JsonProperty("C")] 
     public blockmsg C { get; set; }
 
 }

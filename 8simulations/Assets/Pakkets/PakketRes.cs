@@ -42,6 +42,7 @@ public class PakketRes
         [JsonProperty("C")] // I don't like this but it's needed for the current json structure
         public blockmsg C { get; set; }
 
+
     }
     [Serializable]
     public class blockmsg
