@@ -20,6 +20,7 @@ public class GloballaneManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(Simutick(timeInSec));
+
     }
 
 
@@ -29,6 +30,7 @@ public class GloballaneManager : MonoBehaviour
         //refresh simulation state 5 secs
         yield return new WaitForSeconds(timeInSec);
         SpawnRandomCars(1, 10);
+        StartCoroutine(Simutick(timeInSec));
     }
 
     //use this to assign cars to lights
@@ -47,10 +49,6 @@ public class GloballaneManager : MonoBehaviour
     private void CreateCars(CarLanebehaviour go, int count)  
     {
         Debug.Log(TrafficList.Count);
-        //Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity);
-        //TrafficList.Add(Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity));
-        //TrafficList.Last().GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
-        //TrafficList.Last().GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
         for (int i = 0; i < count; i++)
         {
             TrafficList.Add(Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity));

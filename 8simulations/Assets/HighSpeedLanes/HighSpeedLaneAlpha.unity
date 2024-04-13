@@ -464,7 +464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3215468572876230054, guid: 17bf534b8f580394683ae841dddf18ec, type: 3}
       propertyPath: timeInSec
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3215468572876230054, guid: 17bf534b8f580394683ae841dddf18ec, type: 3}
       propertyPath: Carlanes.Array.size
@@ -1084,7 +1084,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 58, y: 0, z: 0}
-  m_LocalScale: {x: 15.5964, y: 15.5964, z: 15.5964}
+  m_LocalScale: {x: 31.1928, y: 31.1928, z: 31.1928}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
