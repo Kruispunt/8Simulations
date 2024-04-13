@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
 {
     int routeindex = 1;
 
+    public bool CanUpdate = false;
     public bool ReachedGoal;
 
     public float distanceThreshold = 5;
@@ -19,15 +20,18 @@ public class Movement : MonoBehaviour
     public Rigidbody body;
 
     public ActorPathFinding pad;
-    //three points
-    public List<ActorPathFinding> Routes;
-
-
+    public void Setup()
+    {
+        distanceThreshold = 1.5f;
+        getnewGoal();
+        this.CanUpdate = true;
+    }
     public void Setup(Rigidbody rigidbody)
     {
         this.body = rigidbody;
         distanceThreshold = 1.5f;
         getnewGoal();
+        this.CanUpdate = true;
     }
 
     public void SetObjective(Vector3 goal)
@@ -38,6 +42,7 @@ public class Movement : MonoBehaviour
 
     public void updateID()
     {
+        Debug.Log("updatedid");
         routeindex++;
         getnewGoal();
     }
@@ -46,7 +51,13 @@ public class Movement : MonoBehaviour
         this.LocalGoal = pad.Getroute(routeindex);
     }
 
-
+    private void Update()
+    {
+        if (this.CanUpdate)
+        {
+            this.MoveObject();
+        }
+    }
 
     //move on forward axis
     public void MoveObject()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ActorPathFinding : MonoBehaviour
 {
-    public int index = 0;
+    public int index = 1;
 
 
     public Vector3 begin;
