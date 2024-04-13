@@ -17,6 +17,8 @@ public class SimulatorManager : MonoBehaviour
     public string msg;
     public MessageDecoder messageDecoder = new MessageDecoder();
 
+
+    public FromControllerPakket.blocksMsgFromControl expectations = new FromControllerPakket.blocksMsgFromControl();
     public bool setupDone = false;
 
     public GameObject Traffic;
@@ -40,12 +42,14 @@ public class SimulatorManager : MonoBehaviour
         StartCoroutine(Simutick(timeInSec));
     }
 
+    
+
     //time based loop for refreshing important things
     IEnumerator Simutick(int timeInSec)
     {
         //refresh simulation state 5 secs
         yield return new WaitForSeconds(timeInSec);
-        SpawnRandomCars(1, 5);
+        SpawnRandomCars(10, 100);
     }
 
     //use this to assign cars to lights

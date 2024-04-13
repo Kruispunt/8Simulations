@@ -5,12 +5,26 @@ using UnityEngine;
 
 public class LampostManager : MonoBehaviour
 {
+
+    public bool BuildOnStart = false;
+    public bool Isgreen = true;
     //the internal behaviour for logic related stuff
     public ColourLogic ColourLogic;
 
+    public LampWatch watch;
 
+    
     public List<Lighting> lightings = new List<Lighting>();
 
+
+
+    private void Start()
+    {
+        if (BuildOnStart)
+        {
+            SetUpLights();
+        }
+    }
     public void SetUpLights()
     {
         lightings.AddRange(this.GetComponentsInChildren<Lighting>());
@@ -23,6 +37,7 @@ public class LampostManager : MonoBehaviour
 
         AddLightsToLogic(lightings);
         ColourLogic.StartLamp();
+        ColourLogic.setLampToRed();
 
     }
     //called on setup
@@ -40,7 +55,19 @@ public class LampostManager : MonoBehaviour
         }
         
     }
+    public void SetToGreen()
+    {
+        ColourLogic.setLampToGreen();
+    }
 
+    public void SetToOrange()
+    {
+        ColourLogic.setLampToOrange();
+    }
+    public void SetToRed()
+    {
+        ColourLogic.setLampToRed();
+    }
     public void SetLight(int index)
     {
         ColourLogic.UpdateState(index);

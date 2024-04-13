@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    int routeindex = 1;
 
     public bool ReachedGoal;
 
@@ -17,19 +18,35 @@ public class Movement : MonoBehaviour
     //rigidbody pyhcis
     public Rigidbody body;
 
-    
+    public ActorPathFinding pad;
+    //three points
+    public List<ActorPathFinding> Routes;
 
 
     public void Setup(Rigidbody rigidbody)
     {
         this.body = rigidbody;
         distanceThreshold = 1.5f;
+        getnewGoal();
     }
 
     public void SetObjective(Vector3 goal)
     {
         this.LocalGoal = goal;
     }
+
+
+    public void updateID()
+    {
+        routeindex++;
+        getnewGoal();
+    }
+    public void getnewGoal()
+    {
+        this.LocalGoal = pad.Getroute(routeindex);
+    }
+
+
 
     //move on forward axis
     public void MoveObject()
@@ -39,27 +56,25 @@ public class Movement : MonoBehaviour
 
         if (afstand < distanceThreshold)
         {
+            if(routeindex == 1 && pad.watch.CanGo)
+            {
+                updateID();
 
-            ReachedGoal = true;
-            LocalGoal = this.transform.position;
+            }
+            if(routeindex == 2)
+            {
+                this.gameObject.SetActive(false);
+            }
+
         }
         else
         {
-            //float distance = heading.magnitude;
-            //heading = transform.position - LocalGoal;
-            //Vector3 direction = heading / distance; // This is now the normalized direction.
-            float distance = Vector3.Distance(this.transform.position, LocalGoal);
+
             heading = transform.position - LocalGoal;
             Vector3 direction = Vector3.Normalize(heading);
-            //heading = transform.position - LocalGoal;
             body.AddForce(-direction);
             Debug.DrawLine(transform.position, LocalGoal, Color.red);
         }
-        //float distance = heading.magnitude;
-        //Vector3 direction = heading / distance; // This is now the normalized direction.
-
-        //body.velocity = transform.forward * speed;
-        //body.AddForce(-direction);
         Debug.DrawLine(transform.position, LocalGoal, Color.red);
 
     }

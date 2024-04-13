@@ -78,7 +78,7 @@ public class Clientbetter : MonoBehaviour
                         string serverMessage = Encoding.UTF8.GetString(incomingData);
                         Debug.Log("Server message received: " + serverMessage);
                         //simulatorManager.msg = serverMessage;
-                        simulatorManager.SetString(serverMessage);
+                        //simulatorManager.SetString(serverMessage);
                        
                     }
                 }
@@ -98,16 +98,14 @@ public class Clientbetter : MonoBehaviour
             Debug.LogError("Client not connected to server.");
             return;
         }
-        Sendpakket sendpakket = new Sendpakket();
-        //decoder = new MessageDecoder();
+        //Sendpakket sendpakket = new Sendpakket();
 
-        //Index indexe = decoder.mockDatagenerator.generateIndex();
+
         string pakketmsg = decoder.GetGenPakket();
-        
-        //string json = JsonConvert.SerializeObject(indexe);
+       
 
-        string jopson =  JsonConvert.SerializeObject(sendpakket);
-        //JsonSerializer.ToJsonString(json);
+        //string jopson =  JsonConvert.SerializeObject(sendpakket);
+
 
         byte[] data = Encoding.UTF8.GetBytes(pakketmsg);
 

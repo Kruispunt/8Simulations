@@ -1131,15 +1131,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7343128758818016259, guid: 57021cf8211f6c34987778202dd184cd, type: 3}
       propertyPath: SpawnMax
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7343128758818016259, guid: 57021cf8211f6c34987778202dd184cd, type: 3}
       propertyPath: SpawnMin
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7406045236950707382, guid: 57021cf8211f6c34987778202dd184cd, type: 3}
       propertyPath: serverIP
-      value: 192.168.137.54
+      value: 192.168.137.1
       objectReference: {fileID: 0}
     - target: {fileID: 7406045236950707382, guid: 57021cf8211f6c34987778202dd184cd, type: 3}
       propertyPath: serverPort

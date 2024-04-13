@@ -21,10 +21,10 @@ public class MessageDecoder
     {
         mockDatagenerator = new MockDatagenerator();
         //string jsons = JsonConvert.SerializeObject(mockDatagenerator.generateIndex());
-        string jsons = JsonConvert.SerializeObject(mockDatagenerator.GenerateMockCrossmsg());
+        //string jsons = JsonConvert.SerializeObject(mockDatagenerator.GenerateMockCrossmsg());
         string filePath = Path.Combine(Application.persistentDataPath, "playerData.json");
 
-        File.WriteAllText(filePath, jsons);
+        //File.WriteAllText(filePath, jsons);
         Debug.Log(filePath);
         Debug.Log("donelogging");
 
@@ -38,29 +38,29 @@ public class MessageDecoder
         mockDatagenerator = new MockDatagenerator();
         //string jsons = JsonConvert.SerializeObject(mockDatagenerator.generateIndex());
         //string jsons = JsonConvert.SerializeObject(mockDatagenerator.generateIndex());
-        string jsons = JsonConvert.SerializeObject(mockDatagenerator.GenerateMockCrossmsg());
+        //string jsons = JsonConvert.SerializeObject(mockDatagenerator.GenerateMockCrossmsg());
         string filePath = Path.Combine(Application.persistentDataPath, "playerData.json");
 
-        File.WriteAllText(filePath, jsons);
+        //File.WriteAllText(filePath, jsons);
         Debug.Log(filePath);
         Debug.Log("donelogging");
-        return jsons;
+        return "str";
 
 
 
 
         //System.pr
     }
-    public void PrintPakket(Index index)
-    {
-        string jsons = JsonConvert.SerializeObject(index);
-        string filePath = Path.Combine(Application.persistentDataPath, "playerData.json");
+    //public void PrintPakket(Index index)
+    //{
+    //    string jsons = JsonConvert.SerializeObject(index);
+    //    string filePath = Path.Combine(Application.persistentDataPath, "playerData.json");
 
-        File.WriteAllText(filePath, jsons);
+    //    File.WriteAllText(filePath, jsons);
 
 
-        //System.pr
-    }
+    //    //System.pr
+    //}
 
 
 }

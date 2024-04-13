@@ -11,13 +11,17 @@ public class ColourLogic : MonoBehaviour
     public int Options;
     //list of lamos
     public List<Lighting> LampLights;
+
+    public LampWatch watch;
     //index starts at zero 
     public void setup(int options)
     {
+        Debug.Log("setup collogic");
         Options = options;
         LampLights = new List<Lighting>();
         //default
         CurrentState = 0;
+        watch = GetComponentInParent<LampWatch>();
         //StartLamp();
 
     }
@@ -41,17 +45,33 @@ public class ColourLogic : MonoBehaviour
         LampLights[CurrentState].Status = !LampLights[CurrentState].Status;
     }
 
-    public void ToggleNewStatus()
+    public void setLampToGreen()
     {
-        if(CurrentState == Options && CurrentState > 0) 
-        {
-            CurrentState--;
-        }
-        else
-        {
-            CurrentState++;
-        }
+        LampLights[1].Status = false;
+        LampLights[2].Status = false;
 
+        watch.CanGo = true;
+        //0
+        CurrentState = 0;
+        LampLights[0].Status = true;
+
+    }
+    public void setLampToOrange()
+    {
+        LampLights[0].Status = false;
+        LampLights[2].Status = false;
+        //1
+        CurrentState = 1;
+        LampLights[1].Status = true;
+    }
+    public void setLampToRed()
+    {
+        watch.CanGo = false;
+        LampLights[0].Status = false;
+        LampLights[1].Status = false;
+        //2
+        CurrentState = 2;
+        LampLights[2].Status = true;
     }
 
     public void StartLamp()

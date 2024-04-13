@@ -7,6 +7,7 @@ using UnityEngine;
 public class MockDatagenerator
 {
 
+    /*
 
     public Index index;
     // Start is called before the first frame update
@@ -55,8 +56,8 @@ public class MockDatagenerator
 
 
         signalGroup.blocksMsg.A = new blockmsg();
-        signalGroup.blocksMsg.B = new blockmsg();
-        signalGroup.blocksMsg.C = new blockmsg();
+        //signalGroup.blocksMsg.B = new blockmsg();
+        //signalGroup.blocksMsg.C = new blockmsg();
         signalGroup.blocksMsg.A.CarSensormsg = new CarSensormsg[2];
 
         signalGroup.blocksMsg.B.CarSensormsg = new CarSensormsg[2];
@@ -151,4 +152,5 @@ public class MockDatagenerator
 
         return num;
     }
+    */
 }

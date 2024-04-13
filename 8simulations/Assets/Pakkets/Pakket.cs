@@ -11,88 +11,14 @@ public class Pakket
     public List<int> lights;
 }
 
-[System.Serializable]
-public class Sendpakket
-{
-    public string id;
-    [SerializeField]
-    public List<Tuple<bool, bool>> lights;
-}
-
-[Serializable]
-public class Index
-{
-    public Block[] blocks;
-}
-
-
-//char and don't go well String works a bit better in json formats
-[Serializable]
-public class Block
-{
-    public string id;
-    public Sensors[] Cars;
-    public Sensors[] Cyclists;
-    public Sensors[] Pedestrians;
-    public Busses[] Busses;
-}
-
-[Serializable]
-public class Sensors
-{
-    public string Name = "harry";
-    public bool State = false;
-}
-[Serializable]
-public class Busses
-{
-    int id = 10;
-}
-
-
-
-public partial class CrossingMessage
-{
-    //needed define
-    [JsonProperty("1")] // I don't like this but it's needed for the current json structure
-    public RoadsMessage RoadsMessage { get; set; }
-
-    public int CrossingId = 1; // I don't like this but it's needed for the current json structure
-}
-
-public partial class RoadsMessage
-{
-    [JsonProperty("A")] // I don't like this but it's needed for the current json structure
-    public RoadMessage A { get; set; }
-
-    [JsonProperty("B")] // I don't like this but it's needed for the current json structure
-    public RoadMessage B { get; set; }
-
-    [JsonProperty("C")] // I don't like this but it's needed for the current json structure
-    public RoadMessage C { get; set; }
-}
-
-public partial class RoadMessage
-{
-    //redifine name of the class
-    [JsonProperty("cars")]
-    public CarLaneMessage[] Lanes { get; set; }
-}
-
-[JsonObject]
-public partial class CarLaneMessage
-{
-    public bool DetectNear { get; set; }
-    public bool DetectFar { get; set; }
-    public bool PrioCar { get; set; }
-}
 
 [Serializable]
 public class SignalGroup
 {
     [JsonProperty("1")]
-    public blocksMsg blocksMsg { get; set; }
-    //public int id = 1;
+    public blocksMsg blocksMsg1 { get; set; }
+    [JsonProperty("2")]
+    public blocksMsg blocksMsg2 { get; set; }
 }
 
 
@@ -103,10 +29,19 @@ public class blocksMsg
     public blockmsg A { get; set; }
 
     [JsonProperty("B")] 
-    public blockmsg B { get; set; }
+    public blockmsgBus B { get; set; }
 
     [JsonProperty("C")] 
-    public blockmsg C { get; set; }
+    public blockmsgCarOnly C { get; set; }
+
+    [JsonProperty("D")]
+    public blockmsgCarOnly D { get; set; }
+
+    [JsonProperty("E")]
+    public blockmsgBus E { get; set; }
+
+    [JsonProperty("F")]
+    public blockmsg F { get; set; }
 
 }
 
@@ -115,8 +50,40 @@ public class blocksMsg
 public class blockmsg
 {
     [JsonProperty("Cars")]
-    public CarSensormsg[] CarSensormsg { get; set; }
+    public List<CarSensormsg> LCarSensormsgs { get; set; }
+    [JsonProperty("Cyclists")]
+    public List<SingleDetector> Bikers { get; set; }
+    [JsonProperty("Pedestrians")]
+    public List<SingleDetector> Walkers { get; set; }
 
+}
+[Serializable]
+public class blockmsgCarOnly
+{
+    [JsonProperty("Cars")]
+    public List<CarSensormsg> LCarSensormsgs { get; set; }
+
+}
+
+[Serializable]
+public class blockmsgBus
+{
+    [JsonProperty("Cars")]
+    public List<CarSensormsg> LCarSensormsgs { get; set; }
+    [JsonProperty("Cyclists")]
+    public List<SingleDetector> Bikers { get; set; }
+    [JsonProperty("Pedestrians")]
+    public List<SingleDetector> Walkers { get; set; }
+    [JsonProperty("Busses")]
+    public List<int> LBusses { get; set; }
+
+}
+
+
+[Serializable]
+public class SingleDetector
+{
+    public bool Detected { get; set; }
 }
 
 [Serializable]
