@@ -203,9 +203,11 @@ public class GloballaneManager : MonoBehaviour
 
         WalkLanes.Add(Instantiate(WalkLanePrefab, WalkLanes.Last().transform.position + ((Vector3.forward * WalkLanes.Last().GetComponentInChildren<WalkLanebehaviour>().MidPointDistance) + (Vector3.right * 10)), Quaternion.identity));
         WalkLanes.Last().name = nam + WalkLanes.Count;
+        WalkLanes.Last().transform.Rotate(Vector3.up * 180);
         //the second part
         WalkLanes.Add(Instantiate(WalkLanePrefab, WalkLanes.Last().transform.position - ((Vector3.forward * WalkLanes.Last().GetComponentInChildren<WalkLanebehaviour>().MidPointDistance) - (Vector3.right * 10)), Quaternion.identity));
         WalkLanes.Last().name = nam + WalkLanes.Count;
+        WalkLanes.Last().transform.Rotate(Vector3.up * 180);
 
 
     }
@@ -219,9 +221,11 @@ public class GloballaneManager : MonoBehaviour
 
         WalkLanesB.Add(Instantiate(WalkLanePrefab, WalkLanesB.Last().transform.position + ((Vector3.forward * WalkLanesB.Last().GetComponentInChildren<WalkLanebehaviour>().MidPointDistance) + (Vector3.right * 10)), Quaternion.identity));
         WalkLanesB.Last().name = nam + WalkLanesB.Count;
+        WalkLanesB.Last().transform.Rotate(Vector3.up * 180);
         //the second part
         WalkLanesB.Add(Instantiate(WalkLanePrefab, WalkLanesB.Last().transform.position - ((Vector3.forward * WalkLanesB.Last().GetComponentInChildren<WalkLanebehaviour>().MidPointDistance) - (Vector3.right * 10)), Quaternion.identity));
         WalkLanesB.Last().name = nam + WalkLanesB.Count;
+        WalkLanesB.Last().transform.Rotate(Vector3.up * 180);
 
 
     }
@@ -352,27 +356,28 @@ public class GloballaneManager : MonoBehaviour
     {
         blocksMsg msg = new blocksMsg();
 
-        msg.A = AssignblockmsgData(carSensormsgsA, BikelaneA);
-        msg.B = AssignblockmsgBusData(carSensormsgsB, BikelaneB);
+        msg.A = AssignblockmsgData(carSensormsgsA, BikelaneA, WalklaneA);
+        msg.B = AssignblockmsgBusData(carSensormsgsB, BikelaneB, WalklaneB);
         msg.C = AssignblocksmsgCarOnlyData(carSensormsgsC);
         return msg;
         
     }
-    public blockmsg AssignblockmsgData(List<CarSensormsg> carSensormsgs, List<SingleDetector> bikers)
+    public blockmsg AssignblockmsgData(List<CarSensormsg> carSensormsgs, List<SingleDetector> bikers, List<SingleDetector> walks)
     {
         blockmsg msg = new blockmsg();
         msg.LCarSensormsgs = carSensormsgs;
         msg.Bikers = bikers;
-        msg.Walkers = new List<SingleDetector>();
+        msg.Walkers = walks;
 
         return msg;
     }
-    public blockmsgBus AssignblockmsgBusData(List<CarSensormsg> carSensormsgs, List<SingleDetector> bikers)
+    public blockmsgBus AssignblockmsgBusData(List<CarSensormsg> carSensormsgs, List<SingleDetector> bikers, List<SingleDetector> walks)
     {
         blockmsgBus msgBus = new blockmsgBus();
 
         msgBus.LCarSensormsgs = carSensormsgs;
-        msgBus.Walkers = new List<SingleDetector>();
+        msgBus.Walkers = walks;
+
         msgBus.Bikers = bikers;
         msgBus.LBusses = new List<int> { 1 };
         return msgBus;
@@ -392,8 +397,8 @@ public class GloballaneManager : MonoBehaviour
         blocksMsg2 msg = new blocksMsg2();
 
         msg.D = AssignblocksmsgCarOnlyData(carSensormsgsD);
-        msg.E = AssignblockmsgBusData(carSensormsgsE, BikelaneE);
-        msg.F = AssignblockmsgData(carSensormsgsF, BikelaneF);
+        msg.E = AssignblockmsgBusData(carSensormsgsE, BikelaneE, WalklaneE);
+        msg.F = AssignblockmsgData(carSensormsgsF, BikelaneF, WalklaneF);
 
         return msg;
 
