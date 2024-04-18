@@ -11,19 +11,31 @@ public class FietsLaanBehaviour : MonoBehaviour
     public Transform Triggerpos;
     public LaneTriggerBike LaneTriggerBike;
 
+    public LampostManager LampostManager;
+
+    //this is an extra offset added ontop of the farlane and is the true beginning of the road
+    public float LaneStartdistance;
+
+    //the local road defenition
+    private Road LaneRoad;
+
 
     private void Start()
     {
+        LaneRoad = GetComponentInChildren<Road>();
+        Debug.Log("road");
         LaneTriggerBike.setup(this, Triggerpos.position);
     }
 
     public void OnDetect()
     {
         DetectorLus.Detected = true;
+        Debug.Log("detected bike on enter");
     }
     public void ExitDetected()
     {
         DetectorLus.Detected = false;
+        Debug.Log("detected bike on exit");
     }
 
     public SingleDetector GetDetector()
@@ -31,9 +43,21 @@ public class FietsLaanBehaviour : MonoBehaviour
         return this.DetectorLus;
     }
 
-    public void Update()
+    public Vector3 GetLaneStartSignal()
     {
-        Debug.Log(DetectorLus.Detected.ToString());
+        return LaneRoad.GetStartPosition().position;
     }
+
+    //the last position of the lane and thus the exit
+    public Vector3 GetLaneExit()
+    {
+        return LaneRoad.GetEndPosition().position;
+    }
+    //enter the lane at the start position
+    public Vector3 GetLaneStart()
+    {
+        return GetLaneStartSignal() + (Vector3.forward * LaneStartdistance);
+    }
+
 
 }

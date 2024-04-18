@@ -20,6 +20,7 @@ public class MessageDecoder
     public void PrintPakket()
     {
         mockDatagenerator = new MockDatagenerator();
+
         //string jsons = JsonConvert.SerializeObject(mockDatagenerator.generateIndex());
         //string jsons = JsonConvert.SerializeObject(mockDatagenerator.GenerateMockCrossmsg());
         string filePath = Path.Combine(Application.persistentDataPath, "playerData.json");

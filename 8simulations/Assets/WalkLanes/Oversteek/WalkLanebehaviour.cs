@@ -15,6 +15,10 @@ public class WalkLanebehaviour : MonoBehaviour
     //offset to aproach form
     public float LaneStartdistance;
 
+    public float MidPointDistance;
+
+    public LampostManager LampostManager;
+
     // Start is called before the first frame update
     void Start()
     {

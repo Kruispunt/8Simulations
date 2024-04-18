@@ -27,6 +27,8 @@ public class PakketRes
     {
         [JsonProperty("1")]
         public blocksMsg blocksMsg { get; set; }
+        [JsonProperty("2")]
+        public blocksMsg blocksMsg2 { get; set; }
         //public int id = 1;
     }
 
@@ -41,6 +43,20 @@ public class PakketRes
 
         [JsonProperty("C")] // I don't like this but it's needed for the current json structure
         public blockmsg C { get; set; }
+
+
+    }
+    [Serializable]
+    public class blocksMsg2
+    {
+        [JsonProperty("D")] // I don't like this but it's needed for the current json structure
+        public blockmsg D { get; set; }
+
+        [JsonProperty("E")] // I don't like this but it's needed for the current json structure
+        public blockmsg E { get; set; }
+
+        [JsonProperty("F")] // I don't like this but it's needed for the current json structure
+        public blockmsg F { get; set; }
 
 
     }

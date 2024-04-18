@@ -21,6 +21,8 @@ public class Clientbetter : MonoBehaviour
     private NetworkStream stream;
     private Thread clientReceiveThread;
 
+
+    public SignalGroup SignalGroup = new SignalGroup();
     void Start()
     {
         decoder = new MessageDecoder();
@@ -56,11 +58,16 @@ public class Clientbetter : MonoBehaviour
         }
     }
 
+    SignalGroup CreatenewSignalGroep()
+    {
+        return new SignalGroup();
+    }
+
     private void ListenForData()
     {
         try
         {
-            byte[] bytes = new byte[1024];
+            byte[] bytes = new byte[5000];
             while (true)
             {
                 Debug.Log(stream.DataAvailable);
