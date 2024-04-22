@@ -40,9 +40,22 @@ public class ColourLogic : MonoBehaviour
     //tpggle it over
     private void StatusUpdate(int Status)
     {
-        LampLights[CurrentState].Status = !LampLights[CurrentState].Status;
-        CurrentState = Status;
-        LampLights[CurrentState].Status = !LampLights[CurrentState].Status;
+
+        switch (Status)
+        {
+            case 0:
+                setLampToGreen();
+                break;
+            case 1:
+                setLampToRed();
+                break;
+            case 2:
+                setLampToOrange();
+                break;
+            default:
+                setLampToOrange();
+                break;
+        }
     }
 
     public void setLampToGreen()
@@ -60,6 +73,7 @@ public class ColourLogic : MonoBehaviour
     {
         LampLights[0].Status = false;
         LampLights[2].Status = false;
+        watch.CanGo = true;
         //1
         CurrentState = 1;
         LampLights[1].Status = true;

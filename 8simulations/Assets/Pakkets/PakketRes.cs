@@ -8,69 +8,75 @@ namespace recieverpakket
 {
 
 
-    [Serializable]
-public class PakketRes
-{
-        public Block[] blocks;
-      
-}
-    [Serializable]
-    public class Block
-    {
-        public string id;
-        public int[] Cars;
-        public int[] Cyclists;
-        public int[] Pedestrians;
-    }
-
     public class SignalGroup
     {
         [JsonProperty("1")]
         public blocksMsg blocksMsg { get; set; }
         [JsonProperty("2")]
-        public blocksMsg blocksMsg2 { get; set; }
-        //public int id = 1;
+        public blocksMsg2 blocksMsg2 { get; set; }
     }
 
     [Serializable]
     public class blocksMsg
     {
-        [JsonProperty("A")] // I don't like this but it's needed for the current json structure
-        public blockmsg A { get; set; }
+        [JsonProperty("A")] 
+        public LightNormalLanemsg A { get; set; }
 
-        [JsonProperty("B")] // I don't like this but it's needed for the current json structure
-        public blockmsg B { get; set; }
+        [JsonProperty("B")] 
+        public LightFullLanemsg B { get; set; }
 
-        [JsonProperty("C")] // I don't like this but it's needed for the current json structure
-        public blockmsg C { get; set; }
+        [JsonProperty("C")] 
+        public LightCarLanemsg C { get; set; }
 
 
     }
     [Serializable]
     public class blocksMsg2
     {
-        [JsonProperty("D")] // I don't like this but it's needed for the current json structure
-        public blockmsg D { get; set; }
+        [JsonProperty("D")] 
+        public LightCarLanemsg D { get; set; }
 
-        [JsonProperty("E")] // I don't like this but it's needed for the current json structure
-        public blockmsg E { get; set; }
+        [JsonProperty("E")] 
+        public LightFullLanemsg E { get; set; }
 
-        [JsonProperty("F")] // I don't like this but it's needed for the current json structure
-        public blockmsg F { get; set; }
+        [JsonProperty("F")] 
+        public LightNormalLanemsg F { get; set; }
 
 
     }
+
     [Serializable]
-    public class blockmsg
+    public class LightCarLanemsg
     {
         [JsonProperty("Cars")]
-        public int[] cari;
+        public List<int> Cars;
+
+    }
+
+    [Serializable]
+    public class LightNormalLanemsg
+    {
+        [JsonProperty("Cars")]
+        public List<int> Cars;
         [JsonProperty("Cyclists")]
-        public int[] cycl;
+        public List<int> bikers;
         [JsonProperty("Pedestrians")]
-        public int[] ped;
+        public List<int> Walkers;
+
+    }
+
+    [Serializable]
+    public class LightFullLanemsg
+    {
+        [JsonProperty("Cars")]
+        public List<int> Cars;
+        [JsonProperty("Cyclists")]
+        public List<int> bikers;
+        [JsonProperty("Pedestrians")]
+        public List<int> Walkers;
+
         [JsonProperty("Busses")]
-        public int[] busje { get; set; }
+        public List<int> busje { get; set; }
 
     }
 

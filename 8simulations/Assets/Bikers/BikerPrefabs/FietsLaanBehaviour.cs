@@ -25,6 +25,7 @@ public class FietsLaanBehaviour : MonoBehaviour
         LaneRoad = GetComponentInChildren<Road>();
         Debug.Log("road");
         LaneTriggerBike.setup(this, Triggerpos.position);
+        StartCoroutine(randomstate(5));
     }
 
     public void OnDetect()
@@ -57,6 +58,19 @@ public class FietsLaanBehaviour : MonoBehaviour
     public Vector3 GetLaneStart()
     {
         return GetLaneStartSignal() + (Vector3.forward * LaneStartdistance);
+    }
+
+    public void SetLampLight(int state)
+    {
+        LampostManager.SetLight(state);
+    }
+
+    IEnumerator randomstate(int timeInSec)
+    {
+        //refresh simulation state 5 secs
+        yield return new WaitForSeconds(timeInSec);
+        LampostManager.SetLight(Random.Range(0, 2));
+        StartCoroutine(randomstate(timeInSec));
     }
 
 

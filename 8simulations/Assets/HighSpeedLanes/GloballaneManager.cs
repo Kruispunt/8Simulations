@@ -139,6 +139,16 @@ public class GloballaneManager : MonoBehaviour
             int c = UnityEngine.Random.Range(min, max);
             CreateCars(go.GetComponentInChildren<CarLanebehaviour>(), c);
         }
+        foreach (GameObject go in WalkLanes)
+        {
+            int c = UnityEngine.Random.Range(min, max);
+            CreateWalkers(go.GetComponentInChildren<WalkLanebehaviour>(), c);
+        }
+        foreach (GameObject go in WalkLanesB)
+        {
+            int c = UnityEngine.Random.Range(min, max);
+            CreateWalkers (go.GetComponentInChildren<WalkLanebehaviour>(), c);
+        }
 
     }
 
@@ -327,6 +337,18 @@ public class GloballaneManager : MonoBehaviour
 
     //create and add cars to the light
     private void CreateCars(CarLanebehaviour go, int count)  
+    {
+        //Debug.Log(TrafficList.Count);
+        for (int i = 0; i < count; i++)
+        {
+            TrafficList.Add(Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity));
+            TrafficList.Last().GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
+            TrafficList.Last().GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
+            TrafficList.Last().GetComponent<Movement>().Setup();
+        }
+
+    }
+    private void CreateWalkers(WalkLanebehaviour go, int count)
     {
         //Debug.Log(TrafficList.Count);
         for (int i = 0; i < count; i++)

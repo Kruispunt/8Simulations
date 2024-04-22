@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7383971550762010495}
   - component: {fileID: -9042393005499053378}
+  - component: {fileID: 5867816794599381970}
   m_Layer: 0
   m_Name: WalkLane
   m_TagString: Untagged
@@ -48,7 +49,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LaneStartdistance: 50
   MidPointDistance: 50
-  LampostManager: {fileID: 0}
+  LampostManager: {fileID: 425635254649831228}
+--- !u!114 &5867816794599381970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2648113622174426620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edfa406c5a214f4aac813bcf7befaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanGo: 0
 --- !u!1001 &2199994468145979359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97,6 +111,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1977038808249753827, guid: d7b426da3d559d84f84ce26d7fa826c5, type: 3}
+      propertyPath: watch
+      value: 
+      objectReference: {fileID: 5867816794599381970}
+    - target: {fileID: 1977038808249753827, guid: d7b426da3d559d84f84ce26d7fa826c5, type: 3}
+      propertyPath: BuildOnStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6019638645264730365, guid: d7b426da3d559d84f84ce26d7fa826c5, type: 3}
       propertyPath: m_Name
       value: LampPost
@@ -106,6 +128,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7b426da3d559d84f84ce26d7fa826c5, type: 3}
+--- !u!114 &425635254649831228 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1977038808249753827, guid: d7b426da3d559d84f84ce26d7fa826c5, type: 3}
+  m_PrefabInstance: {fileID: 2199994468145979359}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63344da5f87c5834481ef49bb452c471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1542892004293695319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 859773332904282248, guid: d7b426da3d559d84f84ce26d7fa826c5, type: 3}

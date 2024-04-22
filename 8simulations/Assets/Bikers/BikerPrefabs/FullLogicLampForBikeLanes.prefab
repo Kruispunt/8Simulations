@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: watch
       value: 
       objectReference: {fileID: 320760551176346914}
+    - target: {fileID: 1977038808249753827, guid: d7b426da3d559d84f84ce26d7fa826c5, type: 3}
+      propertyPath: BuildOnStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6019638645264730365, guid: d7b426da3d559d84f84ce26d7fa826c5, type: 3}
       propertyPath: m_Name
       value: LampPost
@@ -108,6 +112,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7b426da3d559d84f84ce26d7fa826c5, type: 3}
+--- !u!114 &1128882149693755380 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1977038808249753827, guid: d7b426da3d559d84f84ce26d7fa826c5, type: 3}
+  m_PrefabInstance: {fileID: 1496675052310359831}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63344da5f87c5834481ef49bb452c471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2246105776801769375 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 859773332904282248, guid: d7b426da3d559d84f84ce26d7fa826c5, type: 3}
@@ -165,6 +180,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6019966657538859501, guid: 6cfe06bd1e3d37c489bf033d8eb79901, type: 3}
+      propertyPath: LampostManager
+      value: 
+      objectReference: {fileID: 1128882149693755380}
     - target: {fileID: 6019966657538859501, guid: 6cfe06bd1e3d37c489bf033d8eb79901, type: 3}
       propertyPath: LaneStartdistance
       value: 50

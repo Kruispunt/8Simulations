@@ -29,6 +29,7 @@ public class CarLanebehaviour : MonoBehaviour
 
         NearLus.setup(this, LaneRoad.GetStartPosition().position, true);
         FarLus.setup(this, LaneRoad.GetStartPosition().position + (Vector3.forward * FarLaneDistance), false);
+        StartCoroutine(randomstate(5));
     }
 
     public void OnDetect(bool isnear)
@@ -75,13 +76,17 @@ public class CarLanebehaviour : MonoBehaviour
             DetectorLus.DetectNear = false;
             DetectorLus.PrioCar = false;
             Debug.Log("detected priocar leaving signalgroup");
-            Debug.Log(LampostManager.GetLightState());
-            LampostManager.SetLight(2);
+            //Debug.Log(LampostManager.GetLightState());
+            //LampostManager.SetLight(Random.Range(0,2));
         }
         else
         {
             DetectorLus.DetectFar = false;
         }
+    }
+    public void SetLampLight(int state)
+    {
+        LampostManager.SetLight(state);
     }
 
 
@@ -112,5 +117,13 @@ public class CarLanebehaviour : MonoBehaviour
     public void Update()
     {
         //Debug.Log(DetectorLus.Detected.ToString());
+    }
+
+    IEnumerator randomstate(int timeInSec)
+    {
+        //refresh simulation state 5 secs
+        yield return new WaitForSeconds(timeInSec);
+        LampostManager.SetLight(Random.Range(0, 2));
+        StartCoroutine( randomstate(timeInSec));
     }
 }

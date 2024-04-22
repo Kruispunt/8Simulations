@@ -23,7 +23,7 @@ public class WalkLanebehaviour : MonoBehaviour
     void Start()
     {
         LaneRoad = GetComponentInChildren<Road>();
-
+        StartCoroutine(randomstate(5));
 
     }
 
@@ -61,4 +61,17 @@ public class WalkLanebehaviour : MonoBehaviour
     {
         DetectorLus.Detected = false;
     }
+
+    public void SetLampLight(int state)
+    {
+        LampostManager.SetLight(state);
+    }
+    IEnumerator randomstate(int timeInSec)
+    {
+        //refresh simulation state 5 secs
+        yield return new WaitForSeconds(timeInSec);
+        LampostManager.SetLight(Random.Range(0, 2));
+        StartCoroutine(randomstate(timeInSec));
+    }
+
 }
