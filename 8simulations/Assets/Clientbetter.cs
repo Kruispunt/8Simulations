@@ -5,6 +5,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using Newtonsoft.Json;
+using UnityEngine.Rendering;
+using System.IO;
 
 
 public class Clientbetter : MonoBehaviour
@@ -30,6 +32,9 @@ public class Clientbetter : MonoBehaviour
     public SignalGroup SignalGroup = new SignalGroup();
     void Start()
     {
+        string filePath = Path.Combine(Application.persistentDataPath, "ControllerToSim.json");
+        kees = File.ReadAllText(filePath);
+
         decoder = new MessageDecoder();
         decoder.PrintPakket();
         ConnectToServer();

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class LaneLampSettr : MonoBehaviour 
+public class LaneLampSettr
 {
 
     private bool SetupDone = false;
@@ -23,6 +23,7 @@ public class LaneLampSettr : MonoBehaviour
 
     public void DecodeJappie(string jappei)
     {
+        Debug.Log(jappei);
         recieverpakket.SignalGroup gr = JsonConvert.DeserializeObject<recieverpakket.SignalGroup>(jappei);
         if (SetupDone)
         {
@@ -32,7 +33,10 @@ public class LaneLampSettr : MonoBehaviour
 
     public void updateLamps(recieverpakket.SignalGroup lightCar)
     {
+        Debug.Log(lightCar.ToString());
+        Debug.Log(lightCar.blocksMsg.ToString());
         SetBlockLampsCarLaneA(lightCar.blocksMsg);
+        Debug.Log("block1done");
         SetBlockLampsCarLaneB(lightCar.blocksMsg2);
     }
 

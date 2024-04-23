@@ -65,13 +65,13 @@ public class GloballaneManager : MonoBehaviour
 
 
     public SignalGroup SignalGroup = new SignalGroup();
-    LaneLampSettr LaneLampSettr;
+    LaneLampSettr LaneLampSettr = new LaneLampSettr();
 
     public Clientbetter Communicator;
 
     void Start()
     {
-        LaneLampSettr = this.gameObject.AddComponent<LaneLampSettr>();
+        //LaneLampSettr = this.gameObject.AddComponent<LaneLampSettr>();
         this.LaneLampSettr.SetupSettr(this);
         StartCoroutine(getLane(timeInSec));
         StartCoroutine(Simutick(timeInSec + 4));
