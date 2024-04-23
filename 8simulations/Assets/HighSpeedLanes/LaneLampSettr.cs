@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class LaneLampSettr
+public class LaneLampSettr : MonoBehaviour 
 {
 
     private bool SetupDone = false;
@@ -40,6 +40,7 @@ public class LaneLampSettr
     {
         for (int i = 0; i < 4; i++)
         {
+            Debug.Log("setupcar");
             worldspwanerManager.Carlanes[i].GetComponentInChildren<CarLanebehaviour>().SetLampLight(msg.A.Cars[i]);
             worldspwanerManager.WalkLanes[i].GetComponentInChildren<WalkLanebehaviour>().SetLampLight(msg.A.Walkers[i]);
         }
@@ -53,6 +54,9 @@ public class LaneLampSettr
         {
             worldspwanerManager.Carlanes[i].GetComponentInChildren<CarLanebehaviour>().SetLampLight(msg.C.Cars[i - (4 + 4)]);
         }
+
+
+
         SetLampsBikelanesA(msg);
 
     }

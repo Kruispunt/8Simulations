@@ -65,13 +65,13 @@ public class GloballaneManager : MonoBehaviour
 
 
     public SignalGroup SignalGroup = new SignalGroup();
-    LaneLampSettr LaneLampSettr = new LaneLampSettr();
+    LaneLampSettr LaneLampSettr;
 
     public Clientbetter Communicator;
 
     void Start()
     {
-
+        LaneLampSettr = this.gameObject.AddComponent<LaneLampSettr>();
         this.LaneLampSettr.SetupSettr(this);
         StartCoroutine(getLane(timeInSec));
         StartCoroutine(Simutick(timeInSec + 4));
@@ -477,6 +477,15 @@ public class GloballaneManager : MonoBehaviour
     {
        
         LaneLampSettr.DecodeJappie(jappie);
+    }
+
+    public void Update()
+    {
+        if (Communicator.updatedKees)
+        {
+            LaneLampSettr.DecodeJappie(Communicator.kees);
+            Communicator.updatedKees = false;
+        }
     }
 
 }
