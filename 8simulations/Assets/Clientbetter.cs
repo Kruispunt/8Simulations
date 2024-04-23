@@ -32,9 +32,15 @@ public class Clientbetter : MonoBehaviour
     public SignalGroup SignalGroup = new SignalGroup();
     void Start()
     {
-        string filePath = Path.Combine(Application.persistentDataPath, "ControllerToSim.json");
-        kees = File.ReadAllText(filePath);
+        //string filePath = Path.Combine(Application.persistentDataPath, "ControllerToSim.json");
+        string path = Application.persistentDataPath + "/ControllerToSim.json";
+        StreamReader reader = new StreamReader(path);
+        Debug.Log(reader.ReadToEnd());
+        reader.Close();
 
+        //Debug.Log(filePath);
+        //kees = File.ReadAllText(filePath);
+        Debug.Log(kees + "derpderpderp");
         decoder = new MessageDecoder();
         decoder.PrintPakket();
         ConnectToServer();

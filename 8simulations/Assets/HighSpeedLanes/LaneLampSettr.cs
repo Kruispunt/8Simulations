@@ -23,7 +23,6 @@ public class LaneLampSettr
 
     public void DecodeJappie(string jappei)
     {
-        Debug.Log(jappei);
         recieverpakket.SignalGroup gr = JsonConvert.DeserializeObject<recieverpakket.SignalGroup>(jappei);
         if (SetupDone)
         {

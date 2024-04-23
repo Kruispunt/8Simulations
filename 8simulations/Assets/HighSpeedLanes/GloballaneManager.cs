@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 
@@ -476,14 +477,17 @@ public class GloballaneManager : MonoBehaviour
     public void UpdateData(string jappie)
     {
        
-        LaneLampSettr.DecodeJappie(jappie);
+        //LaneLampSettr.DecodeJappie(jappie);
     }
 
     public void Update()
     {
         if (Communicator.updatedKees)
         {
-            LaneLampSettr.DecodeJappie(Communicator.kees);
+            string path = Application.persistentDataPath + "/ControllerToSim.json";
+            string jsonContent = File.ReadAllText(path);
+
+            LaneLampSettr.DecodeJappie(jsonContent);
             Communicator.updatedKees = false;
         }
     }
