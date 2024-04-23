@@ -29,7 +29,7 @@ public class CarLanebehaviour : MonoBehaviour
 
         NearLus.setup(this, LaneRoad.GetStartPosition().position, true);
         FarLus.setup(this, LaneRoad.GetStartPosition().position + (Vector3.forward * FarLaneDistance), false);
-        StartCoroutine(randomstate(5));
+        //StartCoroutine(randomstate(5));
     }
 
     public void OnDetect(bool isnear)

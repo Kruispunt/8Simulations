@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/HighSpeedLanes/HighSpeedLaneAlpha.unity
+    guid: e1bc862901efed54a9f923149ecbb247
   m_configObjects: {}

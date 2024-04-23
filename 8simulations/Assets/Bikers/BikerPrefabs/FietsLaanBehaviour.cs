@@ -25,7 +25,7 @@ public class FietsLaanBehaviour : MonoBehaviour
         LaneRoad = GetComponentInChildren<Road>();
         Debug.Log("road");
         LaneTriggerBike.setup(this, Triggerpos.position);
-        StartCoroutine(randomstate(5));
+        //StartCoroutine(randomstate(5));
     }
 
     public void OnDetect()

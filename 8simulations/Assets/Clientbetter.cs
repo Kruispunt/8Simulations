@@ -13,7 +13,15 @@ public class Clientbetter : MonoBehaviour
     public int serverPort = 80;             // Set this to your server's port.
     private string messageToSend = "Victory For Vegeta!"; // The message to send.
     public string jsonjapp;
+    private string kees;
+    public string unputmsg {
+        get { return kees; }
 
+        set { kees = value;
+            manager.UpdateData(value);
+        }
+    
+    }
 
 
     public GloballaneManager manager;
@@ -81,7 +89,9 @@ public class Clientbetter : MonoBehaviour
                         Array.Copy(bytes, 0, incomingData, 0, length);
                         // Convert byte array to string message.
                         string serverMessage = Encoding.UTF8.GetString(incomingData);
-                        manager.UpdateData(serverMessage);
+                        this.unputmsg = serverMessage;
+                        //manager.UpdateData(serverMessage);
+                        //upppp(serverMessage);
                         Debug.Log("Server message received: " + serverMessage);
                         //simulatorManager.msg = serverMessage;
                         //simulatorManager.SetString(serverMessage);
@@ -94,6 +104,12 @@ public class Clientbetter : MonoBehaviour
         {
             Debug.Log("Socket exception: " + socketException);
         }
+    }
+
+
+    public void upppp(string serv)
+    {
+        manager.UpdateData(serv);
     }
 
     public void SendMessageToServer(string message)

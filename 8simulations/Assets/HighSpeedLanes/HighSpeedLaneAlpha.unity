@@ -475,6 +475,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -3215468572876230054, guid: 17bf534b8f580394683ae841dddf18ec, type: 3}
+      propertyPath: Communicator
+      value: 
+      objectReference: {fileID: 1715955762}
+    - target: {fileID: -3215468572876230054, guid: 17bf534b8f580394683ae841dddf18ec, type: 3}
       propertyPath: CarLanePrefab
       value: 
       objectReference: {fileID: 3135666527429960551, guid: 980109b882da0d14e94a8e2811f1c1c4, type: 3}
@@ -1466,6 +1470,14 @@ PrefabInstance:
       propertyPath: manager
       value: 
       objectReference: {fileID: 1462949955}
+    - target: {fileID: 7406045236950707382, guid: 57021cf8211f6c34987778202dd184cd, type: 3}
+      propertyPath: serverIP
+      value: 192.168.137.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406045236950707382, guid: 57021cf8211f6c34987778202dd184cd, type: 3}
+      propertyPath: serverPort
+      value: 8080
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1476,6 +1488,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3706842884927220928, guid: 57021cf8211f6c34987778202dd184cd, type: 3}
   m_PrefabInstance: {fileID: 1715955760}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1715955762 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7406045236950707382, guid: 57021cf8211f6c34987778202dd184cd, type: 3}
+  m_PrefabInstance: {fileID: 1715955760}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715955761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f7203984605fe4189db691975e4455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1730120942 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3135666527429960551, guid: 980109b882da0d14e94a8e2811f1c1c4, type: 3}
