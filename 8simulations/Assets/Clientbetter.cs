@@ -14,6 +14,9 @@ public class Clientbetter : MonoBehaviour
     private string messageToSend = "Victory For Vegeta!"; // The message to send.
     public string jsonjapp;
 
+
+
+    public GloballaneManager manager;
     public SimulatorManager simulatorManager;
 
     public MessageDecoder decoder;
@@ -58,11 +61,6 @@ public class Clientbetter : MonoBehaviour
         }
     }
 
-    SignalGroup CreatenewSignalGroep()
-    {
-        return new SignalGroup();
-    }
-
     private void ListenForData()
     {
         try
@@ -83,6 +81,7 @@ public class Clientbetter : MonoBehaviour
                         Array.Copy(bytes, 0, incomingData, 0, length);
                         // Convert byte array to string message.
                         string serverMessage = Encoding.UTF8.GetString(incomingData);
+                        manager.UpdateData(serverMessage);
                         Debug.Log("Server message received: " + serverMessage);
                         //simulatorManager.msg = serverMessage;
                         //simulatorManager.SetString(serverMessage);
@@ -105,22 +104,15 @@ public class Clientbetter : MonoBehaviour
             Debug.LogError("Client not connected to server.");
             return;
         }
-        //Sendpakket sendpakket = new Sendpakket();
 
-
-        string pakketmsg = decoder.GetGenPakket();
-       
-
-        //string jopson =  JsonConvert.SerializeObject(sendpakket);
-
-
-        byte[] data = Encoding.UTF8.GetBytes(pakketmsg);
+        byte[] data = Encoding.UTF8.GetBytes(message);
+        //byte[] data = Encoding.UTF8.GetBytes(pakketmsg);
 
         //byte[] data = Encoding.UTF8.GetBytes(jopson);
 
         //byte[] data = Encoding.UTF8.GetBytes(message);
         stream.Write(data, 0, data.Length);
-        Debug.Log("Sent message to server: " + pakketmsg);
+        Debug.Log("Sent message to server: " + message);
     }
 
     void OnApplicationQuit()

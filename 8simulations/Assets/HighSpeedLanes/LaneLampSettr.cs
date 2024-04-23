@@ -1,24 +1,34 @@
+using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class LaneLampSettr : MonoBehaviour
+public class LaneLampSettr
 {
 
-    public SignalGroup LampHolders;
+    private bool SetupDone = false;
 
     public GloballaneManager worldspwanerManager;
 
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
 
+    public void SetupSettr(GloballaneManager globallaneManager)
+    {
+        this.worldspwanerManager = globallaneManager;
+        SetupDone = true;
     }
 
+    public void DecodeJappie(string jappei)
+    {
+        recieverpakket.SignalGroup gr = JsonConvert.DeserializeObject<recieverpakket.SignalGroup>(jappei);
+        if (SetupDone)
+        {
+            updateLamps(gr);
+        }
+    }
 
     public void updateLamps(recieverpakket.SignalGroup lightCar)
     {

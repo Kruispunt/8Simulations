@@ -66,10 +66,14 @@ public class GloballaneManager : MonoBehaviour
 
 
     public SignalGroup SignalGroup = new SignalGroup();
+    LaneLampSettr LaneLampSettr = new LaneLampSettr();
+
+    public Clientbetter Communicator;
 
     void Start()
     {
 
+        this.LaneLampSettr.SetupSettr(this);
         StartCoroutine(getLane(timeInSec));
         StartCoroutine(Simutick(timeInSec + 4));
         StartCoroutine(UpdatePakket(updateTimer));
@@ -91,6 +95,8 @@ public class GloballaneManager : MonoBehaviour
 
     }
 
+
+   
     IEnumerator getLane(int timeInSec)
     {
         //refresh simulation state 5 secs
@@ -107,6 +113,11 @@ public class GloballaneManager : MonoBehaviour
     {
         yield return new WaitForSeconds(ticktime);
         string japsie = JsonConvert.SerializeObject(SignalGroup);
+        if(Communicator != null)
+        {
+            Communicator.jsonjapp = japsie;
+        }
+        //Communicator.jsonjapp = japsie;
 
         Debug.Log(japsie);
         StartCoroutine(UpdatePakket(ticktime));
@@ -149,6 +160,16 @@ public class GloballaneManager : MonoBehaviour
             int c = UnityEngine.Random.Range(min, max);
             CreateWalkers (go.GetComponentInChildren<WalkLanebehaviour>(), c);
         }
+        foreach (GameObject go in BikeLanes)
+        {
+            int c = UnityEngine.Random.Range(min, max);
+            CreateBikers(go.GetComponentInChildren<FietsLaanBehaviour>(), c);
+        }
+        foreach (GameObject go in BikeLanesB)
+        {
+            int c = UnityEngine.Random.Range(min, max);
+            CreateBikers(go.GetComponentInChildren<FietsLaanBehaviour>(), c);
+        }
 
     }
 
@@ -179,25 +200,25 @@ public class GloballaneManager : MonoBehaviour
     public void BuildbikeLanes()
     {
         BikeLanes.Add(Instantiate(BikeLanePrefab, Carlanes[0].transform.position + ((Vector3.right * 10) + (Vector3.right * (1 * 10))), Quaternion.identity));
-        BikeLanes.Last().name = "A" + BikeLanes.Count;
+        BikeLanes.Last().name = "ABike" + BikeLanes.Count;
         BikelaneA.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
 
         BikeLanes.Add(Instantiate(BikeLanePrefab, BikeLanes.Last().transform.position + ((Vector3.right * 10) + (Vector3.right * (1 * 10))), Quaternion.identity));
-        BikeLanes.Last().name = "A" + BikeLanes.Count;
+        BikeLanes.Last().name = "ABike" + BikeLanes.Count;
         BikelaneA.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
 
         BikeLanes.Add(Instantiate(BikeLanePrefab, BikeLanes.Last().transform.position + ((Vector3.right * 10) + (Vector3.right * (1 * 10))), Quaternion.identity));
-        BikeLanes.Last().name = "B" + BikeLanes.Count;
+        BikeLanes.Last().name = "BBike" + BikeLanes.Count;
         BikelaneB.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
 
         BikeLanes.Add(Instantiate(BikeLanePrefab, BikeLanes.Last().transform.position + ((Vector3.right * 10) + (Vector3.right * (1 * 10))), Quaternion.identity));
-        BikeLanes.Last().name = "B" + BikeLanes.Count;
+        BikeLanes.Last().name = "BBike" + BikeLanes.Count;
         BikelaneB.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
 
 
-        BuildWalkLanesOnPointA(BikeLanes[1].transform, "voetpad A");
+        BuildWalkLanesOnPointA(BikeLanes[0].transform, "voetpad A");
         WalklaneA = ExtractDetectorsWalkLanes(4, 0);
-        BuildWalkLanesOnPointA(BikeLanes[3].transform, "voetpad B");
+        BuildWalkLanesOnPointA(BikeLanes[2].transform, "voetpad B");
         WalklaneB = ExtractDetectorsWalkLanes(4, 4);
 
     }
@@ -287,7 +308,7 @@ public class GloballaneManager : MonoBehaviour
 
         BuildWalkLanesOnPointB(BikeLanesB[1].transform, "voetpad E");
         WalklaneE = ExtractDetectorsWalkLanesB(4, 0);
-        BuildWalkLanesOnPointB(BikeLanesB[3].transform, "voetpad F");
+        BuildWalkLanesOnPointB(BikeLanesB[2].transform, "voetpad F");
         WalklaneF = ExtractDetectorsWalkLanesB(4, 4);
     }
     //use lane B
@@ -341,10 +362,15 @@ public class GloballaneManager : MonoBehaviour
         //Debug.Log(TrafficList.Count);
         for (int i = 0; i < count; i++)
         {
-            TrafficList.Add(Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity));
-            TrafficList.Last().GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
-            TrafficList.Last().GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
-            TrafficList.Last().GetComponent<Movement>().Setup();
+            GameObject kees = Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity);
+            //TrafficList.Add(Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity));
+            //TrafficList.Last().GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
+            //TrafficList.Last().GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
+            //TrafficList.Last().GetComponent<Movement>().Setup();
+
+            kees.GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
+            kees.GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
+            kees.GetComponent<Movement>().Setup();
         }
 
     }
@@ -353,10 +379,32 @@ public class GloballaneManager : MonoBehaviour
         //Debug.Log(TrafficList.Count);
         for (int i = 0; i < count; i++)
         {
-            TrafficList.Add(Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity));
-            TrafficList.Last().GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
-            TrafficList.Last().GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
-            TrafficList.Last().GetComponent<Movement>().Setup();
+            GameObject kees = Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity);
+            kees.GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
+            kees.GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
+            kees.GetComponent<Movement>().Setup();
+
+            //TrafficList.Add(Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity));
+            //TrafficList.Last().GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
+            //TrafficList.Last().GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
+            //TrafficList.Last().GetComponent<Movement>().Setup();
+        }
+
+    }
+    private void CreateBikers(FietsLaanBehaviour go, int count)
+    {
+        //Debug.Log(TrafficList.Count);
+        for (int i = 0; i < count; i++)
+        {
+            GameObject kees = Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity);
+            kees.GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
+            kees.GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
+            kees.GetComponent<Movement>().Setup();
+
+            //TrafficList.Add(Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity));
+            //TrafficList.Last().GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
+            //TrafficList.Last().GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
+            //TrafficList.Last().GetComponent<Movement>().Setup();
         }
 
     }
@@ -426,9 +474,10 @@ public class GloballaneManager : MonoBehaviour
 
     }
 
-    public void GetLaneData()
+    public void UpdateData(string jappie)
     {
-
+       
+        LaneLampSettr.DecodeJappie(jappie);
     }
 
 }

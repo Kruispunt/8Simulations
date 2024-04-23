@@ -39,7 +39,7 @@ public class SimulatorManager : MonoBehaviour
     {
         TrafficList = new List<GameObject>();
         //Start the coroutine we define below named ExampleCoroutine.
-        StartCoroutine(Simutick(timeInSec));
+        //StartCoroutine(Simutick(timeInSec));
     }
 
     
