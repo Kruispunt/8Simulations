@@ -12,9 +12,16 @@ public class DirectieReal
 
     public Directies directies = new Directies();
 
-
     //geen getallen achter de komma
-    public void setDirectionReal(int num)
+    public DutchDirection getDutchDirection(int num, int typeNum)
+    {
+        DutchDirection direction = bigSwitchCaseUniversalDutch(num - typeNum);
+        return direction;
+    }
+
+
+        //geen getallen achter de komma
+        public void setDirectionReal(int num)
     {
         //auto nummers 
         if (num >= 0 && num < 21)
@@ -57,6 +64,151 @@ public class DirectieReal
             bigSwitchConnectedUnderSameControllerAuto(num);
         }
         //kan tot 300............ dit is genoeg
+    }
+
+    public DutchDirection bigSwitchCaseUniversalDutch(int num)
+    {
+
+        //alle mogelijke richtingen
+        switch (num)
+        {
+            case (1):
+                //
+                start = directies.East;
+                end = directies.North;
+                return new DutchDirection(start, end);
+
+                break;
+            case 2:
+                start = directies.East;
+                end = directies.West;
+                return new DutchDirection(start, end);
+                break;
+            case 3:
+                start = directies.East;
+                end = directies.South;
+                return new DutchDirection(start, end);
+                break;
+            case 4:
+                start = directies.South;
+                end = directies.East;
+                return new DutchDirection(start, end);
+                break;
+            case 5:
+                start = directies.South;
+                end = directies.North;
+                return new DutchDirection(start, end);
+                break;
+            case 6:
+                start = directies.South;
+                end = directies.West;
+                return new DutchDirection(start, end);
+                break;
+            case 7:
+                start = directies.West;
+                end = directies.South;
+                return new DutchDirection(start, end);
+                break;
+            case 8:
+                start = directies.West;
+                end = directies.East;
+                return new DutchDirection(start, end);
+                break;
+            case 9:
+                start = directies.West;
+                end = directies.North;
+                return new DutchDirection(start, end);
+                break;
+            case 10:
+                start = directies.North;
+                end = directies.West;
+                return new DutchDirection(start, end);
+                break;
+            case 11:
+                start = directies.North;
+                end = directies.South;
+                return new DutchDirection(start, end);
+                break;
+            case 12:
+                start = directies.North;
+                end = directies.East;
+                return new DutchDirection(start, end);
+
+        }
+        return new DutchDirection(start, end);
+
+    }
+    public DutchDirection bigSwitchCaseAutoDutch(int num)
+    {
+
+        //alle mogelijke richtingen
+        switch (num)
+        {
+            case 1:
+                //
+                start = directies.East;
+                end = directies.North;
+                return new DutchDirection(start, end);
+                
+                break;
+            case 2:
+                start = directies.East;
+                end = directies.West;
+                return new DutchDirection(start, end);
+                break;
+            case 3:
+                start = directies.East;
+                end = directies.South;
+                return new DutchDirection(start, end);
+                break;
+            case 4:
+                start = directies.South;
+                end = directies.East;
+                return new DutchDirection(start, end);
+                break;
+            case 5:
+                start = directies.South;
+                end = directies.North;
+                return new DutchDirection(start, end);
+                break;
+            case 6:
+                start = directies.South;
+                end = directies.West;
+                return new DutchDirection(start, end);
+                break;
+            case 7:
+                start = directies.West;
+                end = directies.South;
+                return new DutchDirection(start, end);
+                break;
+            case 8:
+                start = directies.West;
+                end = directies.East;
+                return new DutchDirection(start, end);
+                break;
+            case 9:
+                start = directies.West;
+                end = directies.North;
+                return new DutchDirection(start, end);
+                break;
+            case 10:
+                start = directies.North;
+                end = directies.West;
+                return new DutchDirection(start, end);
+                break;
+            case 11:
+                start = directies.North;
+                end = directies.South;
+                return new DutchDirection(start, end);
+                break;
+            case 12:
+                start = directies.North;
+                end = directies.East;
+                return new DutchDirection(start, end);
+
+        }
+        return new DutchDirection(start, end);
+
     }
     public void bigSwitchCaseAuto(int num)
     {
@@ -115,6 +267,60 @@ public class DirectieReal
                 break;
 
         }
+
+    }
+
+    public DutchDirection bigSwitchCaseFietsDutch(int num)
+    {
+        //fietsen hebben halve paden
+        //vanwege onderbrekingen hebben kunnen er twee helfden zijn voor een route
+        switch (num)
+        {
+
+            case 21:
+                start = directies.South;
+                end = directies.North;
+                return new DutchDirection(start, end);
+                break;
+            case 22:
+                start = directies.South;
+                end = directies.North;
+                return new DutchDirection(start, end);
+                break;
+            case 23:
+                start = directies.West;
+                end = directies.East;
+                return new DutchDirection(start, end);
+                break;
+            case 24:
+                start = directies.West;
+                end = directies.East;
+                return new DutchDirection(start, end);
+                break;
+            case 25:
+                start = directies.North;
+                end = directies.South;
+                return new DutchDirection(start, end);
+                break;
+            case 26:
+                start = directies.North;
+                end = directies.South;
+                return new DutchDirection(start, end);
+                break;
+            case 27:
+                start = directies.East;
+                end = directies.West;
+                return new DutchDirection(start, end);
+                break;
+            case 28:
+                start = directies.East;
+                end = directies.West;
+                return new DutchDirection(start, end);
+                break;
+
+        }
+        return new DutchDirection(start, end);
+
 
     }
 
@@ -206,6 +412,57 @@ public class DirectieReal
         }
     
     
+    }
+    public DutchDirection bigSwitchCaseVoetgangerDutch(int num)
+    {
+        switch (num)
+        {
+            case 31:
+                start = directies.South;
+                end = directies.North;
+                return new DutchDirection(start, end);
+                break;
+            case 32:
+                start = directies.South;
+                end = directies.North;
+                return new DutchDirection(start, end);
+                break;
+            case 33:
+                start = directies.West;
+                end = directies.East;
+                return new DutchDirection(start, end);
+                break;
+            case 34:
+                start = directies.West;
+                end = directies.East;
+                return new DutchDirection(start, end);
+                break;
+            case 35:
+                start = directies.North;
+                end = directies.South;
+                return new DutchDirection(start, end);
+                break;
+            case 36:
+                start = directies.North;
+                end = directies.South;
+                return new DutchDirection(start, end);
+                break;
+            case 37:
+                start = directies.East;
+                end = directies.West;
+                return new DutchDirection(start, end);
+                break;
+            case 38:
+                start = directies.East;
+                end = directies.West;
+                return new DutchDirection(start, end);
+                break;
+
+        }
+        return new DutchDirection(start, end);
+
+
+
     }
     //de bus en soortgelijke voertuigen met een apparaatje
     public void bigSwitchCaseOv(int num)
@@ -466,3 +723,24 @@ public class DirectieReal
             }   
         }
     }
+
+
+public class DutchDirection
+{
+    public Vector3 start;
+    public Vector3 end;
+    public DutchDirection(Vector3 start, Vector3 end)
+    {
+        this.start = start;
+        this.end = end;
+    }
+}
+
+public static class DirectionMaker
+{
+    public static DirectieReal DirectieReal = new DirectieReal();
+    public static DutchDirection GetDutchDirection(int num, int type)
+    {
+        return DirectieReal.getDutchDirection(num, type);
+    }
+}

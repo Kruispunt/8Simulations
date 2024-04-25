@@ -180,9 +180,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CanUpdate: 1
   ReachedGoal: 0
-  distanceThreshold: 10
+  distanceThreshold: 15
   heading: {x: 0, y: 0, z: 0}
-  speed: 100
+  speed: 500
   LocalGoal: {x: 0, y: 0, z: 0}
   body: {fileID: 6289308337422346121}
   pad: {fileID: -959310890818225625}

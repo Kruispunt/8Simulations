@@ -5,12 +5,19 @@ using UnityEngine;
 public class CarLanebehaviour : MonoBehaviour
 {
 
+    public GameObject Parent;
+
+    public GameObject triggerNear;
+    public GameObject triggerFar;
+
     //signal detector at the signal
     public LTrigger NearLus;
     //signal detector far from signal
     public LTrigger FarLus;
 
     public CarSensormsg DetectorLus = new CarSensormsg();
+
+    public BMENodes nodes;
 
     //offset farlust from the signal light
     public float FarLaneDistance;
@@ -26,12 +33,33 @@ public class CarLanebehaviour : MonoBehaviour
     {
         LaneRoad = GetComponentInChildren<Road>();
         Debug.Log("road");
-
-        NearLus.setup(this, LaneRoad.GetStartPosition().position, true);
-        FarLus.setup(this, LaneRoad.GetStartPosition().position + (Vector3.forward * FarLaneDistance), false);
+        nodes.Setup();
+        triggerFar.transform.position = nodes.EndPos;
+        NearLus.transform.position = this.transform.position + nodes.GetMidPosoffset();
+        NearLus.gameObject.transform.position = nodes.MidPos;
+        FarLus.gameObject.transform.position = nodes.StartPos;
+        NearLus.setup(this, true);
+        FarLus.setup(this, false);
+        LaneRoad.startPosition = FarLus.transform;
+        RealPos();
+        //LaneRoad.endPosition = FarLus.transform;
         //StartCoroutine(randomstate(5));
     }
 
+    private void RealPos()
+    {
+        Parent.transform.position = nodes.StartPos;
+    }
+
+    public Vector3 GetDutchBeginPos()
+    {
+        return nodes.StartPos;
+    }
+
+    public Vector3 GetDutchEndPost()
+    {
+        return nodes.EndPos;
+    }
     public void OnDetect(bool isnear)
     {
         if (isnear)
@@ -94,18 +122,21 @@ public class CarLanebehaviour : MonoBehaviour
     //here you will have to wait if there is a traffic light
     public Vector3 GetLaneStartSignal()
     {
+        return nodes.MidPos;
         return LaneRoad.GetStartPosition().position;
     }
 
     //the last position of the lane and thus the exit
     public Vector3 GetLaneExit()
     {
+        return nodes.EndPos;
         return LaneRoad.GetEndPosition().position;
     }
 
     //enter the lane at the start position
     public Vector3 GetLaneStart()
     {
+        return nodes.StartPos;
         return FarLus.transform.position + (Vector3.forward * LaneStartdistance);
     }
 

@@ -26,7 +26,7 @@ public class StateDisplay : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(toggleauto());
+        //StartCoroutine(toggleauto());
     }
 
     IEnumerator toggleauto()
