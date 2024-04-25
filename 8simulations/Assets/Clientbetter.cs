@@ -7,6 +7,8 @@ using System.Threading;
 using Newtonsoft.Json;
 using UnityEngine.Rendering;
 using System.IO;
+using System.Collections;
+using UnityEngine.Events;
 
 
 public class Clientbetter : MonoBehaviour
@@ -17,8 +19,12 @@ public class Clientbetter : MonoBehaviour
     public string jsonjapp;
     public string kees;
 
-    public bool updatedKees = false;
+    public float MessagePostTime = 5;
 
+    public bool updatedKees = false;
+    public bool ClientActive = false;
+    public bool ConnectonOnline = false;
+    public bool PostOnKey = true;
 
     public GloballaneManager manager;
     public SimulatorManager simulatorManager;
@@ -30,6 +36,13 @@ public class Clientbetter : MonoBehaviour
 
 
     public SignalGroup SignalGroup = new SignalGroup();
+
+    public UnityEvent<bool> onServerStart;
+
+    public UnityEvent<bool> SenderThreadState;
+    public UnityEvent<bool> ReceiverThreadState;
+
+
     void Start()
     {
         //string filePath = Path.Combine(Application.persistentDataPath, "ControllerToSim.json");
@@ -49,15 +62,46 @@ public class Clientbetter : MonoBehaviour
     void Update()
     {
         //disable this if you are sending from another script or a button
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && this.PostOnKey)
         {
             //SendMessageToServer(messageToSend);
             SendMessageToServer(jsonjapp);
         }
     }
 
+
+    public void PostIp(string ip)
+    {
+        this.serverIP = ip;
+    }
+
+    public void StartClient()
+    {
+        ConnectToServer();
+    }
+
+    public void SetPostRate(float time)
+    {
+        this.MessagePostTime = time;
+    }
+    //true is post on key
+    public void SetPostMode(bool mode)
+    {
+        this.PostOnKey = mode;
+        if (!this.PostOnKey)
+        {
+            StartCoroutine(TimedPoster(this.MessagePostTime));
+        }
+    }
+
+    public float GetPostRate()
+    {
+        return this.MessagePostTime;
+    }
     void ConnectToServer()
     {
+        onServerStart.Invoke(true);
+        ReceiverThreadState.Invoke(true);
         try
         {
             client = new TcpClient(serverIP, serverPort);
@@ -96,11 +140,7 @@ public class Clientbetter : MonoBehaviour
                         string serverMessage = Encoding.UTF8.GetString(incomingData);
                         kees = serverMessage;
                         this.updatedKees = true;
-                        //manager.UpdateData(serverMessage);
-                        //upppp(serverMessage);
                         Debug.Log("Server message received: " + serverMessage);
-                        //simulatorManager.msg = serverMessage;
-                        //simulatorManager.SetString(serverMessage);
                        
                     }
                 }
@@ -112,14 +152,9 @@ public class Clientbetter : MonoBehaviour
         }
     }
 
-
-    public void upppp(string serv)
-    {
-        manager.UpdateData(serv);
-    }
-
     public void SendMessageToServer(string message)
     {
+        SenderThreadState.Invoke(true);
         //Debug.Log("Sent message to server: " + message);
         if (client == null || !client.Connected)
         {
@@ -135,6 +170,7 @@ public class Clientbetter : MonoBehaviour
         //byte[] data = Encoding.UTF8.GetBytes(message);
         stream.Write(data, 0, data.Length);
         Debug.Log("Sent message to server: " + message);
+        SenderThreadState.Invoke(false);
     }
 
     void OnApplicationQuit()
@@ -146,4 +182,15 @@ public class Clientbetter : MonoBehaviour
         if (clientReceiveThread != null)
             clientReceiveThread.Abort();
     }
+
+    IEnumerator TimedPoster(float time)
+    {
+        //refresh simulation state 5 secs
+        yield return new WaitForSeconds(time);
+        SendMessageToServer(jsonjapp);
+
+        StartCoroutine(TimedPoster(time));
+    }
+
+
 }
