@@ -24,7 +24,7 @@ public class Clientbetter : MonoBehaviour
     public bool updatedKees = false;
     public bool ClientActive = false;
     public bool ConnectonOnline = false;
-    public bool PostOnKey = true;
+    public bool PostOnKey = false;
 
     public GloballaneManager manager;
     public SimulatorManager simulatorManager;
@@ -46,10 +46,10 @@ public class Clientbetter : MonoBehaviour
     void Start()
     {
         //string filePath = Path.Combine(Application.persistentDataPath, "ControllerToSim.json");
-        string path = Application.persistentDataPath + "/ControllerToSim.json";
-        StreamReader reader = new StreamReader(path);
-        Debug.Log(reader.ReadToEnd());
-        reader.Close();
+        //string path = Application.persistentDataPath + "/ControllerToSim.json";
+        //StreamReader reader = new StreamReader(path);
+        //Debug.Log(reader.ReadToEnd());
+        //reader.Close();
 
         //Debug.Log(filePath);
         //kees = File.ReadAllText(filePath);
@@ -101,6 +101,7 @@ public class Clientbetter : MonoBehaviour
     void ConnectToServer()
     {
         onServerStart.Invoke(true);
+        StartCoroutine(TimedPoster(5));
         ReceiverThreadState.Invoke(true);
         try
         {

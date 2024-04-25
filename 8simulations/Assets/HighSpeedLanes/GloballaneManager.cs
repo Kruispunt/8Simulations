@@ -484,10 +484,10 @@ public class GloballaneManager : MonoBehaviour
     {
         if (Communicator.updatedKees)
         {
-            string path = Application.persistentDataPath + "/ControllerToSim.json";
-            string jsonContent = File.ReadAllText(path);
+            //string path = Application.persistentDataPath + "/ControllerToSim.json";
+            //string jsonContent = File.ReadAllText(path);
 
-            LaneLampSettr.DecodeJappie(jsonContent);
+            LaneLampSettr.DecodeJappie(Communicator.kees);
             Communicator.updatedKees = false;
         }
     }
