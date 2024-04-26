@@ -36,14 +36,14 @@ public class Pyramaze : MonoBehaviour
 
 
 
-        for (int i = 1; i  < 4; i++)
-        {
-            easters[i] = new Vector3(0, 0, i);
-        }
-        for (int i = 1; i < 4; i++)
-        {
-            easters[i + 4] = new Vector3(0, 0, -i);
-        }
+        //for (int i = 1; i  < 4; i++)
+        //{
+        //    easters[i] = new Vector3(0, 0, i);
+        //}
+        //for (int i = 1; i < 4; i++)
+        //{
+        //    easters[i + 4] = new Vector3(0, 0, -i);
+        //}
 
 
 
