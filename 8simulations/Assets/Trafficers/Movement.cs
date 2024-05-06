@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    int routeindex = 0;
+    public int routeindex = 0;
 
     public bool CanUpdate = false;
     public bool ReachedGoal;
@@ -43,6 +43,7 @@ public class Movement : MonoBehaviour
         {
             case 0:
                 this.LocalGoal = pad.begin;
+                routeindex++;
                 break;
             case 1:
                 this.LocalGoal = pad.mid;
@@ -78,8 +79,9 @@ public class Movement : MonoBehaviour
 
         if (afstand < distanceThreshold)
         {
-            routeindex++;
+            //routeindex++;
             SmartUpdate();
+            body.velocity = Vector3.zero;
         }
         else
         {
@@ -87,22 +89,11 @@ public class Movement : MonoBehaviour
             heading = transform.position - LocalGoal;
            
             Vector3 direction = Vector3.Normalize(heading);
-            body.AddForce(-(direction * speed * Time.deltaTime));
+            body.AddForce(-(direction * speed * Time.deltaTime), ForceMode.Impulse);
+            
         }
         Debug.DrawLine(transform.position, LocalGoal, Color.red);
 
-    }
-
-    public void WaitForGreen()
-    {
-        float distance = Vector3.Distance(this.transform.position, LocalGoal);
-        heading = transform.position - LocalGoal;
-        Vector3 direction = Vector3.Normalize(heading);
-
-        //Vector3 direction = heading / distance; // This is now the normalized direction.
-        //heading = transform.position - LocalGoal;
-        body.AddForce(-direction);
-        Debug.DrawLine(transform.position, LocalGoal, Color.red);
     }
 
 

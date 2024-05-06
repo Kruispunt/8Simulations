@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ActorPathFinding : MonoBehaviour
 {
-    public int index = 1;
-
-
     public Vector3 begin;
     //mid is the point where the traffic light stands
     public Vector3 mid;
@@ -20,20 +17,6 @@ public class ActorPathFinding : MonoBehaviour
         this.begin = b; 
         this.mid = m; 
         this.end = e;
-    }
-
-    public Vector3 Getroute(int id)
-    {
-        switch (id)
-        {
-            case 1: 
-                return this.mid;
-            case 2: 
-                return this.end;
-
-        }
-
-        return this.begin;
     }
 
 

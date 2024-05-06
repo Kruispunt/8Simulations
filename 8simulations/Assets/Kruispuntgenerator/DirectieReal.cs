@@ -456,7 +456,7 @@ public class DirectieReal
                 start = directies.East;
                 end = directies.West;
                 return new DutchDirection(start, end);
-                break;
+                
 
         }
         return new DutchDirection(start, end);

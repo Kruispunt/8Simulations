@@ -8,7 +8,9 @@ using UnityEngine;
 public class GloballaneManager : MonoBehaviour
 {
 
+    public PreBuildCorssPoints BuildCorssPoints;
 
+    public float LaneScalar = 1;
     public bool LoopSpawn;
     // Start is called before the first frame update
     public GameObject Traffic;
@@ -33,9 +35,6 @@ public class GloballaneManager : MonoBehaviour
 
     public List<GameObject> Voetpaden;
     public List<GameObject> TrafficList = new List<GameObject>();
-
-
-
 
 
     public List<CarSensormsg> carSensormsgsA = new List<CarSensormsg>();
@@ -72,7 +71,6 @@ public class GloballaneManager : MonoBehaviour
 
     void Start()
     {
-        //LaneLampSettr = this.gameObject.AddComponent<LaneLampSettr>();
         this.LaneLampSettr.SetupSettr(this);
         StartCoroutine(getLane(timeInSec));
         StartCoroutine(Simutick(timeInSec + 4));
@@ -102,11 +100,8 @@ public class GloballaneManager : MonoBehaviour
         //refresh simulation state 5 secs
         yield return new WaitForSeconds(timeInSec);
         getdata();
-        getDataB();
+        getdataFromPreBuildB();
         this.SignalGroup = GetSignalGroup();
-
-
-        //StartCoroutine(Simutick(timeInSec));
     }
 
     IEnumerator UpdatePakket(float ticktime)
@@ -117,7 +112,6 @@ public class GloballaneManager : MonoBehaviour
         {
             Communicator.jsonjapp = japsie;
         }
-        //Communicator.jsonjapp = japsie;
 
         Debug.Log(japsie);
         StartCoroutine(UpdatePakket(ticktime));
@@ -134,7 +128,6 @@ public class GloballaneManager : MonoBehaviour
         {
             StartCoroutine(Simutick(timeInSec));
         }
-        //StartCoroutine(Simutick(timeInSec));
     }
 
     //use this to assign cars to lights
@@ -180,38 +173,190 @@ public class GloballaneManager : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             carSensormsgsA.Add(Carlanes[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
-            Debug.Log(carSensormsgsA.Last().DetectFar);
+
         }
 
         for (int i = 4; i < 4 + 4; i++)
         {
             carSensormsgsB.Add(Carlanes[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
-            Debug.Log(carSensormsgsB.Last().DetectFar);
+
         }
         for (int i = 4 + 4; i < 4 + 4 + 4; i++)
         {
             carSensormsgsC.Add(Carlanes[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
-            Debug.Log(carSensormsgsC.Last().DetectFar);
+
         }
-        BuildbikeLanes();
+        BuildBetterLanesOnPoint();
+    }
+    private void getdataFromPreBuildB()
+    {
+
+        //for Def
+        for (int i = 0; i < 4; i++)
+        {
+            carSensormsgsD.Add(CarlanesB[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
+
+        }
+
+        for (int i = 4; i < 4 + 3; i++)
+        {
+            carSensormsgsE.Add(CarlanesB[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
+
+        }
+        for (int i = 4 + 3; i < 4 + 3 + 4; i++)
+        {
+            carSensormsgsF.Add(CarlanesB[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
+
+        }
+        BuildBetterLanesOnPointB();
+
+    }
+
+    public void BuildBetterLanesOnPoint()
+    {
+        BikeLanes.Add(Instantiate(BikeLanePrefab, BuildCorssPoints.Ain.transform.position, Quaternion.identity));
+        BikeLanes.Last().name = "ABike" + BikeLanes.Count;
+        BikelaneA.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
+
+        WalkLanes.Add(Instantiate(WalkLanePrefab, BuildCorssPoints.Ain.transform.position += (BuildCorssPoints.Ain.transform.right * BuildCorssPoints.WalkLaneOffset), Quaternion.identity));
+        WalkLanes.Last().name = "Walk A In";
+        WalklaneA.Add(ExtractSingle(WalkLanes.Last()));
+
+        WalkLanes.Add(Instantiate(WalkLanePrefab, BuildCorssPoints.Aisland.transform.position += (BuildCorssPoints.Aisland.transform.right * BuildCorssPoints.WalkLaneOffset), Quaternion.identity));
+        WalkLanes.Last().name = "Walk A ISland";
+        WalklaneA.Add(ExtractSingle(WalkLanes.Last()));
+
+        WalkLanes.Add(Instantiate(WalkLanePrefab, BuildCorssPoints.Aisland.transform.position -= (BuildCorssPoints.Aisland.transform.right * BuildCorssPoints.WalkLaneOffset), BuildCorssPoints.Aisland.transform.rotation));
+        WalkLanes.Last().name = "Walk inverseA ISland";
+        WalkLanes.Last().transform.Rotate(Vector3.up * 180);
+        WalklaneA.Add(ExtractSingle(WalkLanes.Last()));
+
+
+        BikeLanes.Add(Instantiate(BikeLanePrefab, (BuildCorssPoints.Aisland.transform.position + (BuildCorssPoints.Aisland.transform.forward * BuildCorssPoints.EndDistance)), Quaternion.identity));
+        BikeLanes.Last().name = "ABike" + BikeLanes.Count;
+        BikelaneA.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
+
+
+        WalkLanes.Add(Instantiate(WalkLanePrefab, (BuildCorssPoints.Aisland.transform.position + (BuildCorssPoints.Aisland.transform.forward * BuildCorssPoints.EndDistance)), Quaternion.identity));
+        WalkLanes.Last().name = "Walk A Out";
+        WalkLanes.Last().transform.Rotate(Vector3.up * 180);
+        WalklaneA.Add(ExtractSingle(WalkLanes.Last()));
+
+
+
+        BikeLanes.Add(Instantiate(BikeLanePrefab, BuildCorssPoints.Bin.transform.position, Quaternion.identity));
+        BikeLanes.Last().name = "BBike" + BikeLanes.Count;
+        BikelaneB.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
+
+
+        WalkLanes.Add(Instantiate(WalkLanePrefab, BuildCorssPoints.Bin.transform.position += (BuildCorssPoints.Bin.transform.right * BuildCorssPoints.WalkLaneOffset), Quaternion.identity));
+        WalkLanes.Last().name = "Walk B In";
+        WalklaneB.Add(ExtractSingle(WalkLanes.Last()));
+
+        WalkLanes.Add(Instantiate(WalkLanePrefab, BuildCorssPoints.Aisland.transform.position += (BuildCorssPoints.Aisland.transform.right * BuildCorssPoints.WalkLaneOffset), Quaternion.identity));
+        WalkLanes.Last().name = "Walk B ISland";
+        WalklaneB.Add(ExtractSingle(WalkLanes.Last()));
+
+        WalkLanes.Add(Instantiate(WalkLanePrefab, BuildCorssPoints.BIsland.transform.position -= (BuildCorssPoints.BIsland.transform.right * BuildCorssPoints.WalkLaneOffset), BuildCorssPoints.BIsland.transform.rotation));
+        WalkLanes.Last().name = "Walk inverseB ISland";
+        WalkLanes.Last().transform.Rotate(Vector3.up * 180);
+        WalklaneB.Add(ExtractSingle(WalkLanes.Last()));
+
+
+        BikeLanes.Add(Instantiate(BikeLanePrefab, (BuildCorssPoints.BIsland.transform.position + (BuildCorssPoints.BIsland.transform.forward * BuildCorssPoints.EndDistance)), Quaternion.identity));
+        BikeLanes.Last().name = "BBike" + BikeLanes.Count;
+        BikelaneB.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
+
+
+        WalkLanes.Add(Instantiate(WalkLanePrefab, (BuildCorssPoints.BIsland.transform.position + (BuildCorssPoints.BIsland.transform.forward * BuildCorssPoints.EndDistance)), Quaternion.identity));
+        WalkLanes.Last().name = "Walk B Out";
+        WalkLanes.Last().transform.Rotate(Vector3.up * 180);
+        WalklaneB.Add(ExtractSingle(WalkLanes.Last()));
+    }
+    public void BuildBetterLanesOnPointB()
+    {
+        BikeLanesB.Add(Instantiate(BikeLanePrefab, BuildCorssPoints.EIn.transform.position, Quaternion.identity));
+        BikeLanesB.Last().name = "EBike" + BikeLanes.Count;
+        BikelaneE.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
+
+
+        WalkLanesB.Add(Instantiate(WalkLanePrefab, BuildCorssPoints.EIn.transform.position += (BuildCorssPoints.EIn.transform.right * BuildCorssPoints.WalkLaneOffset), Quaternion.identity));
+        WalkLanesB.Last().name = "Walk E In";
+        WalklaneE.Add(ExtractSingle(WalkLanesB.Last()));
+
+
+        WalkLanesB.Add(Instantiate(WalkLanePrefab, BuildCorssPoints.EIsland.transform.position += (BuildCorssPoints.EIsland.transform.right * BuildCorssPoints.WalkLaneOffset), Quaternion.identity));
+        WalkLanesB.Last().name = "Walk E ISland";
+        WalklaneE.Add(ExtractSingle(WalkLanesB.Last()));
+
+        WalkLanesB.Add(Instantiate(WalkLanePrefab, BuildCorssPoints.EIsland.transform.position -= (BuildCorssPoints.EIsland.transform.right * BuildCorssPoints.WalkLaneOffset), BuildCorssPoints.Aisland.transform.rotation));
+        WalkLanesB.Last().name = "Walk inverseE ISland";
+        WalkLanesB.Last().transform.Rotate(Vector3.up * 180);
+        WalklaneE.Add(ExtractSingle(WalkLanesB.Last()));
+
+        WalkLanesB.Add(Instantiate(WalkLanePrefab, (BuildCorssPoints.EIsland.transform.position + (BuildCorssPoints.EIsland.transform.forward * BuildCorssPoints.EndDistance)), Quaternion.identity));
+        WalkLanesB.Last().name = "Walk E Out";
+        WalkLanesB.Last().transform.Rotate(Vector3.up * 180);
+        WalklaneE.Add(ExtractSingle(WalkLanesB.Last()));
+
+
+        BikeLanesB.Add(Instantiate(BikeLanePrefab, (BuildCorssPoints.EIsland.transform.position + (BuildCorssPoints.EIsland.transform.forward * BuildCorssPoints.EndDistance)), Quaternion.identity));
+        BikeLanesB.Last().name = "EBike Mirrored" + BikeLanes.Count;
+
+        BikelaneE.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
+        BikeLanesB.Last().transform.Rotate(Vector3.up * 180);
+        WalklaneE.Add(ExtractSingle(WalkLanesB.Last()));
+
+        //seperation
+
+
+        BikeLanesB.Add(Instantiate(BikeLanePrefab, BuildCorssPoints.FIn.transform.position, Quaternion.identity));
+        BikeLanesB.Last().name = "FBike" + BikeLanes.Count;
+        BikelaneF.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
+
+
+        WalkLanesB.Add(Instantiate(WalkLanePrefab, BuildCorssPoints.FIn.transform.position += (BuildCorssPoints.FIn.transform.right * BuildCorssPoints.WalkLaneOffset), Quaternion.identity));
+        WalkLanesB.Last().name = "Walk F In";
+        WalklaneF.Add(ExtractSingle(WalkLanesB.Last()));
+
+        WalkLanesB.Add(Instantiate(WalkLanePrefab, BuildCorssPoints.FIsland.transform.position += (BuildCorssPoints.FIsland.transform.right * BuildCorssPoints.WalkLaneOffset), Quaternion.identity));
+        WalkLanesB.Last().name = "Walk F ISland";
+        WalklaneF.Add(ExtractSingle(WalkLanesB.Last()));
+
+        WalkLanesB.Add(Instantiate(WalkLanePrefab, BuildCorssPoints.FIsland.transform.position -= (BuildCorssPoints.FIsland.transform.right * BuildCorssPoints.WalkLaneOffset), BuildCorssPoints.Aisland.transform.rotation));
+        WalkLanesB.Last().name = "Walk inverseF ISland";
+        WalkLanesB.Last().transform.Rotate(Vector3.up * 180);
+        WalklaneF.Add(ExtractSingle(WalkLanesB.Last()));
+
+
+        BikeLanes.Add(Instantiate(BikeLanePrefab, (BuildCorssPoints.EIsland.transform.position + (BuildCorssPoints.EIsland.transform.forward * BuildCorssPoints.EndDistance)), Quaternion.identity));
+        BikeLanes.Last().name = "FBike Out Mirrored" + BikeLanes.Count;
+        BikelaneF.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
+        BikeLanesB.Last().transform.Rotate(Vector3.up * 180);
+
+
+        WalkLanesB.Add(Instantiate(WalkLanePrefab, (BuildCorssPoints.EIsland.transform.position + (BuildCorssPoints.EIsland.transform.forward * BuildCorssPoints.EndDistance)), Quaternion.identity));
+        WalkLanesB.Last().name = "Walk F Out";
+        WalkLanesB.Last().transform.Rotate(Vector3.up * 180);
+        WalklaneF.Add(ExtractSingle(WalkLanesB.Last()));
     }
 
     //for bikes a
     public void BuildbikeLanes()
     {
-        BikeLanes.Add(Instantiate(BikeLanePrefab, Carlanes[0].transform.position + ((Vector3.right * 10) + (Vector3.right * (1 * 10))), Quaternion.identity));
+        BikeLanes.Add(Instantiate(BikeLanePrefab, Carlanes[0].transform.position + ((Carlanes[0].transform.right * LaneScalar) + (Carlanes[0].transform.right * (1 * LaneScalar))), Quaternion.identity));
         BikeLanes.Last().name = "ABike" + BikeLanes.Count;
         BikelaneA.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
 
-        BikeLanes.Add(Instantiate(BikeLanePrefab, BikeLanes.Last().transform.position + ((Vector3.right * 10) + (Vector3.right * (1 * 10))), Quaternion.identity));
+        BikeLanes.Add(Instantiate(BikeLanePrefab, BikeLanes.Last().transform.position + ((BikeLanes.Last().transform.right * LaneScalar) + (BikeLanes.Last().transform.right * (1 * LaneScalar))), Quaternion.identity));
         BikeLanes.Last().name = "ABike" + BikeLanes.Count;
         BikelaneA.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
 
-        BikeLanes.Add(Instantiate(BikeLanePrefab, BikeLanes.Last().transform.position + ((Vector3.right * 10) + (Vector3.right * (1 * 10))), Quaternion.identity));
+        BikeLanes.Add(Instantiate(BikeLanePrefab, BikeLanes.Last().transform.position + ((BikeLanes.Last().transform.right * LaneScalar) + (BikeLanes.Last().transform.right * (1 * LaneScalar))), Quaternion.identity));
         BikeLanes.Last().name = "BBike" + BikeLanes.Count;
         BikelaneB.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
 
-        BikeLanes.Add(Instantiate(BikeLanePrefab, BikeLanes.Last().transform.position + ((Vector3.right * 10) + (Vector3.right * (1 * 10))), Quaternion.identity));
+        BikeLanes.Add(Instantiate(BikeLanePrefab, BikeLanes.Last().transform.position + ((BikeLanes.Last().transform.right * LaneScalar) + (BikeLanes.Last().transform.right * (1 * LaneScalar))), Quaternion.identity));
         BikeLanes.Last().name = "BBike" + BikeLanes.Count;
         BikelaneB.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
 
@@ -226,17 +371,17 @@ public class GloballaneManager : MonoBehaviour
 
     public void BuildWalkLanesOnPointA(Transform ransform, string nam)
     {
-        WalkLanes.Add(Instantiate(WalkLanePrefab, ransform.position + ((Vector3.right * 10)), Quaternion.identity));
+        WalkLanes.Add(Instantiate(WalkLanePrefab, ransform.position + ((ransform.right * LaneScalar)), Quaternion.identity));
         WalkLanes.Last().name = nam + WalkLanes.Count;
         //the second part
-        WalkLanes.Add(Instantiate(WalkLanePrefab, WalkLanes.Last().transform.position + ((Vector3.forward * WalkLanes.Last().GetComponentInChildren<WalkLanebehaviour>().MidPointDistance)), Quaternion.identity));
+        WalkLanes.Add(Instantiate(WalkLanePrefab, WalkLanes.Last().transform.position + ((WalkLanes.Last().transform.forward * WalkLanes.Last().GetComponentInChildren<WalkLanebehaviour>().MidPointDistance)), Quaternion.identity));
         WalkLanes.Last().name = nam + WalkLanes.Count;
 
-        WalkLanes.Add(Instantiate(WalkLanePrefab, WalkLanes.Last().transform.position + ((Vector3.forward * WalkLanes.Last().GetComponentInChildren<WalkLanebehaviour>().MidPointDistance) + (Vector3.right * 10)), Quaternion.identity));
+        WalkLanes.Add(Instantiate(WalkLanePrefab, WalkLanes.Last().transform.position + ((WalkLanes.Last().transform.forward * WalkLanes.Last().GetComponentInChildren<WalkLanebehaviour>().MidPointDistance) + (WalkLanes.Last().transform.right * LaneScalar)), Quaternion.identity));
         WalkLanes.Last().name = nam + WalkLanes.Count;
         WalkLanes.Last().transform.Rotate(Vector3.up * 180);
         //the second part
-        WalkLanes.Add(Instantiate(WalkLanePrefab, WalkLanes.Last().transform.position - ((Vector3.forward * WalkLanes.Last().GetComponentInChildren<WalkLanebehaviour>().MidPointDistance) - (Vector3.right * 10)), Quaternion.identity));
+        WalkLanes.Add(Instantiate(WalkLanePrefab, WalkLanes.Last().transform.position - ((WalkLanes.Last().transform.forward * WalkLanes.Last().GetComponentInChildren<WalkLanebehaviour>().MidPointDistance) - (WalkLanes.Last().transform.right * LaneScalar)), Quaternion.identity));
         WalkLanes.Last().name = nam + WalkLanes.Count;
         WalkLanes.Last().transform.Rotate(Vector3.up * 180);
 
@@ -244,17 +389,17 @@ public class GloballaneManager : MonoBehaviour
     }
     public void BuildWalkLanesOnPointB(Transform ransform, string nam)
     {
-        WalkLanesB.Add(Instantiate(WalkLanePrefab, ransform.position + ((Vector3.right * 10)), Quaternion.identity));
+        WalkLanesB.Add(Instantiate(WalkLanePrefab, ransform.position + ((ransform.right * LaneScalar)), Quaternion.identity));
         WalkLanesB.Last().name = nam + WalkLanesB.Count;
         //the second part
-        WalkLanesB.Add(Instantiate(WalkLanePrefab, WalkLanesB.Last().transform.position + ((Vector3.forward * WalkLanesB.Last().GetComponentInChildren<WalkLanebehaviour>().MidPointDistance)), Quaternion.identity));
+        WalkLanesB.Add(Instantiate(WalkLanePrefab, WalkLanesB.Last().transform.position + ((WalkLanesB.Last().transform.forward * WalkLanesB.Last().GetComponentInChildren<WalkLanebehaviour>().MidPointDistance)), Quaternion.identity));
         WalkLanesB.Last().name = nam + WalkLanesB.Count;
 
-        WalkLanesB.Add(Instantiate(WalkLanePrefab, WalkLanesB.Last().transform.position + ((Vector3.forward * WalkLanesB.Last().GetComponentInChildren<WalkLanebehaviour>().MidPointDistance) + (Vector3.right * 10)), Quaternion.identity));
+        WalkLanesB.Add(Instantiate(WalkLanePrefab, WalkLanesB.Last().transform.position + ((WalkLanesB.Last().transform.forward * WalkLanesB.Last().GetComponentInChildren<WalkLanebehaviour>().MidPointDistance) + (WalkLanesB.Last().transform.right * LaneScalar)), Quaternion.identity));
         WalkLanesB.Last().name = nam + WalkLanesB.Count;
         WalkLanesB.Last().transform.Rotate(Vector3.up * 180);
         //the second part
-        WalkLanesB.Add(Instantiate(WalkLanePrefab, WalkLanesB.Last().transform.position - ((Vector3.forward * WalkLanesB.Last().GetComponentInChildren<WalkLanebehaviour>().MidPointDistance) - (Vector3.right * 10)), Quaternion.identity));
+        WalkLanesB.Add(Instantiate(WalkLanePrefab, WalkLanesB.Last().transform.position - ((WalkLanesB.Last().transform.forward * WalkLanesB.Last().GetComponentInChildren<WalkLanebehaviour>().MidPointDistance) - (WalkLanesB.Last().transform.right * LaneScalar)), Quaternion.identity));
         WalkLanesB.Last().name = nam + WalkLanesB.Count;
         WalkLanesB.Last().transform.Rotate(Vector3.up * 180);
 
@@ -274,6 +419,12 @@ public class GloballaneManager : MonoBehaviour
         
 
     }
+
+    private SingleDetector ExtractSingle(GameObject lane)
+    {
+        return lane.GetComponentInChildren<WalkLanebehaviour>().DetectorLus;
+    }
+
     public List<SingleDetector> ExtractDetectorsWalkLanesB(int count, int startpos)
     {
         List<SingleDetector> singles = new List<SingleDetector>();
@@ -290,19 +441,19 @@ public class GloballaneManager : MonoBehaviour
 
     public void BuildBikeLanesB()
     {
-        BikeLanesB.Add(Instantiate(BikeLanePrefab, CarlanesB[0].transform.position + ((Vector3.right * 10) + (Vector3.right * (1 * 10))), Quaternion.identity));
+        BikeLanesB.Add(Instantiate(BikeLanePrefab, CarlanesB[0].transform.position + ((CarlanesB[0].transform.right * LaneScalar) + (CarlanesB[0].transform.right * (1 * LaneScalar))), Quaternion.identity));
         BikeLanesB.Last().name = "E" + BikeLanesB.Count;
         BikelaneE.Add(BikeLanesB.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
 
-        BikeLanesB.Add(Instantiate(BikeLanePrefab, BikeLanesB.Last().transform.position + ((Vector3.right * 10) + (Vector3.right * (1 * 10))), Quaternion.identity));
+        BikeLanesB.Add(Instantiate(BikeLanePrefab, BikeLanesB.Last().transform.position + ((BikeLanesB.Last().transform.right * LaneScalar) + (BikeLanesB.Last().transform.right * (1 * LaneScalar))), Quaternion.identity));
         BikeLanesB.Last().name = "E" + BikeLanesB.Count;
         BikelaneE.Add(BikeLanesB.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
 
-        BikeLanesB.Add(Instantiate(BikeLanePrefab, BikeLanesB.Last().transform.position + ((Vector3.right * 10) + (Vector3.right * (1 * 10))), Quaternion.identity));
+        BikeLanesB.Add(Instantiate(BikeLanePrefab, BikeLanesB.Last().transform.position + ((BikeLanesB.Last().transform.right * LaneScalar) + (BikeLanesB.Last().transform.right * (1 * LaneScalar))), Quaternion.identity));
         BikeLanesB.Last().name = "F" + BikeLanesB.Count;
         BikelaneF.Add(BikeLanesB.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
 
-        BikeLanesB.Add(Instantiate(BikeLanePrefab, BikeLanesB.Last().transform.position + ((Vector3.right * 10) + (Vector3.right * (1 * 10))), Quaternion.identity));
+        BikeLanesB.Add(Instantiate(BikeLanePrefab, BikeLanesB.Last().transform.position + ((BikeLanesB.Last().transform.right * LaneScalar) + (BikeLanesB.Last().transform.right * (1 * LaneScalar))), Quaternion.identity));
         BikeLanesB.Last().name = "F" + BikeLanesB.Count;
         BikelaneF.Add(BikeLanesB.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
 
@@ -311,49 +462,7 @@ public class GloballaneManager : MonoBehaviour
         BuildWalkLanesOnPointB(BikeLanesB[2].transform, "voetpad F");
         WalklaneF = ExtractDetectorsWalkLanesB(4, 4);
     }
-    //use lane B
-    void getDataB()
-    {
-        //for def
-        for (int i = 0; i < 4; i++)
-        {
-            if(i == 0)
-            {
-                CarlanesB.Add(Instantiate(CarLanePrefab, Carlanes.Last().transform.position + ((Vector3.right * 10) + (Vector3.right * (i * 10))), Quaternion.identity));
-                CarlanesB.Last().name = "VerkeerslichtD" + i + 1;
-                carSensormsgsD.Add(CarlanesB[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
-                Debug.Log(carSensormsgsD.Last().DetectFar);
-            }
-            else
-            {
-                CarlanesB.Add(Instantiate(CarLanePrefab, CarlanesB.Last().transform.position + ((Vector3.right * 10) + (Vector3.right * (i * 10))), Quaternion.identity));
-                CarlanesB.Last().name = "VerkeerslichtD" + i + 1;
-                carSensormsgsD.Add(CarlanesB[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
-                Debug.Log(carSensormsgsD.Last().DetectFar);
-            }
-        }
-
-        for (int i = 4; i < 4 + 3; i++)
-        {
-
-                CarlanesB.Add(Instantiate(CarLanePrefab, CarlanesB.Last().transform.position + ((Vector3.right * 10)), Quaternion.identity));
-                CarlanesB.Last().name = "VerkeerslichtE" + i + 1;
-                carSensormsgsE.Add(CarlanesB[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
-                Debug.Log(carSensormsgsE.Last().DetectFar);
-           
-        }
-        for (int i = 4+ 3; i < 4 + 3 + 4; i++)
-        {
-            CarlanesB.Add(Instantiate(CarLanePrefab, CarlanesB.Last().transform.position + ((Vector3.right * 10)), Quaternion.identity));
-            CarlanesB.Last().name = "VerkeerslichtF" + i + 1;
-            carSensormsgsF.Add(CarlanesB[i].GetComponentInChildren<CarLanebehaviour>().DetectorLus);
-            Debug.Log(carSensormsgsE.Last().DetectFar);
-
-        }
-
-        BuildBikeLanesB();
-    }
-
+ 
 
 
     //create and add cars to the light
@@ -363,11 +472,6 @@ public class GloballaneManager : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             GameObject kees = Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity);
-            //TrafficList.Add(Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity));
-            //TrafficList.Last().GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
-            //TrafficList.Last().GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
-            //TrafficList.Last().GetComponent<Movement>().Setup();
-
             kees.GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
             kees.GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
             kees.GetComponent<Movement>().Setup();
@@ -383,11 +487,6 @@ public class GloballaneManager : MonoBehaviour
             kees.GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
             kees.GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
             kees.GetComponent<Movement>().Setup();
-
-            //TrafficList.Add(Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity));
-            //TrafficList.Last().GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
-            //TrafficList.Last().GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
-            //TrafficList.Last().GetComponent<Movement>().Setup();
         }
 
     }
@@ -400,11 +499,6 @@ public class GloballaneManager : MonoBehaviour
             kees.GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
             kees.GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
             kees.GetComponent<Movement>().Setup();
-
-            //TrafficList.Add(Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity));
-            //TrafficList.Last().GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
-            //TrafficList.Last().GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
-            //TrafficList.Last().GetComponent<Movement>().Setup();
         }
 
     }
@@ -474,11 +568,9 @@ public class GloballaneManager : MonoBehaviour
 
     }
 
-    public void UpdateData(string jappie)
-    {
-       
-        //LaneLampSettr.DecodeJappie(jappie);
-    }
+
+   
+
 
     public void Update()
     {

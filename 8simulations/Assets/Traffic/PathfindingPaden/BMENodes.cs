@@ -21,8 +21,8 @@ public class BMENodes : MonoBehaviour
     public void Setup()
     {
         modPosses(DirectionMaker.GetDutchDirection(directionNum, type));
-        transform.position = StartPos * length;
-        transform.position += transform.right * (subNum * 10);
+
+        Debug.Log("Node Used");
     }
 
     // Start is called before the first frame update
@@ -36,34 +36,9 @@ public class BMENodes : MonoBehaviour
     void modPosses(DutchDirection dutchDirection)
     {
         StartPos = dutchDirection.start * length;
-        Debug.Log(dutchDirection.start + "starts");
-        Debug.Log(dutchDirection.end + "end stats");
         EndPos = dutchDirection.end * length;
     }
 
-    void Applyoffsets()
-    {
-        this.StartPos += dutchOffsets.StartOffset;
-        this.MidPos += dutchOffsets.MidPointOffset;
-        this.EndPos += dutchOffsets.EndOffset;
 
-    }
 
-    private void Update()
-    {
-        Debug.DrawLine(transform.right * (subNum * 10), EndPos, Color.cyan);
-    }
-
-    public Vector3 GetMidPosoffset()
-    {
-        return dutchOffsets.MidPointOffset;
-    }
-    public Vector3 GetStartPosOffst()
-    {
-        return dutchOffsets.StartOffset - (transform.forward * 10);
-    }
-    public Vector3 GetEndPosOffst()
-    {
-        return dutchOffsets.EndOffset;
-    }
 }
