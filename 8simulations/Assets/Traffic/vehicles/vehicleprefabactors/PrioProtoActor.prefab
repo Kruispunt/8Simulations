@@ -79,7 +79,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 944887d0992988449997f4e86a62a1b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -161,7 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0038096eb9e43449a5ef6f3516612b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 1
   begin: {x: 0, y: 0, z: 0}
   mid: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: 0}
@@ -178,11 +177,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce62623e4d445dd42922ab0b63b9818c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  routeindex: 0
   CanUpdate: 1
   ReachedGoal: 0
-  distanceThreshold: 10
+  distanceThreshold: 7
   heading: {x: 0, y: 0, z: 0}
-  speed: 100
+  speed: 50
   LocalGoal: {x: 0, y: 0, z: 0}
   body: {fileID: 6289308337422346121}
   pad: {fileID: -959310890818225625}

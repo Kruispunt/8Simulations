@@ -32,7 +32,10 @@ public class LaneLampSettr
 
     public void updateLamps(recieverpakket.SignalGroup lightCar)
     {
+        Debug.Log(lightCar.ToString());
+        Debug.Log(lightCar.blocksMsg.ToString());
         SetBlockLampsCarLaneA(lightCar.blocksMsg);
+        Debug.Log("block1done");
         SetBlockLampsCarLaneB(lightCar.blocksMsg2);
     }
 
@@ -40,6 +43,7 @@ public class LaneLampSettr
     {
         for (int i = 0; i < 4; i++)
         {
+            Debug.Log("setupcar");
             worldspwanerManager.Carlanes[i].GetComponentInChildren<CarLanebehaviour>().SetLampLight(msg.A.Cars[i]);
             worldspwanerManager.WalkLanes[i].GetComponentInChildren<WalkLanebehaviour>().SetLampLight(msg.A.Walkers[i]);
         }
@@ -53,6 +57,9 @@ public class LaneLampSettr
         {
             worldspwanerManager.Carlanes[i].GetComponentInChildren<CarLanebehaviour>().SetLampLight(msg.C.Cars[i - (4 + 4)]);
         }
+
+
+
         SetLampsBikelanesA(msg);
 
     }

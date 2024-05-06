@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    int routeindex = 1;
+    public int routeindex = 0;
 
     public bool CanUpdate = false;
     public bool ReachedGoal;
@@ -22,15 +22,13 @@ public class Movement : MonoBehaviour
     public ActorPathFinding pad;
     public void Setup()
     {
-        distanceThreshold = 1.5f;
-        getnewGoal();
+        SmartUpdate();
         this.CanUpdate = true;
     }
     public void Setup(Rigidbody rigidbody)
     {
         this.body = rigidbody;
-        distanceThreshold = 1.5f;
-        getnewGoal();
+        SmartUpdate();
         this.CanUpdate = true;
     }
 
@@ -39,25 +37,39 @@ public class Movement : MonoBehaviour
         this.LocalGoal = goal;
     }
 
-
-    public void updateID()
+    private void SmartUpdate()
     {
-        Debug.Log("updatedid");
-        routeindex++;
-        getnewGoal();
-    }
-    public void getnewGoal()
-    {
-        this.LocalGoal = pad.Getroute(routeindex);
+        switch (routeindex)
+        {
+            case 0:
+                this.LocalGoal = pad.begin;
+                routeindex++;
+                break;
+            case 1:
+                this.LocalGoal = pad.mid;
+                if (pad.watch.CanGo)
+                {
+                    routeindex++;
+                }
+                break;
+            case 2:
+                this.LocalGoal = pad.end;
+                break;
+            default:
+                this.LocalGoal = pad.end;
+                break;
+
+        }
     }
 
-    private void Update()
+    public void FixedUpdate()
     {
         if (this.CanUpdate)
         {
             this.MoveObject();
         }
     }
+
 
     //move on forward axis
     public void MoveObject()
@@ -67,39 +79,21 @@ public class Movement : MonoBehaviour
 
         if (afstand < distanceThreshold)
         {
-            if(routeindex == 1 && pad.watch.CanGo)
-            {
-                updateID();
-
-            }
-            if(routeindex == 2)
-            {
-                this.gameObject.SetActive(false);
-            }
-
+            //routeindex++;
+            SmartUpdate();
+            body.velocity = Vector3.zero;
         }
         else
         {
 
             heading = transform.position - LocalGoal;
+           
             Vector3 direction = Vector3.Normalize(heading);
-            body.AddForce(-direction);
-            Debug.DrawLine(transform.position, LocalGoal, Color.red);
+            body.AddForce(-(direction * speed * Time.deltaTime), ForceMode.Impulse);
+            
         }
         Debug.DrawLine(transform.position, LocalGoal, Color.red);
 
-    }
-
-    public void WaitForGreen()
-    {
-        float distance = Vector3.Distance(this.transform.position, LocalGoal);
-        heading = transform.position - LocalGoal;
-        Vector3 direction = Vector3.Normalize(heading);
-
-        //Vector3 direction = heading / distance; // This is now the normalized direction.
-        //heading = transform.position - LocalGoal;
-        body.AddForce(-direction);
-        Debug.DrawLine(transform.position, LocalGoal, Color.red);
     }
 
 

@@ -32,6 +32,7 @@ public class SimuAuto : MonoBehaviour
 
         Movement.Setup(this.GetComponent<Rigidbody>());
         SetPlaceToPark(stopllicht);
+        Debug.Log("simouto");
         Movement.SetObjective(stopllicht.lane.ParkInLine(this));
         //Movement.SetObjective(PlaceToPark);
     }
@@ -58,42 +59,6 @@ public class SimuAuto : MonoBehaviour
         {
             this.state = VehicleState.Driving;
 
-        }
-
-    }
-
-    public void Update()
-    {
-        StateUpdate();
-    }
-    //call this to update the object state
-    //test for now
-    public void StateUpdate()
-    {
-        if (this.state == VehicleState.Driving)
-        {
-
-            Movement.MoveObject();
-
-            if (Movement.ReachedGoal)
-            {
-                this.state = VehicleState.Stopping;
-            }
-        }
-        if(this.state == VehicleState.Stopping)
-        {
-            this.state = VehicleState.Waiting;
-        }
-        if(this.state == VehicleState.Waiting)
-        {
-            //Debug.Log("waiting voor groen");
-            Movement.WaitForGreen();
-            if (stopllicht.manager.IsGreenLight())
-            {
-                this.Movement.SetObjective(Vector3.zero);
-                this.state = VehicleState.Driving;
-            }
-            
         }
 
     }

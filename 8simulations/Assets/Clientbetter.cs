@@ -5,6 +5,10 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using Newtonsoft.Json;
+using UnityEngine.Rendering;
+using System.IO;
+using System.Collections;
+using UnityEngine.Events;
 
 
 public class Clientbetter : MonoBehaviour
@@ -13,16 +17,14 @@ public class Clientbetter : MonoBehaviour
     public int serverPort = 80;             // Set this to your server's port.
     private string messageToSend = "Victory For Vegeta!"; // The message to send.
     public string jsonjapp;
-    private string kees;
-    public string unputmsg {
-        get { return kees; }
+    public string kees;
 
-        set { kees = value;
-            manager.UpdateData(value);
-        }
-    
-    }
+    public float MessagePostTime = 5;
 
+    public bool updatedKees = false;
+    public bool ClientActive = false;
+    public bool ConnectonOnline = false;
+    public bool PostOnKey = false;
 
     public GloballaneManager manager;
     public SimulatorManager simulatorManager;
@@ -34,8 +36,24 @@ public class Clientbetter : MonoBehaviour
 
 
     public SignalGroup SignalGroup = new SignalGroup();
+
+    public UnityEvent<bool> onServerStart;
+
+    public UnityEvent<bool> SenderThreadState;
+    public UnityEvent<bool> ReceiverThreadState;
+
+
     void Start()
     {
+        //string filePath = Path.Combine(Application.persistentDataPath, "ControllerToSim.json");
+        //string path = Application.persistentDataPath + "/ControllerToSim.json";
+        //StreamReader reader = new StreamReader(path);
+        //Debug.Log(reader.ReadToEnd());
+        //reader.Close();
+
+        //Debug.Log(filePath);
+        //kees = File.ReadAllText(filePath);
+        Debug.Log(kees + "derpderpderp");
         decoder = new MessageDecoder();
         decoder.PrintPakket();
         ConnectToServer();
@@ -44,15 +62,47 @@ public class Clientbetter : MonoBehaviour
     void Update()
     {
         //disable this if you are sending from another script or a button
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && this.PostOnKey)
         {
             //SendMessageToServer(messageToSend);
             SendMessageToServer(jsonjapp);
         }
     }
 
+
+    public void PostIp(string ip)
+    {
+        this.serverIP = ip;
+    }
+
+    public void StartClient()
+    {
+        ConnectToServer();
+    }
+
+    public void SetPostRate(float time)
+    {
+        this.MessagePostTime = time;
+    }
+    //true is post on key
+    public void SetPostMode(bool mode)
+    {
+        this.PostOnKey = mode;
+        if (!this.PostOnKey)
+        {
+            StartCoroutine(TimedPoster(this.MessagePostTime));
+        }
+    }
+
+    public float GetPostRate()
+    {
+        return this.MessagePostTime;
+    }
     void ConnectToServer()
     {
+        onServerStart.Invoke(true);
+        StartCoroutine(TimedPoster(5));
+        ReceiverThreadState.Invoke(true);
         try
         {
             client = new TcpClient(serverIP, serverPort);
@@ -89,12 +139,9 @@ public class Clientbetter : MonoBehaviour
                         Array.Copy(bytes, 0, incomingData, 0, length);
                         // Convert byte array to string message.
                         string serverMessage = Encoding.UTF8.GetString(incomingData);
-                        this.unputmsg = serverMessage;
-                        //manager.UpdateData(serverMessage);
-                        //upppp(serverMessage);
+                        kees = serverMessage;
+                        this.updatedKees = true;
                         Debug.Log("Server message received: " + serverMessage);
-                        //simulatorManager.msg = serverMessage;
-                        //simulatorManager.SetString(serverMessage);
                        
                     }
                 }
@@ -106,14 +153,9 @@ public class Clientbetter : MonoBehaviour
         }
     }
 
-
-    public void upppp(string serv)
-    {
-        manager.UpdateData(serv);
-    }
-
     public void SendMessageToServer(string message)
     {
+        SenderThreadState.Invoke(true);
         //Debug.Log("Sent message to server: " + message);
         if (client == null || !client.Connected)
         {
@@ -129,6 +171,7 @@ public class Clientbetter : MonoBehaviour
         //byte[] data = Encoding.UTF8.GetBytes(message);
         stream.Write(data, 0, data.Length);
         Debug.Log("Sent message to server: " + message);
+        SenderThreadState.Invoke(false);
     }
 
     void OnApplicationQuit()
@@ -140,4 +183,15 @@ public class Clientbetter : MonoBehaviour
         if (clientReceiveThread != null)
             clientReceiveThread.Abort();
     }
+
+    IEnumerator TimedPoster(float time)
+    {
+        //refresh simulation state 5 secs
+        yield return new WaitForSeconds(time);
+        SendMessageToServer(jsonjapp);
+
+        StartCoroutine(TimedPoster(time));
+    }
+
+
 }

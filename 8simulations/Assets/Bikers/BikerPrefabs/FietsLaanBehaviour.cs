@@ -5,9 +5,13 @@ using UnityEngine;
 public class FietsLaanBehaviour : MonoBehaviour
 {
 
+    
+    private GameObject NearLusF;
+    private GameObject FarLusF;
 
     public SingleDetector DetectorLus = new SingleDetector();
-
+    public float FarLaneDistance = 50.0f;
+    public float XOffset = 10;
     public Transform Triggerpos;
     public LaneTriggerBike LaneTriggerBike;
 
@@ -22,10 +26,20 @@ public class FietsLaanBehaviour : MonoBehaviour
 
     private void Start()
     {
+        CreateRequiruiments();
         LaneRoad = GetComponentInChildren<Road>();
-        Debug.Log("road");
         LaneTriggerBike.setup(this, Triggerpos.position);
-        //StartCoroutine(randomstate(5));
+        NearLusF.gameObject.transform.position += (NearLusF.transform.forward * LaneStartdistance) + (NearLusF.transform.right * XOffset);
+        LaneTriggerBike.transform.position = NearLusF.transform.position;
+        FarLusF.gameObject.transform.position = NearLusF.transform.position;
+        FarLusF.gameObject.transform.position += FarLusF.transform.forward * FarLaneDistance;
+
+    }
+
+    private void CreateRequiruiments()
+    {
+        NearLusF = Instantiate(new GameObject());
+        FarLusF = Instantiate(new GameObject());
     }
 
     public void OnDetect()
@@ -46,18 +60,19 @@ public class FietsLaanBehaviour : MonoBehaviour
 
     public Vector3 GetLaneStartSignal()
     {
-        return LaneRoad.GetStartPosition().position;
+        return this.NearLusF.transform.position;
     }
 
     //the last position of the lane and thus the exit
     public Vector3 GetLaneExit()
     {
+        return this.NearLusF.transform.position += this.NearLusF.transform.forward * 100;
         return LaneRoad.GetEndPosition().position;
     }
     //enter the lane at the start position
     public Vector3 GetLaneStart()
     {
-        return GetLaneStartSignal() + (Vector3.forward * LaneStartdistance);
+        return FarLusF.transform.position;
     }
 
     public void SetLampLight(int state)

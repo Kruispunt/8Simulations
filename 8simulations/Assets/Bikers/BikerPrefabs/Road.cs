@@ -5,11 +5,6 @@ using UnityEngine;
 public class Road : MonoBehaviour
 {
 
-
-
-    public Vector3 DirectionData;
-
-
     public Transform startPosition;
 
     public Transform endPosition;
@@ -24,13 +19,5 @@ public class Road : MonoBehaviour
         return endPosition;
     }
 
-   
-    // Update is called once per frame
-    void Update()
-    {
-
-
-        Debug.DrawLine(startPosition.position, endPosition.position);
-        
-    }
+  
 }

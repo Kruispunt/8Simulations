@@ -11,10 +11,9 @@ public class LTrigger : MonoBehaviour
 
     private CarLanebehaviour laanBehaviour;
 
-    public void setup(CarLanebehaviour Laan, Vector3 triggerPos, bool isnear)
+    public void setup(CarLanebehaviour Laan, bool isnear)
     {
         this.laanBehaviour = Laan;
-        this.transform.position = triggerPos;
         this.IsNear = isnear;
     }
 
