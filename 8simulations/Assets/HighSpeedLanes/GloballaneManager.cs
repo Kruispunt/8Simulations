@@ -305,7 +305,7 @@ public class GloballaneManager : MonoBehaviour
 
         BikelaneE.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
         BikeLanesB.Last().transform.Rotate(Vector3.up * 180);
-        WalklaneE.Add(ExtractSingle(WalkLanesB.Last()));
+        //WalklaneE.Add(ExtractSingle(WalkLanesB.Last()));
 
         //seperation
 
@@ -329,8 +329,8 @@ public class GloballaneManager : MonoBehaviour
         WalklaneF.Add(ExtractSingle(WalkLanesB.Last()));
 
 
-        BikeLanes.Add(Instantiate(BikeLanePrefab, (BuildCorssPoints.EIsland.transform.position + (BuildCorssPoints.EIsland.transform.forward * BuildCorssPoints.EndDistance)), Quaternion.identity));
-        BikeLanes.Last().name = "FBike Out Mirrored" + BikeLanes.Count;
+        BikeLanesB.Add(Instantiate(BikeLanePrefab, (BuildCorssPoints.EIsland.transform.position + (BuildCorssPoints.EIsland.transform.forward * BuildCorssPoints.EndDistance)), Quaternion.identity));
+        BikeLanesB.Last().name = "FBike Out Mirrored" + BikeLanes.Count;
         BikelaneF.Add(BikeLanes.Last().GetComponentInChildren<FietsLaanBehaviour>().DetectorLus);
         BikeLanesB.Last().transform.Rotate(Vector3.up * 180);
 
