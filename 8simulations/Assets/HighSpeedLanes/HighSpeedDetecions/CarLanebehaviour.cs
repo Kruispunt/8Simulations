@@ -5,7 +5,7 @@ using UnityEngine;
 public class CarLanebehaviour : MonoBehaviour
 {
 
-    public GameObject Parent;
+    //public GameObject Parent;
 
     public GameObject triggerNear;
     public GameObject triggerFar;
@@ -50,26 +50,11 @@ public class CarLanebehaviour : MonoBehaviour
         {
             LaneRoad.endPosition = ExitNode.transform;
         }
-        else
-        {
-            
-        }
-
         //LaneRoad.endPosition = FarLus.transform;
         //StartCoroutine(randomstate(5));
     }
 
 
-
-    public Vector3 GetDutchBeginPos()
-    {
-        return nodes.StartPos;
-    }
-
-    public Vector3 GetDutchEndPost()
-    {
-        return nodes.EndPos;
-    }
     public void OnDetect(bool isnear)
     {
         if (isnear)
@@ -153,18 +138,5 @@ public class CarLanebehaviour : MonoBehaviour
     public CarSensormsg getTriggerInfo()
     {
         return this.DetectorLus;
-    }
-
-    public void Update()
-    {
-        //Debug.Log(DetectorLus.Detected.ToString());
-    }
-
-    IEnumerator randomstate(int timeInSec)
-    {
-        //refresh simulation state 5 secs
-        yield return new WaitForSeconds(timeInSec);
-        LampostManager.SetLight(Random.Range(0, 2));
-        StartCoroutine( randomstate(timeInSec));
     }
 }

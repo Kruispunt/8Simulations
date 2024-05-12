@@ -37,6 +37,18 @@ public class LaneLampSettr
         SetBlockLampsCarLaneA(lightCar.blocksMsg);
         Debug.Log("block1done");
         SetBlockLampsCarLaneB(lightCar.blocksMsg2);
+        SetAllBikePedLamps(lightCar);
+    }
+
+    public void SetAllBikePedLamps(recieverpakket.SignalGroup message)
+    {
+
+        recieverpakket.blocksMsg msg = message.blocksMsg;
+        worldspwanerManager.PrebuiltLaneA.GetComponent<PrebuildBlockInfo>().Setlamps(msg.A.bikers, msg.A.Walkers);
+        worldspwanerManager.PrebuiltLaneB.GetComponent<PrebuildBlockInfo>().Setlamps(msg.B.bikers, msg.B.Walkers);
+        recieverpakket.blocksMsg2 msgn = message.blocksMsg2;
+        worldspwanerManager.PrebuiltLaneE.GetComponent<PrebuildBlockInfo>().Setlamps(msgn.E.bikers, msgn.E.Walkers);
+        worldspwanerManager.PrebuiltLaneF.GetComponent<PrebuildBlockInfo>().Setlamps(msgn.F.bikers, msgn.F.Walkers);
     }
 
     public void SetBlockLampsCarLaneA(recieverpakket.blocksMsg msg)
@@ -45,22 +57,20 @@ public class LaneLampSettr
         {
             Debug.Log("setupcar");
             worldspwanerManager.Carlanes[i].GetComponentInChildren<CarLanebehaviour>().SetLampLight(msg.A.Cars[i]);
-            worldspwanerManager.WalkLanes[i].GetComponentInChildren<WalkLanebehaviour>().SetLampLight(msg.A.Walkers[i]);
+            //worldspwanerManager.WalkLanes[i].GetComponentInChildren<WalkLanebehaviour>().SetLampLight(msg.A.Walkers[i]);
+            worldspwanerManager.PrebuiltLaneA.GetComponent<PrebuildBlockInfo>().Setlamps(msg.A.bikers, msg.A.Walkers);
         }
 
         for (int i = 4; i < 4 + 4; i++)
         {
             worldspwanerManager.Carlanes[i].GetComponentInChildren<CarLanebehaviour>().SetLampLight(msg.B.Cars[i - 4]);
-            worldspwanerManager.WalkLanes[i].GetComponentInChildren<WalkLanebehaviour>().SetLampLight(msg.B.Walkers[i - 4]);
+            //worldspwanerManager.WalkLanes[i].GetComponentInChildren<WalkLanebehaviour>().SetLampLight(msg.B.Walkers[i - 4]);
+            worldspwanerManager.PrebuiltLaneB.GetComponent<PrebuildBlockInfo>().Setlamps(msg.B.bikers, msg.B.Walkers);
         }
         for (int i = 4 + 4; i < 4 + 4 + 4; i++)
         {
             worldspwanerManager.Carlanes[i].GetComponentInChildren<CarLanebehaviour>().SetLampLight(msg.C.Cars[i - (4 + 4)]);
         }
-
-
-
-        SetLampsBikelanesA(msg);
 
     }
     public void SetBlockLampsCarLaneB(recieverpakket.blocksMsg2 msg)
@@ -78,19 +88,6 @@ public class LaneLampSettr
         {
             worldspwanerManager.CarlanesB[i].GetComponentInChildren<CarLanebehaviour>().SetLampLight(msg.F.Cars[i - (3 + 4)]);
         }
-
-
-        for (int i = 0; i < 4; i++)
-        {
-            worldspwanerManager.WalkLanesB[i].GetComponentInChildren<WalkLanebehaviour>().SetLampLight(msg.E.Walkers[i]);
-
-        }
-        for (int i = 0; i < 4; i++)
-        {
-            worldspwanerManager.WalkLanesB[i].GetComponentInChildren<WalkLanebehaviour>().SetLampLight(msg.F.Walkers[i]);
-
-        }
-        SetLampsBikelanesB(msg);
     }
 
 

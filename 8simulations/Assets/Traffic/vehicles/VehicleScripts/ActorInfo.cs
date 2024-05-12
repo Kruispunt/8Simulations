@@ -5,7 +5,7 @@ using UnityEngine;
 public class ActorInfo : MonoBehaviour
 {
     //if 1 dan prio
-    public int Type = 1;
+    public int Type = 0;
 
 
     //is this a prio vehicle

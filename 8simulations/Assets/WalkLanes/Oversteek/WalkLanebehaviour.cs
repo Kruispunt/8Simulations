@@ -23,7 +23,7 @@ public class WalkLanebehaviour : MonoBehaviour
     void Start()
     {
         LaneRoad = GetComponentInChildren<Road>();
-        StartCoroutine(randomstate(5));
+        //StartCoroutine(randomstate(5));
 
     }
 
@@ -43,12 +43,7 @@ public class WalkLanebehaviour : MonoBehaviour
     //enter the lane at the start position
     public Vector3 GetLaneStart()
     {
-        return LaneRoad.GetStartPosition().position + (Vector3.forward * LaneStartdistance);
-    }
-
-    public SingleDetector GetDetector()
-    {
-        return DetectorLus;
+        return LaneRoad.GetStartPosition().position;
     }
     //starts once buttom is pressed
     public void ButtonPressed()
@@ -66,12 +61,6 @@ public class WalkLanebehaviour : MonoBehaviour
     {
         LampostManager.SetLight(state);
     }
-    IEnumerator randomstate(int timeInSec)
-    {
-        //refresh simulation state 5 secs
-        yield return new WaitForSeconds(timeInSec);
-        LampostManager.SetLight(Random.Range(0, 2));
-        StartCoroutine(randomstate(timeInSec));
-    }
+
 
 }

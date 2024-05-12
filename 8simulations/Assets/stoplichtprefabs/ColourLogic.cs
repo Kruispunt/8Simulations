@@ -46,10 +46,10 @@ public class ColourLogic : MonoBehaviour
             case 0:
                 setLampToGreen();
                 break;
-            case 1:
+            case 2:
                 setLampToRed();
                 break;
-            case 2:
+            case 1:
                 setLampToOrange();
                 break;
             default:
