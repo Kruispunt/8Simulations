@@ -104,7 +104,7 @@ public class GloballaneManager : MonoBehaviour
             Communicator.jsonjapp = japsie;
         }
 
-        Debug.Log(japsie);
+        //Debug.Log(japsie);
         StartCoroutine(UpdatePakket(ticktime));
     }
 

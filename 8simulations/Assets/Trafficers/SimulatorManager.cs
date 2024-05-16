@@ -11,7 +11,7 @@ public class SimulatorManager : MonoBehaviour
     [SerializeField]
     public static string ServerCommands;
 
-    public int timeInSec;
+    public float timeInSec;
     public int SpawnMin,SpawnMax;
 
     public string msg;
@@ -45,7 +45,7 @@ public class SimulatorManager : MonoBehaviour
     
 
     //time based loop for refreshing important things
-    IEnumerator Simutick(int timeInSec)
+    IEnumerator Simutick(float timeInSec)
     {
         //refresh simulation state 5 secs
         yield return new WaitForSeconds(timeInSec);

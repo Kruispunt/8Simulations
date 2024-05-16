@@ -36,14 +36,15 @@ public class LampostManager : MonoBehaviour
         ConfigureLogic();
 
         AddLightsToLogic(lightings);
-        ColourLogic.StartLamp();
-        ColourLogic.setLampToRed();
+        //ColourLogic.StartLamp();
+        //ColourLogic.setLampToRed();
 
     }
     //called on setup
     public void ConfigureLogic()
     {
         ColourLogic = this.AddComponent<ColourLogic>();
+
         ColourLogic.setup(lightings.Count - 1);
     }
 

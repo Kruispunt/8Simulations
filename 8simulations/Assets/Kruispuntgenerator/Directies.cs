@@ -12,3 +12,11 @@ public class Directies
 
     public Vector3 West = Vector3.right;
 }
+
+
+public enum Turn
+{
+    right,
+    left,
+    forward
+}

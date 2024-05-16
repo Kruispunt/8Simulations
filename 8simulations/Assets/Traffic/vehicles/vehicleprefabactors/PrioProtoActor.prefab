@@ -180,9 +180,9 @@ MonoBehaviour:
   routeindex: 0
   CanUpdate: 1
   ReachedGoal: 0
-  distanceThreshold: 7
+  distanceThreshold: 3
   heading: {x: 0, y: 0, z: 0}
-  speed: 50
+  speed: 25
   LocalGoal: {x: 0, y: 0, z: 0}
   body: {fileID: 6289308337422346121}
   pad: {fileID: -959310890818225625}

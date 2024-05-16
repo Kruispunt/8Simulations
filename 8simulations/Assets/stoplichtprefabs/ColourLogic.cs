@@ -16,7 +16,7 @@ public class ColourLogic : MonoBehaviour
     //index starts at zero 
     public void setup(int options)
     {
-        Debug.Log("setup collogic");
+        //Debug.Log("setup collogic" + options);
         Options = options;
         LampLights = new List<Lighting>();
         //default
@@ -44,10 +44,12 @@ public class ColourLogic : MonoBehaviour
         switch (Status)
         {
             case 0:
-                setLampToGreen();
+                //setLampToGreen();
+                setLampToRed();
                 break;
             case 2:
-                setLampToRed();
+                //setLampToRed();
+                setLampToGreen();
                 break;
             case 1:
                 setLampToOrange();
@@ -88,37 +90,37 @@ public class ColourLogic : MonoBehaviour
         LampLights[2].Status = true;
     }
 
-    public void StartLamp()
-    {
+    //public void StartLamp()
+    //{
 
-        foreach(var light in LampLights)
-        {
-            if (light.idx == CurrentState)
-            {
+    //    foreach(var light in LampLights)
+    //    {
+    //        if (light.idx == CurrentState)
+    //        {
                 
 
-            }
-            else
-            {
-                light.TurnOffLamp();
+    //        }
+    //        else
+    //        {
+    //            light.TurnOffLamp();
                 
-            }
+    //        }
 
 
-        }
-        for (int i = 0; i < Options; i++)
-        {
-            if (LampLights[i].idx == CurrentState)
-            {
-                LampLights[i].ToggleLight(true);
-            }
-            else
-            {
-                LampLights[i].ToggleLight(false);
-            }
+    //    }
+    //    for (int i = 0; i < Options; i++)
+    //    {
+    //        if (LampLights[i].idx == CurrentState)
+    //        {
+    //            LampLights[i].ToggleLight(true);
+    //        }
+    //        else
+    //        {
+    //            LampLights[i].ToggleLight(false);
+    //        }
 
-        }
-    }
+    //    }
+    //}
 
 
 

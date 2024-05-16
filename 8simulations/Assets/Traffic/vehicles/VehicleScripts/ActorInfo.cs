@@ -25,6 +25,14 @@ public class ActorInfo : MonoBehaviour
         }
         return false;
     }
+    public bool IsBus()
+    {
+        if (Type == 4)
+        {
+            return true;
+        }
+        return false;
+    }
 
 
 }

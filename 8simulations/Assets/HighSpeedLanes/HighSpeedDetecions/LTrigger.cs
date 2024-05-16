@@ -23,7 +23,7 @@ public class LTrigger : MonoBehaviour
         if (other.gameObject.GetComponent<ActorInfo>().Isprio())
         {
             laanBehaviour.OnDetect(IsNear, true);
-            Debug.Log(this.IsNear + "triggerexit");
+            //Debug.Log(this.IsNear + "triggerexit");
         }
         else
         {
@@ -36,7 +36,7 @@ public class LTrigger : MonoBehaviour
         if (other.gameObject.GetComponent<ActorInfo>().Isprio())
         {
             laanBehaviour.ExitDetected(IsNear, true);
-            Debug.Log(this.IsNear + "triggerexit");
+            //Debug.Log(this.IsNear + "triggerexit");
         }
         else
         {

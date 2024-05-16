@@ -29,8 +29,8 @@ public class FietsLaanBehaviour : MonoBehaviour
         CreateRequiruiments();
         LaneRoad = GetComponentInChildren<Road>();
         LaneTriggerBike.setup(this, Triggerpos.position);
-        NearLusF.gameObject.transform.position += (NearLusF.transform.forward * LaneStartdistance) + (NearLusF.transform.right * XOffset);
-        LaneTriggerBike.transform.position = NearLusF.transform.position;
+        //NearLusF.gameObject.transform.position += (NearLusF.transform.forward * LaneStartdistance) + (NearLusF.transform.right * XOffset);
+        //LaneTriggerBike.transform.position = NearLusF.transform.position;
         //FarLusF.gameObject.transform.position = NearLusF.transform.position;
         //FarLusF.gameObject.transform.position += FarLusF.transform.forward * FarLaneDistance;
 

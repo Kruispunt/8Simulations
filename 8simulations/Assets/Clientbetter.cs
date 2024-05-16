@@ -64,7 +64,7 @@ public class Clientbetter : MonoBehaviour
         //disable this if you are sending from another script or a button
         if (Input.GetKeyDown(KeyCode.Space) && this.PostOnKey)
         {
-            //SendMessageToServer(messageToSend);
+            SendMessageToServer(messageToSend);
             SendMessageToServer(jsonjapp);
         }
     }
@@ -107,7 +107,7 @@ public class Clientbetter : MonoBehaviour
         {
             client = new TcpClient(serverIP, serverPort);
             stream = client.GetStream();
-            Debug.Log("Connected to server.");
+            //Debug.Log("Connected to server.");
 
             clientReceiveThread = new Thread(new ThreadStart(ListenForData));
             clientReceiveThread.IsBackground = true;
@@ -170,7 +170,7 @@ public class Clientbetter : MonoBehaviour
 
         //byte[] data = Encoding.UTF8.GetBytes(message);
         stream.Write(data, 0, data.Length);
-        Debug.Log("Sent message to server: " + message);
+        //Debug.Log("Sent message to server: " + message);
         SenderThreadState.Invoke(false);
     }
 
