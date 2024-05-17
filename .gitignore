@@ -55,7 +55,6 @@ ExportedObj/
 *.fbx
 *.prefab
 *.mat
-*.meta
 *.jpg
 *.png
 *.cginc
