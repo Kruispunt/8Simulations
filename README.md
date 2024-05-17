@@ -3,5 +3,9 @@ Unity omgeving voor verkeerslicht.
 geen assets en alleen code
 In preperation of the full realease!
 
+Cars, cars, cars, cars
 
-![image](https://github.com/Kruispunt/Groep-8-Simulation/assets/102025160/dc71cf4e-ed72-44ad-8aa4-c87b81e6c9f3)
+
+
+
+![Schermafbeelding 2024-05-18 012037](https://github.com/Kruispunt/8Simulations/assets/102025160/a3d13ff4-160f-4fb6-8136-bda9f42090ac)
