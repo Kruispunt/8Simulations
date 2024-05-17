@@ -67,7 +67,7 @@ public class PrebuildBlockInfo : MonoBehaviour
             }
             else
             {
-                singleDetectors.Add(obj.GetComponentInChildren<WalkLanebehaviour>().DetectorLus);
+                singleDetectors.Add(obj.GetComponentInChildren<WalkLanebehaviour>().detectorLus);
             }
         }
 

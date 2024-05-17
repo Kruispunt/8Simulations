@@ -30,10 +30,10 @@ public class SimuAuto : MonoBehaviour
 
         Movement = this.gameObject.GetComponent<Movement>();
 
-        Movement.Setup(this.GetComponent<Rigidbody>());
+        //Movement.Setup(this.GetComponent<Rigidbody>());
         SetPlaceToPark(stopllicht);
         Debug.Log("simouto");
-        Movement.SetObjective(stopllicht.lane.ParkInLine(this));
+        //Movement.SetObjective(stopllicht.lane.ParkInLine(this));
         //Movement.SetObjective(PlaceToPark);
     }
 
@@ -43,7 +43,7 @@ public class SimuAuto : MonoBehaviour
     {
         this.stopllicht = stopllicht;
         PlaceToPark = stopllicht.GetLanePoint(this);
-        Movement.SetObjective(PlaceToPark);
+        //Movement.SetObjective(PlaceToPark);
     }
 
     public void MoveAndPark(float threshold)

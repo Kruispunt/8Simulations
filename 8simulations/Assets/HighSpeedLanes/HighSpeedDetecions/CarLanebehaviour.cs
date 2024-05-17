@@ -6,9 +6,12 @@ public class CarLanebehaviour : MonoBehaviour
 {
 
     //public GameObject Parent;
+    public bool HasOffsetNearlusFromStart = false;
+    public float EntranceOffset = 0;
+    public Vector3 OffsettedStartPos;
 
-    public GameObject triggerNear;
-    public GameObject triggerFar;
+    //public GameObject triggerNear;
+    //public GameObject triggerFar;
 
     public GameObject ExitNode;
     //signal detector at the signal
@@ -18,14 +21,14 @@ public class CarLanebehaviour : MonoBehaviour
 
     public CarSensormsg DetectorLus = new CarSensormsg();
 
-    public BMENodes nodes;
+    //public BMENodes nodes;
 
     //offset farlust from the signal light
     public float FarLaneDistance;
     //this is an extra offset added ontop of the farlane and is the true beginning of the road
     public float LaneStartdistance;
 
-    public float XOffset = 5;
+    //public float XOffset = 5;
     //the local road defenition
     private Road LaneRoad;
 
@@ -36,11 +39,7 @@ public class CarLanebehaviour : MonoBehaviour
     {
         LaneRoad = GetComponentInChildren<Road>();
         Debug.Log("road");
-        //nodes.Setup();
-        //triggerFar.transform.position = nodes.EndPos;
-        //NearLus.transform.position = this.transform.position + nodes.GetMidPosoffset();
-        NearLus.gameObject.transform.position += (NearLus.transform.forward * LaneStartdistance) + (NearLus.transform.right * XOffset);
-        FarLus.gameObject.transform.position = NearLus.transform.position;
+
         FarLus.gameObject.transform.position += FarLus.transform.forward * FarLaneDistance;
         NearLus.setup(this, true);
         FarLus.setup(this, false);
@@ -50,8 +49,12 @@ public class CarLanebehaviour : MonoBehaviour
         {
             LaneRoad.endPosition = ExitNode.transform;
         }
-        //LaneRoad.endPosition = FarLus.transform;
-        //StartCoroutine(randomstate(5));
+
+        if (HasOffsetNearlusFromStart)
+        {
+            OffsettedStartPos = NearLus.transform.position + NearLus.transform.forward * EntranceOffset;
+        }
+
     }
 
 
@@ -122,6 +125,13 @@ public class CarLanebehaviour : MonoBehaviour
 
     }
 
+
+    //call this before turning
+    public Vector3 GeLaneExit()
+    {
+        return this.OffsettedStartPos;
+    }
+
     //the last position of the lane and thus the exit
     public Vector3 GetLaneExit()
     {
@@ -138,5 +148,9 @@ public class CarLanebehaviour : MonoBehaviour
     public CarSensormsg getTriggerInfo()
     {
         return this.DetectorLus;
+    }
+    public Vector3 GetSpwanPos()
+    {
+        return FarLus.transform.position + FarLus.transform.forward * FarLaneDistance;
     }
 }

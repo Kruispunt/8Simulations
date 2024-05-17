@@ -241,23 +241,37 @@ public class GloballaneManager : MonoBehaviour
         //Debug.Log(TrafficList.Count);
         for (int i = 0; i < count; i++)
         {
-            GameObject kees = Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity);
-            kees.GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
-            kees.GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
-            kees.GetComponent<Movement>().Setup();
+            //GameObject kees = Instantiate(Traffic, go.GetSpwanPos(), Quaternion.identity);
+            GameObject kees = Instantiate(CarActorCollection.GetRandomCarPrefab(), go.GetSpwanPos(), Quaternion.identity);
+            kees.GetComponentInChildren<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
+            kees.GetComponentInChildren<ActorPathFinding>().watch = go.LampostManager.watch;
+            kees.GetComponentInChildren<Movement>().Setup();
         }
+
+    }
+    private void CreateBus(CarLanebehaviour go)
+    {
+        //Debug.Log(TrafficList.Count);
+
+            //GameObject kees = Instantiate(Traffic, go.GetSpwanPos(), Quaternion.identity);
+            GameObject kees = Instantiate(CarActorCollection.GetRandomCarPrefab(), go.GetSpwanPos(), Quaternion.identity);
+            kees.GetComponentInChildren<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
+            kees.GetComponentInChildren<ActorPathFinding>().watch = go.LampostManager.watch;
+            kees.GetComponentInChildren<Movement>().Setup();
+        
 
     }
     private void CreateWalkers(WalkLanebehaviour go, int count)
     {
         //Debug.Log(TrafficList.Count);
-        for (int i = 0; i < count; i++)
-        {
-            GameObject kees = Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity);
-            kees.GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
-            kees.GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
-            kees.GetComponent<Movement>().Setup();
-        }
+        //for (int i = 0; i < count; i++)
+        //{
+        //    GameObject kees = Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity);
+        //    kees.GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
+        //    kees.GetComponent<ActorPathFinding>().watch = go.lampostManager.watch;
+
+        //    kees.GetComponent<Movement>().Setup();
+        //}
 
     }
     private void CreateBikers(FietsLaanBehaviour go, int count)

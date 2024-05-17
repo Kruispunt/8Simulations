@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,30 +6,58 @@ using UnityEngine;
 public class ButtonTrigger : MonoBehaviour
 {
 
+    private bool buttonPressed = false;
+
+
+    private bool emptyAfterpress;
+    // Define an event with a boolean parameter to notify subscribers
+    public event Action<bool> OnButtonPressed;
+
+    // Property to encapsulate buttonPressed with the event trigger
+    public bool ButtonPressed
+    {
+        get => buttonPressed;
+        private set // Make the setter private if it should only be called within this class
+        {
+            if (buttonPressed != value)
+            {
+                buttonPressed = value;
+                // Raise the event to notify subscribers with the new value
+                OnButtonPressed?.Invoke(buttonPressed);
+            }
+        }
+    }
 
     private WalkLanebehaviour walkLaneBehaviour;
 
-    //when to press the button
-    public float PressRadius;
-
-
-    public void Setup(WalkLanebehaviour lanebehaviour)
+    public void Setup(WalkLanebehaviour laneBehaviour)
     {
-        this.walkLaneBehaviour = lanebehaviour;
+        walkLaneBehaviour = laneBehaviour;
     }
 
-
-    public void PressButton()
+    public void ResetButton()
     {
-        walkLaneBehaviour.ButtonPressed();
+        buttonPressed = false;
     }
 
-    public void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-
-        if (other.gameObject.GetComponent<ActorInfo>().IsWalker())
+        // Use TryGetComponent for better performance and to avoid null reference if the component is not found
+        if (other.TryGetComponent(out ActorInfo actorInfo) && actorInfo.IsWalker())
         {
-            this.PressButton();
+            // Assuming you want to set buttonPressed to true when a walker enters the trigger
+            ButtonPressed = true;
+            emptyAfterpress = false;
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // Optionally, reset buttonPressed when the walker exits the trigger
+        if (other.TryGetComponent(out ActorInfo actorInfo) && actorInfo.IsWalker())
+        {
+            emptyAfterpress = true;
+        }
+    }
+
 }

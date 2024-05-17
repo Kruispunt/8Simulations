@@ -111,7 +111,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -123,8 +123,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -161,10 +161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0038096eb9e43449a5ef6f3516612b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  begin: {x: 0, y: 0, z: 0}
-  mid: {x: 0, y: 0, z: 0}
-  end: {x: 0, y: 0, z: 0}
   watch: {fileID: 0}
+  routelist: []
 --- !u!114 &8842319240781518920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,10 +177,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   routeindex: 0
   CanUpdate: 1
-  ReachedGoal: 0
-  distanceThreshold: 3
-  heading: {x: 0, y: 0, z: 0}
-  speed: 25
+  Hasoffsetstart: 0
+  speed: 10
+  timeSinceStarted: 0
+  percentageComplete: 0
+  duration: 20
+  durationoff: 1
   LocalGoal: {x: 0, y: 0, z: 0}
+  startpos: {x: 0, y: 0, z: 0}
   body: {fileID: 6289308337422346121}
   pad: {fileID: -959310890818225625}
