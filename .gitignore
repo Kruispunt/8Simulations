@@ -100,7 +100,7 @@ crashlytics-build.properties
 
 # But not these files...
 !.gitignore
-!cs
+!.cs
 !template.latex
 # etc...
 
