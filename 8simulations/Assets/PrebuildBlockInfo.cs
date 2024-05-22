@@ -92,11 +92,7 @@ public class PrebuildBlockInfo : MonoBehaviour
                 }
             }
         }
-        //for (int i = 0; i < PedestrianlampsStates.Count; i++)
-        //{
-        //    Debug.Log("lease don't crash");
-        //    //PedestrianLanes[i].GetComponentInChildren<WalkLanebehaviour>().SetLampLight(PedestrianlampsStates[i]);
-        //}
+
     }
 
 
