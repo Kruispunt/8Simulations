@@ -71,6 +71,7 @@ ExportedObj/
 *.tga
 *.tiff
 *.shadergraph
+*.shadersubgraph
 *.txt
 *.playable
 *.psd
