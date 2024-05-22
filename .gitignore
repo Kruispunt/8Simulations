@@ -59,6 +59,16 @@ ExportedObj/
 *.png
 *.cginc
 *.meta
+*.terrainlayer
+*.lighting
+*.exr
+*.pdf
+*.shader
+*.asset
+*.tif
+
+
+
 
 # Unity3D generated file on crash reports
 sysinfo.txt
