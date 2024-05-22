@@ -70,6 +70,10 @@ ExportedObj/
 *.otf
 *.tga
 *.tiff
+*.shadergraph
+*.txt
+*.playable
+*.psd
 
 # Unity3D generated file on crash reports
 sysinfo.txt
