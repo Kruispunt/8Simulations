@@ -66,6 +66,7 @@ ExportedObj/
 *.shader
 *.asset
 *.tif
+*.brush
 
 
 
