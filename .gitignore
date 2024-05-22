@@ -67,9 +67,9 @@ ExportedObj/
 *.asset
 *.tif
 *.brush
-
-
-
+*.otf
+*.tga
+*.tiff
 
 # Unity3D generated file on crash reports
 sysinfo.txt
