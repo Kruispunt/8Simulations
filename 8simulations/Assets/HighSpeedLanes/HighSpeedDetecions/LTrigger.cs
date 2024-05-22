@@ -29,6 +29,11 @@ public class LTrigger : MonoBehaviour
         {
             laanBehaviour.OnDetect(IsNear);
         }
+        if (other.gameObject.GetComponent<ActorInfo>().IsBus())
+        {
+            other.gameObject.GetComponent<BussNeumbers>().SetLaneLamp(laanBehaviour.LampostManager.watch);
+
+        }
     }
 
     public void OnTriggerExit(Collider other)

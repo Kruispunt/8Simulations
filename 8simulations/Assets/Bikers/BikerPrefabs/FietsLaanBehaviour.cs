@@ -6,8 +6,8 @@ public class FietsLaanBehaviour : MonoBehaviour
 {
 
     
-    private GameObject NearLusF;
-    private GameObject FarLusF;
+    public GameObject NearLusF;
+    public GameObject FarLusF;
 
     public SingleDetector DetectorLus = new SingleDetector();
     public float FarLaneDistance = 50.0f;
@@ -34,15 +34,15 @@ public class FietsLaanBehaviour : MonoBehaviour
         //FarLusF.gameObject.transform.position = NearLusF.transform.position;
         //FarLusF.gameObject.transform.position += FarLusF.transform.forward * FarLaneDistance;
 
-        NearLusF.transform.position = LaneRoad.startPosition.position;
-        FarLusF.transform.position = LaneRoad.endPosition.position;
+        //NearLusF.transform.position = LaneRoad.startPosition.position;
+        //FarLusF.transform.position = LaneRoad.endPosition.position;
 
     }
 
     private void CreateRequiruiments()
     {
-        NearLusF = Instantiate(new GameObject());
-        FarLusF = Instantiate(new GameObject());
+        //NearLusF = Instantiate(new GameObject());
+        //FarLusF = Instantiate(new GameObject());
     }
 
     public void OnDetect()

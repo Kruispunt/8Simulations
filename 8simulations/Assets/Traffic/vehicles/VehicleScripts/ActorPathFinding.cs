@@ -8,6 +8,13 @@ public class ActorPathFinding : MonoBehaviour
     private int actornr;
     public LampWatch watch;
 
+    public bool DoubleRoute = false;
+
+    public Vector3 LinePosition;
+    public bool IsWaitingInLine = false;
+
+
+
 
 
     public List<Vector3> routelist = new List<Vector3>();
@@ -28,6 +35,11 @@ public class ActorPathFinding : MonoBehaviour
     public void SetLongRoute(List<Vector3> route)
     {
         routelist = route;
+    }
+    public void SetLongRoute(List<Vector3> route, bool isDoubleroute)
+    {
+        routelist = route;
+        DoubleRoute = isDoubleroute;
     }
 
     public bool HasOffsetedPath()

@@ -81,10 +81,22 @@ public class PrebuildBlockInfo : MonoBehaviour
         {
             BikeLanes[i].GetComponentInChildren<FietsLaanBehaviour>().SetLampLight(BikeLampsStates[i]);
         }
-        for (int i = 0; i < PedestrianlampsStates.Count; i++)
+        if (PedestrianlampsStates != null && PedestrianLanes != null)
         {
-            PedestrianLanes[i].GetComponentInChildren<WalkLanebehaviour>().SetLampLight(PedestrianlampsStates[i]);
+            for (int i = 0; i < Mathf.Min(PedestrianlampsStates.Count, PedestrianLanes.Count -1); i++)
+            {
+                var walkBehaviour = PedestrianLanes[i].GetComponentInChildren<WalkLanebehaviour>();
+                if (walkBehaviour != null)
+                {
+                    walkBehaviour.SetLampLight(PedestrianlampsStates[i]);
+                }
+            }
         }
+        //for (int i = 0; i < PedestrianlampsStates.Count; i++)
+        //{
+        //    Debug.Log("lease don't crash");
+        //    //PedestrianLanes[i].GetComponentInChildren<WalkLanebehaviour>().SetLampLight(PedestrianlampsStates[i]);
+        //}
     }
 
 

@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ba07f5ddfe8f94c61ac3c22a32d15fc4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,8 +98,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f4ccea611e41a4b8fd25a188beba16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NearLusF: {fileID: 5249930628440987299}
+  FarLusF: {fileID: 8356896583124663453}
+  FarLaneDistance: 50
+  XOffset: 10
   Triggerpos: {fileID: 3162389944081372027}
   LaneTriggerBike: {fileID: 7825902297088090494}
+  LampostManager: {fileID: 0}
+  LaneStartdistance: 0
 --- !u!1001 &4308899031227363552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -181,6 +187,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5042258393383217986}
     m_Modifications:
+    - target: {fileID: 7012878543243114923, guid: cd2d05a95de2859419d45d35bccb77aa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 81a7b3fb99e984cb0a7a85e94d32a98e, type: 2}
     - target: {fileID: 7269237403687366152, guid: cd2d05a95de2859419d45d35bccb77aa, type: 3}
       propertyPath: m_Name
       value: Road
@@ -238,5 +248,15 @@ Transform:
 --- !u!4 &3162389944081372027 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9146093618340510220, guid: cd2d05a95de2859419d45d35bccb77aa, type: 3}
+  m_PrefabInstance: {fileID: 6128945364882680183}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5249930628440987299 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2149874267099037652, guid: cd2d05a95de2859419d45d35bccb77aa, type: 3}
+  m_PrefabInstance: {fileID: 6128945364882680183}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8356896583124663453 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2807935528161891818, guid: cd2d05a95de2859419d45d35bccb77aa, type: 3}
   m_PrefabInstance: {fileID: 6128945364882680183}
   m_PrefabAsset: {fileID: 0}

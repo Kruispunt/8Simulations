@@ -10,6 +10,8 @@ public class CarLanebehaviour : MonoBehaviour
     public float EntranceOffset = 0;
     public Vector3 OffsettedStartPos;
 
+
+    public bool IsMiddlePoint = false; 
     //public GameObject triggerNear;
     //public GameObject triggerFar;
 
@@ -57,6 +59,11 @@ public class CarLanebehaviour : MonoBehaviour
 
     }
 
+    public void SetAsmiddlePoint()
+    {
+        this.IsMiddlePoint = true;
+    }
+
 
     public void OnDetect(bool isnear)
     {
@@ -101,9 +108,6 @@ public class CarLanebehaviour : MonoBehaviour
         {
             DetectorLus.DetectNear = false;
             DetectorLus.PrioCar = false;
-            Debug.Log("detected priocar leaving signalgroup");
-            //Debug.Log(LampostManager.GetLightState());
-            //LampostManager.SetLight(Random.Range(0,2));
         }
         else
         {
@@ -151,6 +155,6 @@ public class CarLanebehaviour : MonoBehaviour
     }
     public Vector3 GetSpwanPos()
     {
-        return FarLus.transform.position + FarLus.transform.forward * FarLaneDistance;
+        return FarLus.transform.position + FarLus.transform.forward * FarLaneDistance + transform.forward * 3000 + transform.up * 1000;
     }
 }

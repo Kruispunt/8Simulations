@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 4478941769414529217}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -110,7 +110,7 @@ Rigidbody:
   m_GameObject: {fileID: 4478941769414529217}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.1
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -124,9 +124,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!135 &4078616222676784369
 SphereCollider:
@@ -162,6 +162,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   watch: {fileID: 0}
+  DoubleRoute: 0
+  LinePosition: {x: 0, y: 0, z: 0}
+  IsWaitingInLine: 0
   routelist: []
 --- !u!114 &8842319240781518920
 MonoBehaviour:
@@ -181,9 +184,11 @@ MonoBehaviour:
   speed: 10
   timeSinceStarted: 0
   percentageComplete: 0
+  ScanPosition: 5
   duration: 20
   durationoff: 1
   LocalGoal: {x: 0, y: 0, z: 0}
   startpos: {x: 0, y: 0, z: 0}
   body: {fileID: 6289308337422346121}
   pad: {fileID: -959310890818225625}
+  vehicleDetector: {fileID: 0}

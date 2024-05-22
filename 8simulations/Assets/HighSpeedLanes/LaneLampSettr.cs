@@ -1,8 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -24,7 +22,24 @@ public class LaneLampSettr
 
     public void DecodeJappie(string jappei)
     {
-        recieverpakket.SignalGroup gr = JsonConvert.DeserializeObject<recieverpakket.SignalGroup>(jappei);
+        //recieverpakket.SignalGroup gr = JsonConvert.DeserializeObject<recieverpakket.SignalGroup>(jappei);
+        recieverpakket.SignalGroup gr;
+
+
+        try
+        {
+            gr = JsonConvert.DeserializeObject<recieverpakket.SignalGroup>(jappei);
+        }
+        catch (Exception)
+        {
+            return;
+            throw;
+        }
+
+        //if (JsonConvert.DeserializeObject<recieverpakket.SignalGroup>(jappei))
+        //{
+
+        //}
         Debug.Log(jappei);
         if (SetupDone)
         {
@@ -75,12 +90,6 @@ public class LaneLampSettr
         {
             worldspwanerManager.Carlanes[i].GetComponentInChildren<CarLanebehaviour>().SetLampLight(msg.C.Cars[i - (4 + 4)]);
         }
-        //Debug.Log("carstates"+ msg.B.Cars.ToString());
-
-        Debug.Log( string.Join(", ", msg.B.Cars.Select(n => n.ToString())));
-        //List<int> debuglist = new List<int>();
-        //worldspwanerManager.PrebuiltLaneA.GetComponent<PrebuildBlockInfo>().Setlamps(msg.A.bikers, msg.A.Walkers);
-        //worldspwanerManager.PrebuiltLaneB.GetComponent<PrebuildBlockInfo>().Setlamps(msg.B.bikers, msg.B.Walkers);
 
     }
     public void SetBlockLampsCarLaneB(recieverpakket.blocksMsg2 msg)

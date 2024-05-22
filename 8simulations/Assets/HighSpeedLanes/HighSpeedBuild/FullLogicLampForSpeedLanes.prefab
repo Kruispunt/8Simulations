@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 487242085222309223}
   - component: {fileID: 3082931568766300658}
-  - component: {fileID: 1194085384966595629}
-  - component: {fileID: 6387734898391860977}
   m_Layer: 0
   m_Name: FullLogicLampForSpeedLanes
   m_TagString: Untagged
@@ -48,42 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edfa406c5a214f4aac813bcf7befaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanGo: 0
---- !u!114 &1194085384966595629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3135666527429960551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f911d71c30ba3ef459d4e2bf9b33ec0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  length: 1
-  directionNum: 0
-  type: 0
-  subNum: 0
-  dutchOffsets: {fileID: 6387734898391860977}
-  StartPos: {x: 0, y: 0, z: 0}
-  MidPos: {x: 0, y: 0, z: 0}
-  EndPos: {x: 0, y: 0, z: 0}
---- !u!114 &6387734898391860977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3135666527429960551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8061eb7539d7ad458a3bc11ba1c0982, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartOffset: {x: 0, y: 0, z: 0}
-  MidPointOffset: {x: 0, y: 0, z: 0}
-  EndOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &4992411641143871172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -185,10 +147,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CarLaneFull
       objectReference: {fileID: 0}
-    - target: {fileID: 7130960223374984532, guid: e88908fb0b6db3f4f9ed51aada42aa2b, type: 3}
-      propertyPath: nodes
+    - target: {fileID: 6851171164118362637, guid: e88908fb0b6db3f4f9ed51aada42aa2b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1194085384966595629}
+      objectReference: {fileID: 2100000, guid: ba07f5ddfe8f94c61ac3c22a32d15fc4, type: 2}
     - target: {fileID: 7130960223374984532, guid: e88908fb0b6db3f4f9ed51aada42aa2b, type: 3}
       propertyPath: Parent
       value: 

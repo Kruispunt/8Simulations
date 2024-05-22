@@ -47,9 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e6f8568706a6e4eb420eca746e860d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LaneStartdistance: 50
-  MidPointDistance: 50
-  LampostManager: {fileID: 425635254649831228}
+  laneStartDistance: 0
+  midPointDistance: 0
+  DetectionNear: {fileID: 2601295718198713721}
+  lampostManager: {fileID: 0}
+  IsMiddlePoint: 0
+  LaneTrigger: {fileID: 8228589359921217665}
 --- !u!114 &5867816794599381970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +65,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edfa406c5a214f4aac813bcf7befaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanGo: 0
 --- !u!1001 &2199994468145979359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -128,17 +130,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7b426da3d559d84f84ce26d7fa826c5, type: 3}
---- !u!114 &425635254649831228 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1977038808249753827, guid: d7b426da3d559d84f84ce26d7fa826c5, type: 3}
-  m_PrefabInstance: {fileID: 2199994468145979359}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63344da5f87c5834481ef49bb452c471, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1542892004293695319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 859773332904282248, guid: d7b426da3d559d84f84ce26d7fa826c5, type: 3}
@@ -152,6 +143,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7383971550762010495}
     m_Modifications:
+    - target: {fileID: 7012878543243114923, guid: cd2d05a95de2859419d45d35bccb77aa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 81a7b3fb99e984cb0a7a85e94d32a98e, type: 2}
     - target: {fileID: 7269237403687366152, guid: cd2d05a95de2859419d45d35bccb77aa, type: 3}
       propertyPath: m_Name
       value: Road
@@ -199,8 +194,52 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2149874267099037652, guid: cd2d05a95de2859419d45d35bccb77aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 552226885004566912}
+    - targetCorrespondingSourceObject: {fileID: 2149874267099037652, guid: cd2d05a95de2859419d45d35bccb77aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8228589359921217665}
   m_SourcePrefab: {fileID: 100100000, guid: cd2d05a95de2859419d45d35bccb77aa, type: 3}
+--- !u!1 &2601295718198713721 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2149874267099037652, guid: cd2d05a95de2859419d45d35bccb77aa, type: 3}
+  m_PrefabInstance: {fileID: 4164787236770570925}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &552226885004566912
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2601295718198713721}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8228589359921217665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2601295718198713721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7325e1c3547a12a40ab9e9ddbb5c292f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5633185912756655058 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8638277167216734591, guid: cd2d05a95de2859419d45d35bccb77aa, type: 3}

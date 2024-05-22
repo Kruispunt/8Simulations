@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edfa406c5a214f4aac813bcf7befaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanGo: 0
 --- !u!1001 &1496675052310359831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,6 +139,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FietsLaan
       objectReference: {fileID: 0}
+    - target: {fileID: 3773133267162435804, guid: 6cfe06bd1e3d37c489bf033d8eb79901, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ba07f5ddfe8f94c61ac3c22a32d15fc4, type: 2}
+    - target: {fileID: 4413345008194945793, guid: 6cfe06bd1e3d37c489bf033d8eb79901, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 81a7b3fb99e984cb0a7a85e94d32a98e, type: 2}
     - target: {fileID: 5042258393383217986, guid: 6cfe06bd1e3d37c489bf033d8eb79901, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

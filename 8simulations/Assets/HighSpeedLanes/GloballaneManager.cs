@@ -26,6 +26,11 @@ public class GloballaneManager : MonoBehaviour
     public GameObject PrebuiltLaneE;
     public GameObject PrebuiltLaneF;
 
+    public float OntruimingsTijdAuto = 20;
+    public float OntruimingsTijdFietser = 20;
+    public float OntruimingsTijdLoper = 20;
+
+
     public int timeInSec;
     public float updateTimer;
     public List<GameObject> Carlanes;
@@ -83,7 +88,20 @@ public class GloballaneManager : MonoBehaviour
     }
 
 
-   
+   public void SetOntruimingsTijdAuto(float tijd)
+    {
+        this.OntruimingsTijdAuto = tijd;
+    }
+    public void SetOntruimingsTijdFietser(float tijd)
+    {
+        this.OntruimingsTijdFietser = tijd;
+    }
+    public void SetOntruimingsTijdLoper(float tijd)
+    {
+        this.OntruimingsTijdLoper = tijd;
+    }
+
+
     IEnumerator getLane(int timeInSec)
     {
         //refresh simulation state 5 secs
@@ -142,7 +160,7 @@ public class GloballaneManager : MonoBehaviour
         foreach (GameObject go in WalkLanesB)
         {
             int c = UnityEngine.Random.Range(min, max);
-            CreateWalkers (go.GetComponentInChildren<WalkLanebehaviour>(), c);
+            CreateWalkers(go.GetComponentInChildren<WalkLanebehaviour>(), c);
         }
         foreach (GameObject go in BikeLanes)
         {
@@ -238,6 +256,11 @@ public class GloballaneManager : MonoBehaviour
     //create and add cars to the light
     private void CreateCars(CarLanebehaviour go, int count)  
     {
+        if (go.IsMiddlePoint)
+        {
+            return;
+        }
+        
         //Debug.Log(TrafficList.Count);
         for (int i = 0; i < count; i++)
         {
@@ -246,32 +269,51 @@ public class GloballaneManager : MonoBehaviour
             kees.GetComponentInChildren<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
             kees.GetComponentInChildren<ActorPathFinding>().watch = go.LampostManager.watch;
             kees.GetComponentInChildren<Movement>().Setup();
+            kees.GetComponentInChildren<Movement>().SetNewDuration(OntruimingsTijdAuto);
         }
 
     }
     private void CreateBus(CarLanebehaviour go)
     {
-        //Debug.Log(TrafficList.Count);
-
-            //GameObject kees = Instantiate(Traffic, go.GetSpwanPos(), Quaternion.identity);
             GameObject kees = Instantiate(CarActorCollection.GetRandomCarPrefab(), go.GetSpwanPos(), Quaternion.identity);
             kees.GetComponentInChildren<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
             kees.GetComponentInChildren<ActorPathFinding>().watch = go.LampostManager.watch;
             kees.GetComponentInChildren<Movement>().Setup();
-        
+            kees.GetComponentInChildren<Movement>().SetNewDuration(OntruimingsTijdAuto);
+
 
     }
     private void CreateWalkers(WalkLanebehaviour go, int count)
     {
-        //Debug.Log(TrafficList.Count);
-        //for (int i = 0; i < count; i++)
-        //{
-        //    GameObject kees = Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity);
-        //    kees.GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
-        //    kees.GetComponent<ActorPathFinding>().watch = go.lampostManager.watch;
 
-        //    kees.GetComponent<Movement>().Setup();
-        //}
+        if (go.IsMiddlePoint)
+        {
+            return;
+        }
+
+        if (go.lampostManager == null)
+        {
+            Debug.Log("lampostManager is null");
+            go.lampostManager = GetComponentInChildren<LampostManager>();
+            //return;
+        }
+
+        Debug.Log(TrafficList.Count);
+        if (go.lampostManager == null)
+        {
+            Debug.Log("lampostManager is still null");
+            //go.lampostManager = GetComponentInChildren<LampostManager>();
+            return;
+        }
+        for (int i = 0; i < count; i++)
+        {
+            GameObject kees = Instantiate(CarActorCollection.GetPedestrianPrefab(), go.GetLaneStart(), Quaternion.identity);
+            kees.GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
+            kees.GetComponent<ActorPathFinding>().watch = go.lampostManager.watch;
+
+            kees.GetComponent<Movement>().Setup();
+            kees.GetComponent<Movement>().SetNewDuration(OntruimingsTijdLoper);
+        }
 
     }
     private void CreateBikers(FietsLaanBehaviour go, int count)
@@ -280,9 +322,11 @@ public class GloballaneManager : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             GameObject kees = Instantiate(Traffic, go.GetLaneStart(), Quaternion.identity);
+            kees.name = "bker";
             kees.GetComponent<ActorPathFinding>().Setroute(go.GetLaneStart(), go.GetLaneStartSignal(), go.GetLaneExit());
             kees.GetComponent<ActorPathFinding>().watch = go.LampostManager.watch;
             kees.GetComponent<Movement>().Setup();
+            kees.GetComponent<Movement>().SetNewDuration(OntruimingsTijdFietser);
         }
 
     }
@@ -307,9 +351,6 @@ public class GloballaneManager : MonoBehaviour
         msg.B = AssignblockmsgBusData(carSensormsgsB, PrebuiltLaneB.GetComponent<PrebuildBlockInfo>().BikelaneScripts, PrebuiltLaneB.GetComponent<PrebuildBlockInfo>().WalklaneScripts);
         msg.C = AssignblocksmsgCarOnlyData(carSensormsgsC);
 
-        //msg.A = AssignblockmsgData(carSensormsgsA, BikelaneA, WalklaneA);
-        //msg.B = AssignblockmsgBusData(carSensormsgsB, BikelaneB, WalklaneB);
-        //msg.C = AssignblocksmsgCarOnlyData(carSensormsgsC);
         return msg;
         
     }
@@ -349,11 +390,6 @@ public class GloballaneManager : MonoBehaviour
         msg.D = AssignblocksmsgCarOnlyData(carSensormsgsD);
         msg.E = AssignblockmsgBusData(carSensormsgsE, PrebuiltLaneE.GetComponent<PrebuildBlockInfo>().BikelaneScripts, PrebuiltLaneE.GetComponent<PrebuildBlockInfo>().WalklaneScripts);
         msg.F = AssignblockmsgData(carSensormsgsF, PrebuiltLaneF.GetComponent<PrebuildBlockInfo>().BikelaneScripts, PrebuiltLaneF.GetComponent<PrebuildBlockInfo>().WalklaneScripts);
-
-        //msg.D = AssignblocksmsgCarOnlyData(carSensormsgsD);
-        //msg.E = AssignblockmsgBusData(carSensormsgsE, BikelaneE, WalklaneE);
-        //msg.F = AssignblockmsgData(carSensormsgsF, BikelaneF, WalklaneF);
-
         return msg;
 
     }

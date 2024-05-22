@@ -17,6 +17,14 @@ public class ActorInfo : MonoBehaviour
         }
         return false;
     }
+    public bool IsCar()
+    {
+        if (Type == 2)
+        {
+            return true;
+        }
+        return false;
+    }
     public bool IsWalker()
     {
         if (Type == 3)
@@ -25,9 +33,17 @@ public class ActorInfo : MonoBehaviour
         }
         return false;
     }
-    public bool IsBus()
+    public bool IsPedes()
     {
         if (Type == 4)
+        {
+            return true;
+        }
+        return false;
+    }
+    public bool IsBus()
+    {
+        if (Type == 5)
         {
             return true;
         }

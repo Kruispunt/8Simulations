@@ -1,37 +1,74 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BussNeumbers : MonoBehaviour
 {
-    busRoute busRoute = new busRoute();
+
+    public List<int> placesToWaitForLight;
+
+    public Movement movement;
 
     public bool Has2Froutes = false;
 
-    int stopsAt = 3;
+    public int LijnNum = 0;
 
 
-    public List<Transform> MyRoute;
 
-    public bool isAtFirst = true;
+    //public List<Vector3> MyRoute = new List<Vector3>();
+    public List<Transform> MyRoute = new List<Transform>();
+
+    public bool isAtFirst = false;
+
 
     private void Start()
     {
-        List<Vector3> v3list = new List<Vector3>();
-        foreach (Transform t in MyRoute)
-        {
-            v3list.Add(t.position);
-        }
+        Setup(new List<Vector3>(), false);
+    }
 
-        busRoute.block1path.SetLongRoute(v3list);
-        if (Has2Froutes)
+    public void Setup(List<Vector3> route, bool hasTwoRoutes)
+    {
+
+        List<Vector3> routes = new List<Vector3>();
+
+        //route.AddRange(MyRoute.Select(n => n.transform.position));
+        routes.AddRange(MyRoute.Select(n => n.transform.position));
+        movement.pad.SetLongRoute(routes);
+        this.Has2Froutes = hasTwoRoutes;
+        if (hasTwoRoutes)
         {
+
+            placesToWaitForLight.Add(3);
+            placesToWaitForLight.Add(5);
             isAtFirst = true;
 
 
         }
     }
+    //private void Start()
+    //{
+
+    //    movement.pad.SetLongRoute(MyRoute);
+    //    if (Has2Froutes)
+    //    {
+
+    //        placesToWaitForLight.Add(3);
+    //        placesToWaitForLight.Add(5);
+    //        isAtFirst = true;
+
+
+    //    }
+    //}
+
+    public void SetLaneLamp(LampWatch watch)
+    {
+        movement.SetNewPadLink(watch);
+    }
+
+
 
 
 
@@ -55,6 +92,8 @@ public class busRoute
 
     public void OnCreation()
     {
+
+
         IsAtFirstBlock=true;
         block1Movement.FinishedWalk += Block1Movement_FinishedWalk;
 

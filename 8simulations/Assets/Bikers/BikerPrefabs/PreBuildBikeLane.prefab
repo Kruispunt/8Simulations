@@ -370,12 +370,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043bf2ffd6b00a04baea8ba9c138cc54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlockCode: empty
   BikeLaneIn: {fileID: 719814057625143148}
   BikeLaneOut: {fileID: 6949017577203729062}
   PedestrianLampIn: {fileID: 6405168907639408366}
   PedestriianLampMid: {fileID: 5892523562003467599}
   PedestrianLampInR: {fileID: 4542432183998450311}
   PedestriianLampMidR: {fileID: 796199191513608470}
+  BikeLanes: []
+  PedestrianLanes: []
+  walkLanebehaviours: []
+  fietsLaanBehaviours: []
+  BikelaneScripts: []
+  WalklaneScripts: []
 --- !u!1001 &395526087526994810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -483,6 +490,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2948494786636376823}
     m_Modifications:
+    - target: {fileID: -9042393005499053378, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
+      propertyPath: lampostManager
+      value: 
+      objectReference: {fileID: 2188224180713607239}
     - target: {fileID: 2648113622174426620, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
       propertyPath: m_Name
       value: WalkLane (1)
@@ -548,6 +559,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
+--- !u!114 &2188224180713607239 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 425635254649831228, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
+  m_PrefabInstance: {fileID: 1996795915378356091}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63344da5f87c5834481ef49bb452c471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4542432183998450311 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2648113622174426620, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
@@ -566,6 +588,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8621857057808301151}
     m_Modifications:
+    - target: {fileID: -9042393005499053378, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
+      propertyPath: lampostManager
+      value: 
+      objectReference: {fileID: 3052172533144120278}
     - target: {fileID: 2648113622174426620, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
       propertyPath: m_Name
       value: WalkLane (1)
@@ -636,6 +662,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2648113622174426620, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
   m_PrefabInstance: {fileID: 3437187410445423850}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3052172533144120278 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 425635254649831228, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
+  m_PrefabInstance: {fileID: 3437187410445423850}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63344da5f87c5834481ef49bb452c471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5317190668396385173 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7383971550762010495, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
@@ -740,6 +777,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8621857057808301151}
     m_Modifications:
+    - target: {fileID: -9042393005499053378, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
+      propertyPath: lampostManager
+      value: 
+      objectReference: {fileID: 8111447717303768975}
     - target: {fileID: 2648113622174426620, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
       propertyPath: m_Name
       value: WalkLane
@@ -815,6 +856,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2648113622174426620, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
   m_PrefabInstance: {fileID: 8464955006620166323}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8111447717303768975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 425635254649831228, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
+  m_PrefabInstance: {fileID: 8464955006620166323}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63344da5f87c5834481ef49bb452c471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8961114738380317458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -823,6 +875,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7999770732456441127}
     m_Modifications:
+    - target: {fileID: -9042393005499053378, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
+      propertyPath: lampostManager
+      value: 
+      objectReference: {fileID: 8769756841797491758}
     - target: {fileID: 2648113622174426620, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
       propertyPath: m_Name
       value: WalkLane
@@ -894,3 +950,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2648113622174426620, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
   m_PrefabInstance: {fileID: 8961114738380317458}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8769756841797491758 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 425635254649831228, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
+  m_PrefabInstance: {fileID: 8961114738380317458}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63344da5f87c5834481ef49bb452c471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

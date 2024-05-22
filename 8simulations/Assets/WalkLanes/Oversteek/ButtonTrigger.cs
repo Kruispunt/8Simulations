@@ -48,6 +48,7 @@ public class ButtonTrigger : MonoBehaviour
             // Assuming you want to set buttonPressed to true when a walker enters the trigger
             ButtonPressed = true;
             emptyAfterpress = false;
+            walkLaneBehaviour.OnDetect();
         }
     }
 
@@ -59,5 +60,6 @@ public class ButtonTrigger : MonoBehaviour
             emptyAfterpress = true;
         }
     }
+
 
 }

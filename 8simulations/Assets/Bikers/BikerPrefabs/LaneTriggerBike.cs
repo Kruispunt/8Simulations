@@ -4,9 +4,6 @@ using UnityEngine;
 public class LaneTriggerBike : MonoBehaviour
 {
 
-    public Vector3 DetectorSize;
-
-
     private FietsLaanBehaviour laanBehaviour;
    
     public void setup(FietsLaanBehaviour fietsLaan, Vector3 triggerPos)
@@ -28,3 +25,4 @@ public class LaneTriggerBike : MonoBehaviour
     }
 
 }
+

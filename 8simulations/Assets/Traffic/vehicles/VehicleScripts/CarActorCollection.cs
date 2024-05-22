@@ -13,6 +13,10 @@ public class CarActorCollection : MonoBehaviour
     [SerializeField]
     private GameObject busPrefab;
 
+    [SerializeField]
+    private GameObject PedestrianPrefab;
+
+    private static GameObject pedestrianStaticPrefab;
 
     private static GameObject staticbusPrefab;
 
@@ -21,6 +25,8 @@ public class CarActorCollection : MonoBehaviour
     private void Awake()
     {
         StaticCarPrefabs = new List<GameObject>(carPrefabs);
+        pedestrianStaticPrefab = PedestrianPrefab;
+
     }
 
     // Static method to get a random GameObject from the list
@@ -39,6 +45,10 @@ public class CarActorCollection : MonoBehaviour
 
         return staticbusPrefab;
     }
+    public static GameObject GetPedestrianPrefab()
+    {
 
+        return pedestrianStaticPrefab;
+    }
 
 }

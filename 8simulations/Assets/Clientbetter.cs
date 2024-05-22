@@ -27,7 +27,7 @@ public class Clientbetter : MonoBehaviour
     public bool PostOnKey = false;
 
     public GloballaneManager manager;
-    public SimulatorManager simulatorManager;
+    //public SimulatorManager simulatorManager;
 
     public MessageDecoder decoder;
     private TcpClient client;
