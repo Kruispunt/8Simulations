@@ -21,11 +21,8 @@ public class WalkLanebehaviour : MonoBehaviour
     void Start()
     {
         laneRoad = GetComponentInChildren<Road>();
-        //lampostManager = this.GetComponent<LampostManager>();
-
-        //InitializeButtonTrigger();
         LaneTrigger.setup(this, laneRoad.startPosition.position);
-        //lampostManager = this.GetComponent<LampostManager>();
+
     }
 
 

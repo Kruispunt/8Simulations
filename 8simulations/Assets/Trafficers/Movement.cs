@@ -39,16 +39,10 @@ public class Movement : MonoBehaviour
         if (IsBus)
         {
             this.GetComponentInParent<Transform>().transform.position += this.GetComponentInParent<Transform>().transform.up * 5;
-            //LayerMask myNewLayerMask = 1 << LayerMask.NameToLayer("Actor");
-            //this.gameObject.layer = LayerMask.NameToLayer("Actor");
-            //vehicleDetector = this.AddComponent<vehicleDetector>();
-            //this.vehicleDetector = Instantiate(vehicleDetector, this.transform.position + this.transform.forward * ScanPosition, this.transform.rotation);
-            //pad.watch.OnCanGoChanged += Watch_OnCanGoChanged;
+
             vehicleDetector = this.AddComponent<vehicleDetector>();
-            //vehicleDetector = new vehicleDetector();
             this.vehicleDetector.OnVehcleDetected += VehicleDetector_OnVehcleDetected;
-            this.CanUpdate = false;
-            //Hasoffsetstart = pad.HasOffsetedPath();
+            this.CanUpdate = false;;
             routeindex = -1;
             SmartUpdate();
         }
@@ -62,7 +56,7 @@ public class Movement : MonoBehaviour
         vehicleDetector =  this.AddComponent<vehicleDetector>();
         //this.vehicleDetector = Instantiate(vehicleDetector, this.transform.position + this.transform.forward * ScanPosition, this.transform.rotation);
         pad.watch.OnCanGoChanged += Watch_OnCanGoChanged;
-        this.vehicleDetector.OnVehcleDetected += VehicleDetector_OnVehcleDetected;
+        //this.vehicleDetector.OnVehcleDetected += VehicleDetector_OnVehcleDetected;
         this.CanUpdate = false;
         Hasoffsetstart = pad.HasOffsetedPath();
         routeindex = -1;

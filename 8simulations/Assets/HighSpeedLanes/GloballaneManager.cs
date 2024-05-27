@@ -1,8 +1,7 @@
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+
 using UnityEngine;
 
 public class GloballaneManager : MonoBehaviour
@@ -83,7 +82,7 @@ public class GloballaneManager : MonoBehaviour
     {
         this.LaneLampSettr.SetupSettr(this);
         StartCoroutine(getLane(timeInSec));
-        StartCoroutine(Simutick(timeInSec + 4));
+        StartCoroutine(Simutick(timeInSec));
         StartCoroutine(UpdatePakket(updateTimer));
     }
 

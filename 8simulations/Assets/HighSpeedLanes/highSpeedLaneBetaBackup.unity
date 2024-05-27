@@ -6534,7 +6534,6 @@ GameObject:
   - component: {fileID: 677433103}
   - component: {fileID: 677433102}
   - component: {fileID: 677433101}
-  - component: {fileID: 677433100}
   m_Layer: 0
   m_Name: Plane (4)
   m_TagString: Untagged
@@ -6542,32 +6541,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &677433100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677433099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41d26fccb6302b64d98a69ff3eed1b51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NodesPerDir: 8
-  longitude: 50
-  E: {x: 0, y: 0, z: 1}
-  EE: {x: 0, y: 0, z: -1}
-  EEE: {x: 0, y: 0, z: -1}
-  East: {x: 0, y: 0, z: -1}
-  easters:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
 --- !u!64 &677433101
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7210,7 +7183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3215468572876230054, guid: 17bf534b8f580394683ae841dddf18ec, type: 3}
       propertyPath: timeInSec
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -3215468572876230054, guid: 17bf534b8f580394683ae841dddf18ec, type: 3}
       propertyPath: LaneScalar
@@ -12679,7 +12652,6 @@ GameObject:
   - component: {fileID: 1258375999}
   - component: {fileID: 1258375998}
   - component: {fileID: 1258375997}
-  - component: {fileID: 1258376001}
   m_Layer: 0
   m_Name: Plane (2)
   m_TagString: Untagged
@@ -12774,33 +12746,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1258376001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1258375996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41d26fccb6302b64d98a69ff3eed1b51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NodesPerDir: 8
-  longitude: 50
-  E: {x: 0, y: 0, z: 1}
-  EE: {x: 0, y: 0, z: 2}
-  EEE: {x: 0, y: 0, z: 3}
-  East: {x: 0, y: 0, z: -1}
-  easters:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
 --- !u!1001 &1292505186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19547,7 +19492,6 @@ GameObject:
   - component: {fileID: 1896606818}
   - component: {fileID: 1896606817}
   - component: {fileID: 1896606816}
-  - component: {fileID: 1896606820}
   m_Layer: 0
   m_Name: Plane (1)
   m_TagString: Untagged
@@ -19642,32 +19586,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1896606820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1896606815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41d26fccb6302b64d98a69ff3eed1b51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NodesPerDir: 8
-  longitude: 50
-  E: {x: 0, y: 0, z: 1}
-  EE: {x: 0, y: 0, z: -1}
-  EEE: {x: 0, y: 0, z: -1}
-  East: {x: 0, y: 0, z: -1}
-  easters:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
 --- !u!1 &1911773376 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3135666527429960551, guid: 980109b882da0d14e94a8e2811f1c1c4, type: 3}

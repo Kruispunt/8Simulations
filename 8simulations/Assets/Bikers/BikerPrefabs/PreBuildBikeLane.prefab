@@ -879,6 +879,18 @@ PrefabInstance:
       propertyPath: lampostManager
       value: 
       objectReference: {fileID: 8769756841797491758}
+    - target: {fileID: 552226885004566912, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 552226885004566912, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 552226885004566912, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
+      propertyPath: m_Size.z
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2648113622174426620, guid: a6bb08e5daf6bed40bb70498da1cb57f, type: 3}
       propertyPath: m_Name
       value: WalkLane
