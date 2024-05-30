@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,6 +35,6 @@ public class ImageLogicstate : MonoBehaviour
     }
     public void SetToGreen()
     {
-        img .color = Color.green;
+        img.color = Color.green;
     }
 }

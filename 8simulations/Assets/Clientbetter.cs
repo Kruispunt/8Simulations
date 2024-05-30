@@ -1,13 +1,10 @@
 
-using UnityEngine;
 using System;
+using System.Collections;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using Newtonsoft.Json;
-using UnityEngine.Rendering;
-using System.IO;
-using System.Collections;
+using UnityEngine;
 using UnityEngine.Events;
 
 
@@ -131,7 +128,7 @@ public class Clientbetter : MonoBehaviour
                 if (stream.DataAvailable)
                 {
                     int length;
-                    
+
                     // Read incoming stream into byte array.
                     while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
                     {
@@ -142,7 +139,7 @@ public class Clientbetter : MonoBehaviour
                         kees = serverMessage;
                         this.updatedKees = true;
                         Debug.Log("Server message received: " + serverMessage);
-                       
+
                     }
                 }
             }

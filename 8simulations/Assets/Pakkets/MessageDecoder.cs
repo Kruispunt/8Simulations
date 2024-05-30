@@ -1,5 +1,3 @@
-
-using Newtonsoft.Json;
 using System.IO;
 using UnityEngine;
 
@@ -8,7 +6,7 @@ public class MessageDecoder
 
     public MockDatagenerator mockDatagenerator;
 
-    
+
     public Pakket DecodeMessageToJson(string msg)
     {
         return JsonUtility.FromJson<Pakket>(msg);

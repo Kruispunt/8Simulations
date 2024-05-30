@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,7 +47,7 @@ public class PrebuildBlockInfo : MonoBehaviour
 
     private void buildPedestrianLaneList()
     {
-        PedestrianLanes.Add (PedestrianLampIn);
+        PedestrianLanes.Add(PedestrianLampIn);
         PedestrianLanes.Add(PedestriianLampMid);
         PedestrianLanes.Add(PedestriianLampMidR);
         PedestrianLanes.Add(PedestrianLampInR);
@@ -83,7 +82,7 @@ public class PrebuildBlockInfo : MonoBehaviour
         }
         if (PedestrianlampsStates != null && PedestrianLanes != null)
         {
-            for (int i = 0; i < Mathf.Min(PedestrianlampsStates.Count, PedestrianLanes.Count -1); i++)
+            for (int i = 0; i < Mathf.Min(PedestrianlampsStates.Count, PedestrianLanes.Count - 1); i++)
             {
                 var walkBehaviour = PedestrianLanes[i].GetComponentInChildren<WalkLanebehaviour>();
                 if (walkBehaviour != null)

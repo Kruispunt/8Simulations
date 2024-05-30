@@ -1,9 +1,6 @@
-using JetBrains.Annotations;
 using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 [System.Serializable]
 public class Pakket
 {
@@ -38,13 +35,13 @@ public class blocksMsg2
 [Serializable]
 public class blocksMsg
 {
-    [JsonProperty("A")] 
+    [JsonProperty("A")]
     public blockmsg A { get; set; } = new blockmsg();
 
-    [JsonProperty("B")] 
+    [JsonProperty("B")]
     public blockmsgBus B { get; set; } = new blockmsgBus();
 
-    [JsonProperty("C")] 
+    [JsonProperty("C")]
     public blockmsgCarOnly C { get; set; } = new blockmsgCarOnly();
 
 
@@ -75,7 +72,7 @@ public class blockmsgBus
     [JsonProperty("Cars")]
     public List<CarSensormsg> LCarSensormsgs { get; set; } = new List<CarSensormsg>();
     [JsonProperty("Cyclists")]
-    public List<SingleDetector> Bikers { get; set; }  = new List<SingleDetector>();
+    public List<SingleDetector> Bikers { get; set; } = new List<SingleDetector>();
     [JsonProperty("Pedestrians")]
     public List<SingleDetector> Walkers { get; set; } = new List<SingleDetector> { };
     [JsonProperty("Busses")]
@@ -87,13 +84,27 @@ public class blockmsgBus
 [Serializable]
 public class SingleDetector
 {
+    public SingleDetector() { }
+    public SingleDetector(bool _detected)
+    {
+        this.Detected = _detected;
+    }
+
     public bool Detected { get; set; } = new bool();
 }
 
 [Serializable]
 public class CarSensormsg
 {
+    public CarSensormsg() { }
+    public CarSensormsg(bool detectNear, bool detectFar, bool prioCar)
+    {
+        DetectNear = detectNear;
+        DetectFar = detectFar;
+        PrioCar = prioCar;
+    }
+
     public bool DetectNear { get; set; } = new bool();
-    public bool DetectFar { get; set; } = new bool ();
+    public bool DetectFar { get; set; } = new bool();
     public bool PrioCar { get; set; } = new bool();
 }

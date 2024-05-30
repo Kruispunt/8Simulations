@@ -1,8 +1,6 @@
 using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace recieverpakket
 {
@@ -19,13 +17,13 @@ namespace recieverpakket
     [Serializable]
     public class blocksMsg
     {
-        [JsonProperty("A")] 
+        [JsonProperty("A")]
         public LightNormalLanemsg A { get; set; }
 
-        [JsonProperty("B")] 
+        [JsonProperty("B")]
         public LightFullLanemsg B { get; set; }
 
-        [JsonProperty("C")] 
+        [JsonProperty("C")]
         public LightCarLanemsg C { get; set; }
 
 
@@ -33,13 +31,13 @@ namespace recieverpakket
     [Serializable]
     public class blocksMsg2
     {
-        [JsonProperty("D")] 
+        [JsonProperty("D")]
         public LightCarLanemsg D { get; set; }
 
-        [JsonProperty("E")] 
+        [JsonProperty("E")]
         public LightFullLanemsg E { get; set; }
 
-        [JsonProperty("F")] 
+        [JsonProperty("F")]
         public LightNormalLanemsg F { get; set; }
 
 

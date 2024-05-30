@@ -18,10 +18,10 @@ public class BlitToRTHandlePass : ScriptableRenderPass
         renderPassEvent = evt;
         m_Material = mat;
     }
-    
+
     public void SetInput(RTHandle src)
     {
-       // The Renderer Feature uses this variable to set the input RTHandle.
+        // The Renderer Feature uses this variable to set the input RTHandle.
         m_InputHandle = src;
     }
 
@@ -31,8 +31,8 @@ public class BlitToRTHandlePass : ScriptableRenderPass
         var desc = cameraTextureDescriptor;
         desc.depthBufferBits = 0;
         desc.msaaSamples = 1;
-        RenderingUtils.ReAllocateIfNeeded(ref m_OutputHandle, desc, FilterMode.Bilinear, TextureWrapMode.Clamp, name: k_OutputName );
-        
+        RenderingUtils.ReAllocateIfNeeded(ref m_OutputHandle, desc, FilterMode.Bilinear, TextureWrapMode.Clamp, name: k_OutputName);
+
         // Set the RTHandle as the output target
         ConfigureTarget(m_OutputHandle);
     }
@@ -52,7 +52,7 @@ public class BlitToRTHandlePass : ScriptableRenderPass
         cmd.Clear();
         CommandBufferPool.Release(cmd);
     }
-    
+
     public void Dispose()
     {
         m_InputHandle?.Release();

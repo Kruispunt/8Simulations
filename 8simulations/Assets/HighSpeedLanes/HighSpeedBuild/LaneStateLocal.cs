@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LaneStateLocal : MonoBehaviour
@@ -14,7 +12,7 @@ public class LaneStateLocal : MonoBehaviour
         manager = GetComponentInChildren<LampostManager>();
     }
 
- 
+
     public bool IsGreen()
     {
         return watch.CanGo;

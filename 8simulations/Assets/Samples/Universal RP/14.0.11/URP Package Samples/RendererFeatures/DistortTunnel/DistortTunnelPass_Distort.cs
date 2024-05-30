@@ -14,17 +14,17 @@ public class DistortTunnelPass_Distort : ScriptableRenderPass
         renderPassEvent = evt;
         m_Material = mat;
     }
-    
+
     public void SetRTHandles(ref RTHandle copyColorRT, ref RTHandle tunnelRT, RTHandle dest)
     {
         if (m_Material == null)
             return;
-        
+
         m_OutputHandle = dest;
-        m_Material.SetTexture(copyColorRT.name,copyColorRT);
-        m_Material.SetTexture(tunnelRT.name,tunnelRT);
+        m_Material.SetTexture(copyColorRT.name, copyColorRT);
+        m_Material.SetTexture(tunnelRT.name, tunnelRT);
     }
-    
+
     public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
     {
         ConfigureTarget(m_OutputHandle);
@@ -38,7 +38,7 @@ public class DistortTunnelPass_Distort : ScriptableRenderPass
 
         if (m_Material == null)
             return;
-        
+
         CommandBuffer cmd = CommandBufferPool.Get();
         using (new ProfilingScope(cmd, m_ProfilingSampler))
         {

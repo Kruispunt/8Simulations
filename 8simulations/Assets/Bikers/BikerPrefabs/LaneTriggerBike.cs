@@ -5,7 +5,7 @@ public class LaneTriggerBike : MonoBehaviour
 {
 
     private FietsLaanBehaviour laanBehaviour;
-   
+
     public void setup(FietsLaanBehaviour fietsLaan, Vector3 triggerPos)
     {
         this.laanBehaviour = fietsLaan;

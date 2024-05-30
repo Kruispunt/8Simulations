@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEngine.GraphicsBuffer;
 
 public class BlockViewer : MonoBehaviour
 {
@@ -11,7 +8,7 @@ public class BlockViewer : MonoBehaviour
     public float maxThresl;
     public GameObject Target;
 
-    public bool ToggledInput = false; 
+    public bool ToggledInput = false;
 
     int currentfocus = 1;
 
@@ -42,22 +39,22 @@ public class BlockViewer : MonoBehaviour
     {
         switch (currentfocus)
         {
-                case 1:
+            case 1:
                 OnBlockSwitch.Invoke("A");
-                    return BlockA;
-                case 2:
+                return BlockA;
+            case 2:
                 OnBlockSwitch.Invoke("B");
                 return BlockB;
-                case 3:
+            case 3:
                 OnBlockSwitch.Invoke("C");
                 return BlockC;
-                case 4:
+            case 4:
                 OnBlockSwitch.Invoke("D");
                 return BlockD;
-                case 5:
+            case 5:
                 OnBlockSwitch.Invoke("E");
                 return BlockE;
-                case 6:
+            case 6:
                 OnBlockSwitch.Invoke("F");
                 return BlockF;
             default:
@@ -80,7 +77,7 @@ public class BlockViewer : MonoBehaviour
         }
         Transform target = Target.transform;
 
-        this.transform.position =  target.position - target.forward * Camoffset.z + target.up * Camoffset.y;
+        this.transform.position = target.position - target.forward * Camoffset.z + target.up * Camoffset.y;
         transform.LookAt(target);
 
 

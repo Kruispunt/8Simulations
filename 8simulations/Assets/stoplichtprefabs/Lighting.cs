@@ -63,7 +63,7 @@ public class Lighting : MonoBehaviour
     private void SetState(bool val)
     {
         //Debug.Log(val);
-        if (val )
+        if (val)
         {
 
             spotLightLink.intensity = lightIntensity;

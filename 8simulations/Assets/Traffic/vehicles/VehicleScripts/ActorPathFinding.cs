@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +23,7 @@ public class ActorPathFinding : MonoBehaviour
     {
 
         routelist = new List<Vector3> { b, m, e };
-        
+
     }
     public void Setroute(Vector3 b, Vector3 m, Vector3 offsettedm, Vector3 e)
     {
@@ -53,7 +52,7 @@ public class ActorPathFinding : MonoBehaviour
 
     public Vector3 GetNextPos(int index)
     {
-        
+
         return this.routelist[index];
     }
 
@@ -62,10 +61,10 @@ public class ActorPathFinding : MonoBehaviour
         Debug.Log(index);
         Debug.Log(routelist.Count);
         Debug.Log((routelist.Count <= index));
-        if(routelist.Count  <= index)
+        if (routelist.Count <= index)
         {
             Debug.Log("not finished");
-           
+
             return false;
         }
         else

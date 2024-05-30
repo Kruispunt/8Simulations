@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TrueDirectionCalculator : MonoBehaviour
@@ -7,13 +5,13 @@ public class TrueDirectionCalculator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public static Vector3 GenTurnData(Transform Owntr, Turn turn)

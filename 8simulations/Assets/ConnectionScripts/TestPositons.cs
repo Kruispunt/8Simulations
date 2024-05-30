@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TestPositons : MonoBehaviour
@@ -27,13 +25,13 @@ public class TestPositons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dir =     directionPoint.transform.forward * 500;
+        dir = directionPoint.transform.forward * 500;
         right = directionPoint.transform.right * 500;
         left = -directionPoint.transform.right * 500;
         back = -directionPoint.transform.forward * 500;
         endposright = right + -directionPoint.transform.forward * 500;
         endposleft = left + directionPoint.transform.forward * 500;
-}
+    }
 
     // Update is called once per frame
     void Update()
@@ -70,7 +68,7 @@ public class TestPositons : MonoBehaviour
     //    switch (turn)
     //    {
     //        case Turn.right:
-                
+
     //            DirectionalVectorReal = (-transform.right * 500) + -transform.forward * 500;
 
     //            break;
@@ -90,5 +88,5 @@ public class TestPositons : MonoBehaviour
     //    return DirectionalVectorReal;
 
     //}
-    
+
 }

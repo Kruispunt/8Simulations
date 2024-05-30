@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PreBuildCorssPoints : MonoBehaviour
@@ -21,7 +19,7 @@ public class PreBuildCorssPoints : MonoBehaviour
 
 
 
-    
+
 
 
 }

@@ -12,21 +12,21 @@ public class DistortTunnelPass_Tunnel : ScriptableRenderPass
     public DistortTunnelPass_Tunnel(RenderPassEvent evt)
     {
         renderPassEvent = evt;
-        
+
         // Get the "Tunnel" renderer object from the scene
         SetTunnelObject();
     }
 
     private void SetTunnelObject()
     {
-        if (m_TunnelObject != null) 
+        if (m_TunnelObject != null)
             return;
-        
+
         var tunnelGO = GameObject.Find("Tunnel");
         if (tunnelGO != null)
             m_TunnelObject = tunnelGO.GetComponent<Renderer>();
     }
-    
+
     public void SetRTHandles(ref RTHandle dest)
     {
         m_OutputHandle = dest;
@@ -44,11 +44,11 @@ public class DistortTunnelPass_Tunnel : ScriptableRenderPass
 
         if (!m_TunnelObject)
             return;
-        
+
         CommandBuffer cmd = CommandBufferPool.Get();
         using (new ProfilingScope(cmd, m_ProfilingSampler))
         {
-            cmd.DrawRenderer(m_TunnelObject, m_TunnelObject.sharedMaterial,0,0);
+            cmd.DrawRenderer(m_TunnelObject, m_TunnelObject.sharedMaterial, 0, 0);
         }
         context.ExecuteCommandBuffer(cmd);
         cmd.Clear();

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -31,7 +30,7 @@ public class StateDisplay : MonoBehaviour
 
     IEnumerator toggleauto()
     {
-        yield return new WaitForSeconds(1); 
+        yield return new WaitForSeconds(1);
         Sink = !Sink;
         StartCoroutine(toggleauto());
     }

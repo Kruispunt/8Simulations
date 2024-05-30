@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,7 +12,7 @@ public class LampostManager : MonoBehaviour
 
     public LampWatch watch;
 
-    
+
     public List<Lighting> lightings = new List<Lighting>();
 
 
@@ -54,7 +53,7 @@ public class LampostManager : MonoBehaviour
         {
             ColourLogic.AddItemToLogicM(lighting);
         }
-        
+
     }
     public void SetToGreen()
     {
@@ -79,7 +78,7 @@ public class LampostManager : MonoBehaviour
     }
     public bool IsGreenLight()
     {
-        if(ColourLogic.CurrentState == 0)
+        if (ColourLogic.CurrentState == 0)
         {
             return true;
         }

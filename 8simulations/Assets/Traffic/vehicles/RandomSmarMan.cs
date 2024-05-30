@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomSmarMan : MonoBehaviour
@@ -24,6 +23,6 @@ public class RandomSmarMan : MonoBehaviour
 
     void randomizeposses()
     {
-        
+
     }
 }

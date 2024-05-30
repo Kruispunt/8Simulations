@@ -93,7 +93,7 @@ public class busRoute
     {
 
 
-        IsAtFirstBlock=true;
+        IsAtFirstBlock = true;
         block1Movement.FinishedWalk += Block1Movement_FinishedWalk;
 
 
@@ -103,7 +103,7 @@ public class busRoute
     {
         if (IsAtFirstBlock)
         {
-            IsAtFirstBlock=false;
+            IsAtFirstBlock = false;
             block1Movement.FinishedWalk -= Block1Movement_FinishedWalk;
             block2Movement.FinishedWalk += Block2Movement_FinishedWalk;
         }
@@ -113,7 +113,7 @@ public class busRoute
     {
         block2Movement.FinishedWalk -= Block2Movement_FinishedWalk;
 
-        
+
     }
 
     private void OnDisable()

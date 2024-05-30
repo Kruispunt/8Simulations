@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RunWarning : MonoBehaviour
 {
-    
+
 
     public string Popup;
 
@@ -15,13 +13,13 @@ public class RunWarning : MonoBehaviour
 
     public bool StartClient
     {
-        get 
+        get
         {
-            return startClient; 
+            return startClient;
         }
         set
         {
-           startClient = value;
+            startClient = value;
             if (value == true)
             {
                 ClientManager.SetActive(true);
@@ -41,7 +39,7 @@ public class RunWarning : MonoBehaviour
 
 
 
-    
+
     // Update is called once per frame
     void Update()
     {

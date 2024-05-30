@@ -1,7 +1,4 @@
-
-using JetBrains.Annotations;
 using System;
-using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -42,7 +39,7 @@ public class Movement : MonoBehaviour
 
             vehicleDetector = this.AddComponent<vehicleDetector>();
             this.vehicleDetector.OnVehcleDetected += VehicleDetector_OnVehcleDetected;
-            this.CanUpdate = false;;
+            this.CanUpdate = false; ;
             routeindex = -1;
             SmartUpdate();
         }
@@ -53,7 +50,7 @@ public class Movement : MonoBehaviour
         this.GetComponentInParent<Transform>().transform.position += this.GetComponentInParent<Transform>().transform.up * 5;
         //LayerMask myNewLayerMask = 1 << LayerMask.NameToLayer("Actor");
         //this.gameObject.layer = LayerMask.NameToLayer("Actor");
-        vehicleDetector =  this.AddComponent<vehicleDetector>();
+        vehicleDetector = this.AddComponent<vehicleDetector>();
         //this.vehicleDetector = Instantiate(vehicleDetector, this.transform.position + this.transform.forward * ScanPosition, this.transform.rotation);
         pad.watch.OnCanGoChanged += Watch_OnCanGoChanged;
         //this.vehicleDetector.OnVehcleDetected += VehicleDetector_OnVehcleDetected;
@@ -65,7 +62,7 @@ public class Movement : MonoBehaviour
 
     private void VehicleDetector_OnVehcleDetected(bool detected)
     {
-        if(detected)
+        if (detected)
         {
 
             this.CanUpdate = true;
@@ -85,13 +82,12 @@ public class Movement : MonoBehaviour
 
     public void SetNewPadLink(LampWatch watch)
     {
-        if(pad.watch != null)
+        if (pad.watch != null)
         {
             pad.watch.OnCanGoChanged -= Watch_OnCanGoChanged;
         }
         //pad.watch.OnCanGoChanged -= Watch_OnCanGoChanged;
         pad.watch = watch;
-        //pad.watch.BusEnteredlane();
         pad.watch.OnCanGoChanged += Watch_OnCanGoChanged;
         pad.watch.BusEnteredlane();
     }
@@ -120,7 +116,7 @@ public class Movement : MonoBehaviour
     private void SmartUpdate()
     {
         //CanUpdate = false;
-        if(routeindex + 1 == 2)
+        if (routeindex + 1 == 2)
         {
             if (!IsGreenLight)
             {
@@ -232,7 +228,7 @@ public class Movement : MonoBehaviour
     {
         startTime = Time.time;
         startpos = transform.position;
-        
+
     }
 
     public void timebasedmovementX()
@@ -252,13 +248,10 @@ public class Movement : MonoBehaviour
         if (percentageComplete != lastPercentageComplete)
         {
             transform.LookAt(LocalGoal);
-            
+
             transform.position = Vector3.Lerp(startpos, LocalGoal, percentageComplete);
             lastPercentageComplete = percentageComplete;
         }
-
-
-
         if (percentageComplete >= 1.0f)
         {
             SmartUpdate();

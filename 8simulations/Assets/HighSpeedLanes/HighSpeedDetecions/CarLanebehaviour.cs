@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CarLanebehaviour : MonoBehaviour
@@ -11,7 +9,7 @@ public class CarLanebehaviour : MonoBehaviour
     public Vector3 OffsettedStartPos;
 
 
-    public bool IsMiddlePoint = false; 
+    public bool IsMiddlePoint = false;
     //public GameObject triggerNear;
     //public GameObject triggerFar;
 
@@ -47,7 +45,7 @@ public class CarLanebehaviour : MonoBehaviour
         FarLus.setup(this, false);
         LaneRoad.startPosition = FarLus.transform;
 
-        if(ExitNode != null)
+        if (ExitNode != null)
         {
             LaneRoad.endPosition = ExitNode.transform;
         }

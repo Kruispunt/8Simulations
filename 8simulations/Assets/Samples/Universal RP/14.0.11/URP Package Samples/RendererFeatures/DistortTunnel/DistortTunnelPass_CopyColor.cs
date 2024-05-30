@@ -13,7 +13,7 @@ public class DistortTunnelPass_CopyColor : ScriptableRenderPass
     {
         renderPassEvent = evt;
     }
-    
+
     public void SetRTHandles(RTHandle src, ref RTHandle dest)
     {
         m_Source = src;
@@ -30,7 +30,7 @@ public class DistortTunnelPass_CopyColor : ScriptableRenderPass
         var cameraData = renderingData.cameraData;
         if (cameraData.camera.cameraType != CameraType.Game)
             return;
-        
+
         CommandBuffer cmd = CommandBufferPool.Get();
         using (new ProfilingScope(cmd, m_ProfilingSampler))
         {

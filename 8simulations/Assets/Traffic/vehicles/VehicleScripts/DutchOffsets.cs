@@ -1,21 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DutchOffsets : MonoBehaviour
 {
 
 
-        public Vector3 StartOffset;
-        public Vector3 MidPointOffset;
-        public Vector3 EndOffset;
+    public Vector3 StartOffset;
+    public Vector3 MidPointOffset;
+    public Vector3 EndOffset;
 
-        public DutchOffsets(Vector3 startOffset, Vector3 midPointOffset, Vector3 endOffset)
-        {
-            StartOffset = startOffset;
-            MidPointOffset = midPointOffset;
-            EndOffset = endOffset;
-        }
+    public DutchOffsets(Vector3 startOffset, Vector3 midPointOffset, Vector3 endOffset)
+    {
+        StartOffset = startOffset;
+        MidPointOffset = midPointOffset;
+        EndOffset = endOffset;
+    }
 
 
     public Vector3 GetMidPosoffset()
@@ -30,6 +28,6 @@ public class DutchOffsets : MonoBehaviour
     {
         return EndOffset;
     }
- 
+
 
 }

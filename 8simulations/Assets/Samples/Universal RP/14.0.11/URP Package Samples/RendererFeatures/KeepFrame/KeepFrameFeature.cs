@@ -107,7 +107,7 @@ public class KeepFrameFeature : ScriptableRendererFeature
         descriptor.depthBufferBits = 0;
         var textureName = String.IsNullOrEmpty(settings.textureName) ? "_FrameCopyTex" : settings.textureName;
         RenderingUtils.ReAllocateIfNeeded(ref m_OldFrameHandle, descriptor, FilterMode.Bilinear, TextureWrapMode.Clamp, name: textureName);
-        
+
         m_DrawOldFrame.ConfigureClear(ClearFlag.None, Color.red);
         m_CopyFrame.Setup(renderer.cameraColorTargetHandle, m_OldFrameHandle);
         m_DrawOldFrame.Setup(settings.displayMaterial, m_OldFrameHandle, textureName);

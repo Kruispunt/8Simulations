@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Road : MonoBehaviour
@@ -19,5 +17,5 @@ public class Road : MonoBehaviour
         return endPosition;
     }
 
-  
+
 }

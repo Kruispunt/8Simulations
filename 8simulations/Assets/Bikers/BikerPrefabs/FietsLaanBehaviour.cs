@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FietsLaanBehaviour : MonoBehaviour
 {
 
-    
+
     public GameObject NearLusF;
     public GameObject FarLusF;
 
@@ -68,7 +66,7 @@ public class FietsLaanBehaviour : MonoBehaviour
     //enter the lane at the start position
     public Vector3 GetLaneStart()
     {
-        return FarLusF.transform.position + transform.forward *30;
+        return FarLusF.transform.position + transform.forward * 30;
     }
 
     public void SetLampLight(int state)

@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Net;
-using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using UnityEngine;
-using UnityEngine.Networking;
 
 public class ClientDiscovery : MonoBehaviour
 {
@@ -22,7 +18,7 @@ public class ClientDiscovery : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void LogLocalIPAddress()
     {

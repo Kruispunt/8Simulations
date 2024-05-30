@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ordenogan : MonoBehaviour
@@ -27,7 +25,7 @@ public class Ordenogan : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     public void truePos(Transform transform)
@@ -53,6 +51,6 @@ public class Ordenogan : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

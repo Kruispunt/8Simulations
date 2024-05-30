@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class CarActorCollection : MonoBehaviour 
+public class CarActorCollection : MonoBehaviour
 {
 
 

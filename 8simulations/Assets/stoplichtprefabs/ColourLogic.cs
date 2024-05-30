@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -97,13 +95,13 @@ public class ColourLogic : MonoBehaviour
     //    {
     //        if (light.idx == CurrentState)
     //        {
-                
+
 
     //        }
     //        else
     //        {
     //            light.TurnOffLamp();
-                
+
     //        }
 
 

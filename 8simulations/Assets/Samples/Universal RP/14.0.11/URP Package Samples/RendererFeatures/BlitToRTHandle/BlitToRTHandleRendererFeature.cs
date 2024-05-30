@@ -12,12 +12,12 @@ public class BlitToRTHandleRendererFeature : ScriptableRendererFeature
     {
         m_CopyColorPass = new BlitToRTHandlePass(m_CopyColorEvent, blitMaterial);
     }
-    
+
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
         if (renderingData.cameraData.cameraType != CameraType.Game)
             return;
-        
+
         renderer.EnqueuePass(m_CopyColorPass);
     }
 
@@ -25,7 +25,7 @@ public class BlitToRTHandleRendererFeature : ScriptableRendererFeature
     {
         if (renderingData.cameraData.cameraType != CameraType.Game)
             return;
-        
+
         m_CopyColorPass.SetInput(renderer.cameraColorTargetHandle);
     }
 
